@@ -518,13 +518,13 @@ p.quoteBar {
 
 
 #footer {
-    background:#4A4A4A;
+  background:#4A4A4A;
 	padding:10px;
 	padding-bottom:20px;
 	margin-bottom:30px;
 }
 #footer p{
-    color:#E1E1E1;
+  color:#E1E1E1;
 	font-size:14px;
 	line-height:20px;
 }
@@ -597,7 +597,7 @@ input.footerSubmit {
 	cursor:pointer;
 }
 #footerContainer {
-    position: fixed;
+    #position: fixed;
     bottom: 0;
 	#background:url(../images/footerContainerBgR.png) repeat-x left top;
   #background-size:auto 5px;
