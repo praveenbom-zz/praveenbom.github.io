@@ -18,13 +18,17 @@
 <script>
 $(document).ready(function()
   {
+  $("#more_publications").hide();
+
   $("#show_publications").click(function(){
     $("#publications_box").animate({height:"100%"});
     $("#show_publications").hide();
+    $("#more_publications").fadeIn(200);
   });
   $("#close_publications").click(function(){
     $("#publications_box").animate({height:"335px"});
     $("#show_publications").show();
+    $("#more_publications").fadeOut(200);
   });
 });
 </script>
@@ -90,7 +94,7 @@ $(document).ready(function()
        </ul>
        <br/>
        <a id="show_publications" onClick="ga('send', 'event', 'publications', 'show more click', 'show more', 1, {'nonInteraction': 1});">Older publications &rarr;</a>
-       <br/>
+       <div id="more_publications">
        <h3>2013</h3>
        <ul>
          <img src="img/stanford_logo.jpg" width="40px"/>
@@ -127,6 +131,7 @@ $(document).ready(function()
        </ul>
 
        <a href="#publications" id="close_publications" onClick="ga('send', 'event', 'publications', 'show fewer click', 'show fewer', 1, {'nonInteraction': 1});">&larr;Restrict to recent publications</a>
+    </div>
     </div>
      <br/>
      <br/>
