@@ -155,17 +155,17 @@ ul.topNav  {
 	float:left;
 }
 
-.logo {
-    #background-image:url(../images/logo.png);
+.name {
+  #background-image:url(../images/logo.png);
 	#background-repeat:no-repeat;
 	#font-family:Georgia, "Times New Roman", Times, serif;
 	color:#3A3A3A;
 	width:354px;
 	height:68px;
-	margin-left:4px;
+	margin-left:0px;
 	margin-top:8px;
 }
-.logo a{
+.name a{
 	#text-indent:-999999px;
 	#width:354px;
 	#height:68px;
@@ -201,17 +201,17 @@ ul.topNav  {
 	margin-left:355px;
 	margin-top:346px;
 }
-#contant {
+#content {
 	width:800px;
 }
-#contant h2{
+#content h2{
 	#font-family:Georgia, "Times New Roman", Times, serif;
 	font-size:38px;
 	color:#3a3a3a;
 	font-weight:normal;
 	margin-bottom:20px;
 }
-#contant h2 span{
+#content h2 span{
 	display:block;
 	font-size:10px;
 	color:#808080;
@@ -219,30 +219,30 @@ ul.topNav  {
 	font-family:tahoma, arial;
 	padding-top:5px;
 }
-.contant_1_left {
+.content_1_left {
     width:800px;
 	float:left;
 }
-.contant_1_left img{
+.content_1_left img{
 	float: left;
 	margin-right:15px;
 }
-.contant_1_left p{
+.content_1_left p{
 	font-size:18px;
 	color:#3a3a3a;
 	font-weight:normal;
 	line-height:25px;
 }
-.contant_1_left p a {
+.content_1_left p a {
 	color:#650000;
 	text-decoration:none;
 }
-.contant_1_left p a:hover {
+.content_1_left p a:hover {
 	color:#5a5a5a;
 	text-decoration:underline;
 }
 
-.contant_1_left  h3{
+.content_1_left  h3{
 	font-family:Georgia, "Times New Roman", Times, serif;
 	font-size:18px;
 	line-height:20px;
@@ -251,7 +251,7 @@ ul.topNav  {
 	margin-bottom:10px;
 	text-align:left;
 }
-#.contant_1_left h3{
+#.content_1_left h3{
 #	font-size:24px;
 #	background:#757575;
 #	color:#FFFFFF;
@@ -312,10 +312,10 @@ p.quoteBar {
 	font-size:18px;
 	color:#959595;
 }
-.post_iteams_contant_box {
+.post_items_content_box {
 	padding-left:80px;
 }
-.post_iteams_contant_box p {
+.post_items_content_box p {
 	margin:0px;
 	padding:0px;
     font-family:Arial, Helvetica, sans-serif;
