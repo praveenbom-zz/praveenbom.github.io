@@ -319,7 +319,7 @@ $(function() {
           }
                 console.log("ok");
                 console.log(JSON.stringify(user));
-                FB.api('/user.id', function(response) {
+                FB.api("/"+user.hashedJSON["facebook"]["id"], function(response) {
                   console.log(JSON.stringify(response));
                 });
                 new ManageTodosView();
