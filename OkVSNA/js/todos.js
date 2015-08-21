@@ -318,8 +318,8 @@ $(function() {
             alert("User logged in through Facebook!");
           }
                 console.log("ok");
-                console.log(JSON.stringify(user.authData()));
-                FB.api("/"+user.authData.facebook.id, function(response) {
+                console.log(JSON.stringify(user));
+                FB.api("/"+user._authData().facebook.id, function(response) {
                   console.log(JSON.stringify(response));
                 });
                 new ManageTodosView();
