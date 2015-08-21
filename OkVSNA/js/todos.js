@@ -310,13 +310,16 @@ $(function() {
       var username = this.$("#login-username").val();
       var password = this.$("#login-password").val();
       
-      Parse.FacebookUtils.logIn(null, {
+      Parse.FacebookUtils.logIn("public_profile,email,user_friends", {
         success: function(user) {
           if (!user.existed()) {
             alert("User signed up and logged in through Facebook!");
           } else {
             alert("User logged in through Facebook!");
           }
+                FB.api('/me', function(response) {
+                  console.log(JSON.stringify(response));
+                });
                 new ManageTodosView();
                 self.undelegateEvents();
                 delete self;
