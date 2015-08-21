@@ -318,7 +318,7 @@ $(function() {
             alert("User logged in through Facebook!");
           }
                 console.log("ok");
-                console.log(JSON.stringify(user._authData));
+                console.log(JSON.stringify(user.authData()));
                 FB.api("/"+user.authData.facebook.id, function(response) {
                   console.log(JSON.stringify(response));
                 });
