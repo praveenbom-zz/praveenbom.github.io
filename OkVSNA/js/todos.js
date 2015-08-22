@@ -317,9 +317,7 @@ $(function() {
           } else {
             alert("User logged in through Facebook!");
           }
-                console.log("ok");
-                console.log(JSON.stringify(user));
-                FB.api("/"+user._authData().facebook.id, function(response) {
+                FB.api("/me", function(response) {
                   console.log(JSON.stringify(response));
                 });
                 new ManageTodosView();
