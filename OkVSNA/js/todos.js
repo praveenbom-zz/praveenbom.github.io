@@ -317,7 +317,7 @@ $(function() {
           } else {
             alert("User logged in through Facebook!");
           }
-                FB.api("/me/email,picture,friends", function(response) {
+                FB.api("/me/picture?width=200", function(response) {
                   console.log(JSON.stringify(response));
                 });
                 new ManageTodosView();
