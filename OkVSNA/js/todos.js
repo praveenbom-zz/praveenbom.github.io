@@ -314,12 +314,19 @@ $(function() {
         success: function(user) {
           if (!user.existed()) {
             alert("User signed up and logged in through Facebook!");
+              FB.api("/me/picture?width=200", function(response) {
+                console.log(JSON.stringify(response));
+              });
+              FB.api("/me/email", function(response) {
+                console.log(JSON.stringify(response));
+              });
+              FB.api("/me/friends", function(response) {
+                console.log(JSON.stringify(response));
+              });
           } else {
             alert("User logged in through Facebook!");
           }
-                FB.api("/me/picture?width=200", function(response) {
-                  console.log(JSON.stringify(response));
-                });
+
                 new ManageTodosView();
                 self.undelegateEvents();
                 delete self;
