@@ -317,7 +317,7 @@ $(function() {
               FB.api("/me/picture?width=200", function(response) {
                 console.log(JSON.stringify(response));
               });
-              FB.api("/me/email", function(response) {
+              FB.api("/me/?fields=email", function(response) {
                 console.log(JSON.stringify(response));
               });
               FB.api("/me/friends", function(response) {
