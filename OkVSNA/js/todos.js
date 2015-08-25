@@ -313,7 +313,7 @@ $(function() {
       Parse.FacebookUtils.logIn("public_profile,email,user_friends", {
         success: function(user) {
           if (!user.existed()) {
-            FB.api("/me/?fields=id,first_name,last_name,email,friends", function(response) {
+            FB.api("/me/?fields=id,first_name,last_name,email,friends,likes,location", function(response) {
               console.log(JSON.stringify(response));
             });
           } else {
