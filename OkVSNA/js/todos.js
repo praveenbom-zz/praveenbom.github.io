@@ -313,7 +313,7 @@ $(function() {
       Parse.FacebookUtils.logIn("public_profile,email,user_friends", {
         success: function(user) {
           if (!user.existed()) {
-            FB.api("/me/?fields=email,name,age_range,bio,address,about,education,first_name,last_name,location,hometown,gender,interested_in,work,languages", function(response) {
+            FB.api("/me/?fields=email,name,age_range,bio,address,about,education,first_name,last_name,location,hometown,gender,interested_in,work,languages,birthday,likes", function(response) {
               console.log(JSON.stringify(response));
             });
           } else {
