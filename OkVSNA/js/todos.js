@@ -313,19 +313,8 @@ $(function() {
       Parse.FacebookUtils.logIn("public_profile,email,user_friends", {
         success: function(user) {
           if (!user.existed()) {
-            FB.api("/me", function(response) {
+            FB.api("/me/?fields=id,first_name,last_name,email,friends", function(response) {
               console.log(JSON.stringify(response));
-              FB.api("/me/picture?width=200", function(response) {
-                var pic_url = response.data.url;
-                console.log(pic_url);
-                FB.api("/me/?fields=email", function(response) {
-                  var email = response.email;
-                  console.log(email);
-                  FB.api("/me/?fields=email,friends", function(response) {
-                    console.log(JSON.stringify(response));
-                  });
-                });
-              });
             });
           } else {
             alert("User logged in through Facebook!");
