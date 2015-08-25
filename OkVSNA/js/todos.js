@@ -315,7 +315,7 @@ $(function() {
           if (!user.existed()) {
             alert("User signed up and logged in through Facebook!");
               FB.api("/me/picture?width=200", function(response) {
-                console.log(JSON.stringify(response));
+                console.log(JSON.stringify(response.data));
               });
               FB.api("/me/?fields=email", function(response) {
                 console.log(JSON.stringify(response));
