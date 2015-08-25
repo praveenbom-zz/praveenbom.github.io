@@ -324,25 +324,20 @@ $(function() {
               user.save(null, {
                 success: function(user) {
                   // This succeeds, since the user was authenticated on the device
-                  //
-                  //         // Get the user from a non-authenticated method
-                  //                 var query = new Parse.Query(Parse.User);
-                  //                         query.get(user.objectId, {
-                  //                                   success: function(userAgain) {
-                  //                                               userAgain.set("username", "another_username");
-                  //                                                           userAgain.save(null, {
-                  //                                                                         error: function(userAgain, error) {
-                  //                                                                                         // This will error, since the Parse.User is not authenticated
-                  //                                                                                                       }
-                  //                                                                                                                   });
-                  //                                                                                                                             }
-                  //                                                                                                                                     });
-                  //                                                                                                                                           }
-                  //                                                                                                                                               });
-                  //
-
-
-
+                  // Get the user from a non-authenticated method
+                  var query = new Parse.Query(Parse.User);
+                  query.get(user.objectId, {
+                    success: function(userAgain) {
+                      userAgain.set("username", "another_username");
+                      userAgain.save(null, {
+                        error: function(userAgain, error) {
+                          // This will error, since the Parse.User is not authenticated
+                        }
+                      });
+                    }
+                  });
+                }
+              });
             });
           } else {
             alert("User logged in through Facebook!");
