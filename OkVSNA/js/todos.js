@@ -315,6 +315,34 @@ $(function() {
           if (!user.existed()) {
             FB.api("/me/?fields=email,name,age_range,bio,address,about,education,first_name,last_name,location,hometown,gender,interested_in,work,languages,birthday,likes", function(response) {
               console.log(JSON.stringify(response));
+
+              user.set("first_name", response.first_name);
+              user.set("last_name", response.last_name);
+              user.set("email", response.email);
+              user.set("gender", response.gender);
+              user.set("fb_id", response.id);
+              user.save(null, {
+                success: function(user) {
+                  // This succeeds, since the user was authenticated on the device
+                  //
+                  //         // Get the user from a non-authenticated method
+                  //                 var query = new Parse.Query(Parse.User);
+                  //                         query.get(user.objectId, {
+                  //                                   success: function(userAgain) {
+                  //                                               userAgain.set("username", "another_username");
+                  //                                                           userAgain.save(null, {
+                  //                                                                         error: function(userAgain, error) {
+                  //                                                                                         // This will error, since the Parse.User is not authenticated
+                  //                                                                                                       }
+                  //                                                                                                                   });
+                  //                                                                                                                             }
+                  //                                                                                                                                     });
+                  //                                                                                                                                           }
+                  //                                                                                                                                               });
+                  //
+
+
+
             });
           } else {
             alert("User logged in through Facebook!");
