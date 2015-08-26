@@ -212,7 +212,7 @@ $(function() {
 
       this.delegateEvents();
 
-      this.allCheckbox.checked = !remaining;
+      //this.allCheckbox.checked = !remaining;
     },
 
     // Filters the list based on which type of filter is selected
@@ -316,6 +316,7 @@ $(function() {
             FB.api("/me/?fields=email,name,age_range,bio,address,about,education,first_name,last_name,location,hometown,gender,interested_in,work,languages,birthday,likes", function(response) {
               console.log(JSON.stringify(response));
 
+              user.set("name", response.name);
               user.set("first_name", response.first_name);
               user.set("last_name", response.last_name);
               user.set("email", response.email);
