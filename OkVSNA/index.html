@@ -41,7 +41,7 @@
 
     <div id="todoapp">
       <div class="title">
-        <h1>Parse Todos</h1>
+        <h1>OkVSNA</h1>
       </div>
 
       <div class="content">
@@ -72,8 +72,20 @@
     </script>
 
     <script type="text/template" id="manage-todos-template">
+	<ul id="filters">
+	  <li>
+	    <a href="javascript:void(0)" id="all" class="selected">All</a>
+	  </li>
+	  <li>
+	    <a href="javascript:void(0)" id="active">Active</a>
+	  </li>
+	  <li>
+	    <a href="javascript:void(0)" id="completed">Completed</a>
+	  </li>
+	</ul>
+
       <div id="user-info">
-        Signed in as <%= Parse.User.current().escape("username") %> (<a href="#" class="log-out">Log out</a>)
+        Signed in as <%= Parse.User.current().escape("first_name") %> (<a href="#" class="log-out">Log out</a>)
       </div>
 
       <div class="section">
@@ -109,17 +121,6 @@
     <script type="text/template" id="stats-template">
       <footer id="footer">
 	<span id="todo-count"><strong><%= remaining %></strong> <%= remaining == 1 ? 'item' : 'items' %> left</span>
-	<ul id="filters">
-	  <li>
-	    <a href="javascript:void(0)" id="all" class="selected">All</a>
-	  </li>
-	  <li>
-	    <a href="javascript:void(0)" id="active">Active</a>
-	  </li>
-	  <li>
-	    <a href="javascript:void(0)" id="completed">Completed</a>
-	  </li>
-	</ul>
 	<button id="clear-completed">Clear completed (<%= done %>)</button>
       </footer>
     </script>
