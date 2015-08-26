@@ -14,7 +14,6 @@
     <script>
       // Initialize Parse
       Parse.initialize("BeYZxSllTAa0uompCH7V49osUz0MZlpMHTrtqLpG", "pGpQ1ERlCRDO8rX59aCG2q6rT6uK3RlQbq3uWLX1");
-    
           window.fbAsyncInit = function() {
         Parse.FacebookUtils.init({ // this line replaces FB.init({
           appId      : '1626289347652973', // Facebook App ID
@@ -23,10 +22,8 @@
           xfbml      : true,  // initialize Facebook social plugins on the page
           version    : 'v2.4' // point to the latest Facebook Graph API version
         });
-    
             // Run code after the Facebook SDK is loaded.
       };
-    
           (function(d, s, id){
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) {return;}
@@ -36,9 +33,7 @@
       }(document, 'script', 'facebook-jssdk'));
     </script>
 
-
     <!-- Todo App Interface -->
-
     <div id="todoapp">
       <div class="title">
         <h1>OkVSNA</h1>
@@ -90,14 +85,16 @@
 
       <div class="section">
 
+        <!--
         <header id="header">
           <input id="new-todo" placeholder="What needs to be done?" type="text" />
         </header>
+        -->
 
         <div id="main">
-          <input id="toggle-all" type="checkbox">
+        <!--  <input id="toggle-all" type="checkbox">
           <label for="toggle-all">Mark all as complete</label>
-          
+        -->
           <ul id="todo-list">
             <img src='images/spinner.gif' class='spinner' />
           </ul>
@@ -110,9 +107,9 @@
     <script type="text/template" id="item-template">
       <li class="<%= done ? 'completed' : '' %>">
 	<div class="view">
-	  <input class="toggle" type="checkbox" <%= done ? 'checked="checked"' : '' %>>
+	  <!--<input class="toggle" type="checkbox" <%= done ? 'checked="checked"' : '' %>>-->
 	  <label class="todo-content"><%= _.escape(content) %></label>
-	  <button class="todo-destroy"></button>
+	  <!--<button class="todo-destroy"></button>-->
 	</div>
 	<input class="edit" value="<%= _.escape(content) %>">
       </li>
@@ -120,8 +117,8 @@
 
     <script type="text/template" id="stats-template">
       <footer id="footer">
-	<span id="todo-count"><strong><%= remaining %></strong> <%= remaining == 1 ? 'item' : 'items' %> left</span>
-	<button id="clear-completed">Clear completed (<%= done %>)</button>
+	<!--<span id="todo-count"><strong><%= remaining %></strong> <%= remaining == 1 ? 'item' : 'items' %> left</span>
+	<button id="clear-completed">Clear completed (<%= done %>)</button>-->
       </footer>
     </script>
 
