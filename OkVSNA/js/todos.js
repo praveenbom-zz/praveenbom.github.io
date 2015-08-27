@@ -306,7 +306,7 @@ $(function() {
     },
 
     render: function() {
-      this.$el.html(_.template($("#login-template").html()));
+      this.$el.html(_.template($("#profile-template").html()));
       this.delegateEvents();
     }
   });
