@@ -413,7 +413,7 @@ $(function() {
 
     render: function() {
       if (Parse.User.current()) {
-        new ManageTodosView();
+        new LogInView();//ManageTodosView();
       } else {
         new LogInView();
       }
