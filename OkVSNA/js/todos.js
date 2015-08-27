@@ -294,14 +294,13 @@ $(function() {
 
   var ProfileView = Parse.View.extend({
     events: {
-      "submit form.login-form": "logIn",
-      "submit form.signup-form": "signUp"
+      "submit form.login-form": "logIn"
     },
 
     el: ".content",
     
     initialize: function() {
-      _.bindAll(this, "logIn", "signUp");
+      _.bindAll(this, "logIn");
       this.render();
     },
 
@@ -309,88 +308,8 @@ $(function() {
       var self = this;
       var username = this.$("#login-username").val();
       var password = this.$("#login-password").val();
-      
-      Parse.FacebookUtils.logIn("public_profile,email,user_friends", {
-        success: function(user) {
-          if (!user.existed()) {
-            FB.api("/me/?fields=email,name,age_range,bio,address,about,education,first_name,last_name,location,hometown,gender,interested_in,work,languages,birthday,likes", function(response) {
-              console.log(JSON.stringify(response));
 
-              user.set("name", response.name);
-              user.set("first_name", response.first_name);
-              user.set("last_name", response.last_name);
-              user.set("email", response.email);
-              user.set("gender", response.gender);
-              user.set("fb_id", response.id);
-              user.save(null, {
-                success: function(user) {
-                  // This succeeds, since the user was authenticated on the device
-                  // Get the user from a non-authenticated method
-                  var query = new Parse.Query(Parse.User);
-                  query.get(user.objectId, {
-                    success: function(userAgain) {
-                      userAgain.set("username", "another_username");
-                      userAgain.save(null, {
-                        error: function(userAgain, error) {
-                          // This will error, since the Parse.User is not authenticated
-                        }
-                      });
-                    }
-                  });
-                }
-              });
-            });
-          } else {
-            alert("User logged in through Facebook!");
-          }
-
-                new ProfileView();//ManageTodosView();
-                self.undelegateEvents();
-                delete self;
-        },
-        error: function(user, error) {
-          alert("User cancelled the Facebook login or did not fully authorize.");
-        }
-      });
-
-/*
-      Parse.User.logIn(username, password, {
-        success: function(user) {
-          new ManageTodosView();
-          self.undelegateEvents();
-          delete self;
-        },
-
-        error: function(user, error) {
-          self.$(".login-form .error").html("Invalid username or password. Please try again.").show();
-          self.$(".login-form button").removeAttr("disabled");
-        }
-      });
-*/
       this.$(".login-form button").attr("disabled", "disabled");
-
-      return false;
-    },
-
-    signUp: function(e) {
-      var self = this;
-      var username = this.$("#signup-username").val();
-      var password = this.$("#signup-password").val();
-      
-      Parse.User.signUp(username, password, { ACL: new Parse.ACL() }, {
-        success: function(user) {
-          new ProfileView();//ManageTodosView();
-          self.undelegateEvents();
-          delete self;
-        },
-
-        error: function(user, error) {
-          self.$(".signup-form .error").html(_.escape(error.message)).show();
-          self.$(".signup-form button").removeAttr("disabled");
-        }
-      });
-
-      this.$(".signup-form button").attr("disabled", "disabled");
 
       return false;
     },
@@ -405,14 +324,13 @@ $(function() {
 
   var LogInView = Parse.View.extend({
     events: {
-      "submit form.login-form": "logIn",
-      "submit form.signup-form": "signUp"
+      "submit form.login-form": "logIn"
     },
 
     el: ".content",
     
     initialize: function() {
-      _.bindAll(this, "logIn", "signUp");
+      _.bindAll(this, "logIn");
       this.render();
     },
 
@@ -437,17 +355,6 @@ $(function() {
                 success: function(user) {
                   // This succeeds, since the user was authenticated on the device
                   // Get the user from a non-authenticated method
-                  var query = new Parse.Query(Parse.User);
-                  query.get(user.objectId, {
-                    success: function(userAgain) {
-                      userAgain.set("username", "another_username");
-                      userAgain.save(null, {
-                        error: function(userAgain, error) {
-                          // This will error, since the Parse.User is not authenticated
-                        }
-                      });
-                    }
-                  });
                 }
               });
             });
@@ -464,44 +371,7 @@ $(function() {
         }
       });
 
-/*
-      Parse.User.logIn(username, password, {
-        success: function(user) {
-          new ManageTodosView();
-          self.undelegateEvents();
-          delete self;
-        },
-
-        error: function(user, error) {
-          self.$(".login-form .error").html("Invalid username or password. Please try again.").show();
-          self.$(".login-form button").removeAttr("disabled");
-        }
-      });
-*/
       this.$(".login-form button").attr("disabled", "disabled");
-
-      return false;
-    },
-
-    signUp: function(e) {
-      var self = this;
-      var username = this.$("#signup-username").val();
-      var password = this.$("#signup-password").val();
-      
-      Parse.User.signUp(username, password, { ACL: new Parse.ACL() }, {
-        success: function(user) {
-          new ProfileView();//ManageTodosView();
-          self.undelegateEvents();
-          delete self;
-        },
-
-        error: function(user, error) {
-          self.$(".signup-form .error").html(_.escape(error.message)).show();
-          self.$(".signup-form button").removeAttr("disabled");
-        }
-      });
-
-      this.$(".signup-form button").attr("disabled", "disabled");
 
       return false;
     },
