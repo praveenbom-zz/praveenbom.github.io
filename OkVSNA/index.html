@@ -44,7 +44,6 @@
     </div>
 
     <!-- Templates -->
-
     <script type="text/template" id="profile-template">
       <header id="header"></header>
       <ul id="filters">
@@ -59,9 +58,8 @@
         </li>
       </ul>
       <div class="view">
-        <h3>Display Name</h3>
-        <label class="todo-content"> <%= Parse.User.current().escape("first_name") %></label>
-        <!--<button class="todo-destroy"></button>-->
+        <label class="profile-field">Display name: </label> <label class="todo-content"> <%= Parse.User.current().escape("first_name") %></label>
+        <button class="profile-field-edit"></button>
       </div>
       <input class="edit" value="<%= Parse.User.current().escape("first_name") %>" >
     </script>
