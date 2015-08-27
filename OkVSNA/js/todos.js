@@ -301,7 +301,7 @@ $(function() {
     el: ".content",
     
     initialize: function() {
-      _.bindAll(this, "logIn", "signUp");
+//      _.bindAll(this, "logIn", "signUp");
       this.render();
     },
 
