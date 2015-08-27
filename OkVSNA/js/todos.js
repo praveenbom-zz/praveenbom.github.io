@@ -144,20 +144,33 @@ $(function() {
 
   var ProfileView = Parse.View.extend({
     events: {
-      "submit form.login-form": "logIn"
+      "click .log-out": "logOut",
+      "click ul#filters a": "selectFilter"
     },
+
     el: ".content",
+
     initialize: function() {
-      _.bindAll(this, "logIn");
+      _.bindAll(this, "logOut");
       this.render();
     },
-    logIn: function(e) {
-      var self = this;
-      var username = this.$("#login-username").val();
-      var password = this.$("#login-password").val();
-      this.$(".login-form button").attr("disabled", "disabled");
-      return false;
+
+    // Logs out the user and shows the login view
+    logOut: function(e) {
+      Parse.User.logOut();
+      new LogInView();
+      this.undelegateEvents();
+      delete this;
     },
+
+    // Filters the list based on which type of filter is selected
+    selectFilter: function(e) {
+      var el = $(e.target);
+      var filterValue = el.attr("id");
+      state.set({filter: filterValue});
+      Parse.history.navigate(filterValue);
+    },
+
     render: function() {
       this.$el.html(_.template($("#profile-template").html()));
       this.delegateEvents();
