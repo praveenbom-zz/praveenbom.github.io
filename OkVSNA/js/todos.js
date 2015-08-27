@@ -302,7 +302,7 @@ $(function() {
     el: ".content",
 
     initialize: function() {
-      //_.bindAll(this, "logIn", "signUp");
+      _.bindAll(this, "logIn", "signUp");
       this.render();
     },
 
@@ -429,7 +429,7 @@ $(function() {
 
     render: function() {
       if (Parse.User.current()) {
-        new ProfileView();
+        new LogInView();//ManageTodosView();
       } else {
         new LogInView();
       }
