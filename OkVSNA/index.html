@@ -59,12 +59,12 @@
         </li>
       </ul>
       <div class="view">
+        <h3>Display Name</h3>
+        <label class="todo-content"> <%= Parse.User.current().escape("first_name") %></label>
+        <!--<button class="todo-destroy"></button>-->
       </div>
-
-
+      <input class="edit" value="<%= Parse.User.current().escape("first_name") %>" >
     </script>
-
-
 
     <script type="text/template" id="login-template">
       <header id="header"></header>
