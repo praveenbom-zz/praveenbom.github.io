@@ -45,7 +45,7 @@
 
     <!-- Templates -->
 
-    <script type="text/template" id="login-template">
+    <script type="text/template" id="profile-template">
       <header id="header"></header>
       <div class="login">
         <form class="login-form">
@@ -66,7 +66,9 @@
       </div>
     </script>
 
-    <script type="text/template" id="profile-template">
+
+
+    <script type="text/template" id="login-template">
       <header id="header"></header>
       <div class="login">
         <form class="login-form">
@@ -79,56 +81,6 @@
 
         <form class="signup-form">
           <h2>Sign Up</h2>
-          <div class="error" style="display:none"></div>
-          <input type="text" id="signup-username" placeholder="Username" />
-          <input type="password" id="signup-password" placeholder="Create a Password" />
-          <button>Sign Up</button>
-        </form>
-      </div>
-      <ul id="filters">
-        <li>
-          <a href="javascript:void(0)" id="all" class="selected">Me</a>
-        </li>
-        <li>
-          <a href="javascript:void(0)" id="active">Search</a>
-        </li>
-        <li>
-          <a href="javascript:void(0)" id="completed">Messages</a>
-        </li>
-      </ul>
-
-      <div id="user-info">
-        Signed in as <%= Parse.User.current().escape("first_name") %> (<a href="#" class="log-out">Log out!</a>)
-      </div>
-
-      <header id="header"></header>
-      <div class="login">
-        <form class="login-form">
-          <h2>Public profile</h2>
-          <div class="view">
-            <h3>First name</h3>
-            <label class="todo-content"><%= Parse.User.current().escape("first_name") %></label>
-          </div>
-          <input class="edit" value="<%= _.escape(content) %>">
-          <div class="view">
-            <h3>First name</h3>
-            <label class="todo-content"><%= Parse.User.current().escape("gender") %></label>
-          </div>
-          <input class="edit" value="<%= _.escape(content) %>">
-          <div class="view">
-            <h3>First name</h3>
-            <label class="todo-content"><%= Parse.User.current().escape("last_name") %></label>
-          </div>
-          <input class="edit" value="<%= _.escape(content) %>">
-          <div class="view">
-            <h3>First name</h3>
-            <label class="todo-content"><%= Parse.User.current().escape("email") %></label>
-          </div>
-          <input class="edit" value="<%= _.escape(content) %>">
-        </form>
-
-        <form class="signup-form">
-          <h2>My preferences</h2>
           <div class="error" style="display:none"></div>
           <input type="text" id="signup-username" placeholder="Username" />
           <input type="password" id="signup-password" placeholder="Create a Password" />
