@@ -199,9 +199,7 @@ $(function() {
     clear: function() {
       console.log("caught event 4");
       //this.model.destroy();
-    }
-
-
+    },
 
     render: function() {
       this.$el.html(_.template($("#profile-template").html()));
