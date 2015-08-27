@@ -344,7 +344,7 @@ $(function() {
             alert("User logged in through Facebook!");
           }
 
-                new ManageTodosView();
+                new ProfileView();//ManageTodosView();
                 self.undelegateEvents();
                 delete self;
         },
@@ -379,7 +379,7 @@ $(function() {
       
       Parse.User.signUp(username, password, { ACL: new Parse.ACL() }, {
         success: function(user) {
-          new ManageTodosView();
+          new ProfileView();//ManageTodosView();
           self.undelegateEvents();
           delete self;
         },
@@ -455,7 +455,7 @@ $(function() {
             alert("User logged in through Facebook!");
           }
 
-                new ManageTodosView();
+                new ProfileView();//ManageTodosView();
                 self.undelegateEvents();
                 delete self;
         },
@@ -490,7 +490,7 @@ $(function() {
       
       Parse.User.signUp(username, password, { ACL: new Parse.ACL() }, {
         success: function(user) {
-          new ManageTodosView();
+          new ProfileView();//ManageTodosView();
           self.undelegateEvents();
           delete self;
         },
