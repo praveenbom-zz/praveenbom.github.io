@@ -179,7 +179,7 @@ $(function() {
     edit: function(e) {
       console.log("caught event 1");
       var el = $(e.target);
-      console.log("element: " + el.attributes);
+      console.log("element: " + el.parent().attr("class"));
       //$(this.el).addClass("editing");
       //this.input.focus();
     },
