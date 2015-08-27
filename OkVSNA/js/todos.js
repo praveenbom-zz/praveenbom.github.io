@@ -142,6 +142,28 @@ $(function() {
   // The Application
   // ---------------
 
+  var ProfileView = Parse.View.extend({
+    events: {
+      "submit form.login-form": "logIn"
+    },
+    el: ".content",
+    initialize: function() {
+      _.bindAll(this, "logIn");
+      this.render();
+    },
+    logIn: function(e) {
+      var self = this;
+      var username = this.$("#login-username").val();
+      var password = this.$("#login-password").val();
+      this.$(".login-form button").attr("disabled", "disabled");
+      return false;
+    },
+    render: function() {
+      this.$el.html(_.template($("#profile-template").html()));
+      this.delegateEvents();
+    }
+  });
+
   // The main view that lets a user manage their todo items
   var ManageTodosView = Parse.View.extend({
 
@@ -179,7 +201,6 @@ $(function() {
       // Setup the query for the collection to look for todos from the current user
       this.todos.query = new Parse.Query(Todo);
       this.todos.query.equalTo("user", Parse.User.current());
-        
       this.todos.bind('add',     this.addOne);
       this.todos.bind('reset',   this.addAll);
       this.todos.bind('all',     this.render);
@@ -292,36 +313,6 @@ $(function() {
     }
   });
 
-  var ProfileView = Parse.View.extend({
-    events: {
-      "submit form.login-form": "logIn"
-    },
-
-    el: ".content",
-    
-    initialize: function() {
-      _.bindAll(this, "logIn");
-      this.render();
-    },
-
-    logIn: function(e) {
-      var self = this;
-      var username = this.$("#login-username").val();
-      var password = this.$("#login-password").val();
-
-      this.$(".login-form button").attr("disabled", "disabled");
-
-      return false;
-    },
-
-    render: function() {
-      this.$el.html(_.template($("#profile-template").html()));
-      this.delegateEvents();
-    }
-  });
-
-
-
   var LogInView = Parse.View.extend({
     events: {
       "submit form.login-form": "logIn"
@@ -338,7 +329,7 @@ $(function() {
       var self = this;
       var username = this.$("#login-username").val();
       var password = this.$("#login-password").val();
-      
+
       Parse.FacebookUtils.logIn("public_profile,email,user_friends", {
         success: function(user) {
           if (!user.existed()) {
