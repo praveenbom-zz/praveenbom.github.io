@@ -292,6 +292,22 @@ $(function() {
     }
   });
 
+
+  var ProfileView = Parse.View.extend({
+    events: {
+      "submit form.login-form": "logIn",
+      "submit form.signup-form": "signUp"
+    },
+
+    el: ".content",
+
+    initialize: function() {
+      _.bindAll(this, "logIn", "signUp");
+      this.render();
+    },
+
+  });
+
   var LogInView = Parse.View.extend({
     events: {
       "submit form.login-form": "logIn",
@@ -413,7 +429,7 @@ $(function() {
 
     render: function() {
       if (Parse.User.current()) {
-        new ManageTodosView();
+        new ProfileView();
       } else {
         new LogInView();
       }

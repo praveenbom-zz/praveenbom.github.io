@@ -66,18 +66,72 @@
       </div>
     </script>
 
+    <script type="text/template" id="profile-template">
+
+      <ul id="filters">
+        <li>
+          <a href="javascript:void(0)" id="all" class="selected">Me</a>
+        </li>
+        <li>
+          <a href="javascript:void(0)" id="active">Search</a>
+        </li>
+        <li>
+          <a href="javascript:void(0)" id="completed">Messages</a>
+        </li>
+      </ul>
+
+      <div id="user-info">
+        Signed in as <%= Parse.User.current().escape("first_name") %> (<a href="#" class="log-out">Log out</a>)
+      </div>
+
+      <header id="header"></header>
+      <div class="login">
+        <form class="login-form">
+          <h2>Public profile</h2>
+          <div class="view">
+            <h3>First name</h3>
+            <label class="todo-content"><%= Parse.User.current().escape("first_name") %></label>
+          </div>
+          <input class="edit" value="<%= _.escape(content) %>">
+          <div class="view">
+            <h3>First name</h3>
+            <label class="todo-content"><%= Parse.User.current().escape("gender") %></label>
+          </div>
+          <input class="edit" value="<%= _.escape(content) %>">
+          <div class="view">
+            <h3>First name</h3>
+            <label class="todo-content"><%= Parse.User.current().escape("last_name") %></label>
+          </div>
+          <input class="edit" value="<%= _.escape(content) %>">
+          <div class="view">
+            <h3>First name</h3>
+            <label class="todo-content"><%= Parse.User.current().escape("email") %></label>
+          </div>
+          <input class="edit" value="<%= _.escape(content) %>">
+        </form>
+
+        <form class="signup-form">
+          <h2>My preferences</h2>
+          <div class="error" style="display:none"></div>
+          <input type="text" id="signup-username" placeholder="Username" />
+          <input type="password" id="signup-password" placeholder="Create a Password" />
+          <button>Sign Up</button>
+        </form>
+      </div>
+    </script>
+
     <script type="text/template" id="manage-todos-template">
-	<ul id="filters">
-	  <li>
-	    <a href="javascript:void(0)" id="all" class="selected">All</a>
-	  </li>
-	  <li>
-	    <a href="javascript:void(0)" id="active">Active</a>
-	  </li>
-	  <li>
-	    <a href="javascript:void(0)" id="completed">Completed</a>
-	  </li>
-	</ul>
+      <ul id="filters">
+        <li>
+          <a href="javascript:void(0)" id="all" class="selected">Me</a>
+        </li>
+        <li>
+          <a href="javascript:void(0)" id="active">Search</a>
+        </li>
+        <li>
+          <a href="javascript:void(0)" id="completed">Messages</a>
+        </li>
+      </ul>
 
       <div id="user-info">
         Signed in as <%= Parse.User.current().escape("first_name") %> (<a href="#" class="log-out">Log out</a>)
@@ -106,19 +160,19 @@
 
     <script type="text/template" id="item-template">
       <li class="<%= done ? 'completed' : '' %>">
-	<div class="view">
-	  <!--<input class="toggle" type="checkbox" <%= done ? 'checked="checked"' : '' %>>-->
-	  <label class="todo-content"><%= _.escape(content) %></label>
-	  <!--<button class="todo-destroy"></button>-->
-	</div>
-	<input class="edit" value="<%= _.escape(content) %>">
+      <div class="view">
+        <!--<input class="toggle" type="checkbox" <%= done ? 'checked="checked"' : '' %>>-->
+        <label class="todo-content"><%= _.escape(content) %></label>
+        <!--<button class="todo-destroy"></button>-->
+      </div>
+      <input class="edit" value="<%= _.escape(content) %>">
       </li>
     </script>
 
     <script type="text/template" id="stats-template">
       <footer id="footer">
-	<!--<span id="todo-count"><strong><%= remaining %></strong> <%= remaining == 1 ? 'item' : 'items' %> left</span>
-	<button id="clear-completed">Clear completed (<%= done %>)</button>-->
+<!--<span id="todo-count"><strong><%= remaining %></strong> <%= remaining == 1 ? 'item' : 'items' %> left</span>
+<button id="clear-completed">Clear completed (<%= done %>)</button>-->
       </footer>
     </script>
 
