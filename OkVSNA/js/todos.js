@@ -145,7 +145,11 @@ $(function() {
   var ProfileView = Parse.View.extend({
     events: {
       "click .log-out": "logOut",
-      "click ul#filters a": "selectFilter"
+      "click ul#filters a": "selectFilter",
+      "dblclick label.todo-content" : "edit",
+      "click .todo-destroy"   : "clear",
+      "keypress .edit"      : "updateOnEnter",
+      "blur .edit"          : "close"
     },
 
     el: ".content",
@@ -170,6 +174,34 @@ $(function() {
       state.set({filter: filterValue});
       Parse.history.navigate(filterValue);
     },
+
+    // Switch this view into `"editing"` mode, displaying the input field.
+    edit: function() {
+      console.log("caught event 1");
+      //$(this.el).addClass("editing");
+      //this.input.focus();
+    },
+
+    // Close the `"editing"` mode, saving changes to the todo.
+    close: function() {
+      console.log("caught event 2");
+      //this.model.save({content: this.input.val()});
+      //$(this.el).removeClass("editing");
+    },
+
+    // If you hit `enter`, we're through editing the item.
+    updateOnEnter: function(e) {
+      console.log("caught event 3");
+      //if (e.keyCode == 13) this.close();
+    },
+
+    // Remove the item, destroy the model.
+    clear: function() {
+      console.log("caught event 4");
+      //this.model.destroy();
+    }
+
+
 
     render: function() {
       this.$el.html(_.template($("#profile-template").html()));
