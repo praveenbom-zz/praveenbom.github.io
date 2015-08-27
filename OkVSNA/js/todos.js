@@ -176,8 +176,10 @@ $(function() {
     },
 
     // Switch this view into `"editing"` mode, displaying the input field.
-    edit: function() {
+    edit: function(e) {
       console.log("caught event 1");
+      var el = $(e.target);
+      console.log("element: " + el);
       //$(this.el).addClass("editing");
       //this.input.focus();
     },
