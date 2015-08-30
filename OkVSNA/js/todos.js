@@ -180,12 +180,7 @@ $(function() {
       console.log("caught event 1");
       var el = $(e.target);
       $(el).addClass("editing");
-      $(el).$('.edit').focus();
-      //this.input.focus();
-
-      console.log("element: " + el.parent().attr("class"));
-      //$(this.el).addClass("editing");
-      //this.input.focus();
+      $(el).parent().find('.edit').focus();
     },
 
     // Close the `"editing"` mode, saving changes to the todo.
