@@ -143,6 +143,10 @@ $(function() {
   // ---------------
 
   var ProfileView = Parse.View.extend({
+
+    // Our template for the line of statistics at the bottom of the app.
+    navTemplate: _.template($('#navigation-template').html()),
+
     events: {
       "click .log-out": "logOut",
       "click ul#filters a": "selectFilter",
@@ -177,7 +181,6 @@ $(function() {
 
     // Switch this view into `"editing"` mode, displaying the input field.
     edit: function(e) {
-      console.log("caught event 1");
       var el = $(e.target);
       $(el).addClass("editing");
       $(el).parent().find('.edit').focus();
@@ -204,6 +207,10 @@ $(function() {
 
     render: function() {
       this.$el.html(_.template($("#profile-template").html()));
+
+      this.$('#nav').html(this.navTemplate({
+      }));
+
       this.delegateEvents();
     }
   });
