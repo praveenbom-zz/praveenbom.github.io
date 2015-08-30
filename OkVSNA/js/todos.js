@@ -459,6 +459,7 @@ $(function() {
 
     active: function() {
       state.set({ filter: "active" });
+      console.log("doing this now..")
     },
 
     completed: function() {
