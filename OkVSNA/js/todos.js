@@ -180,7 +180,7 @@ $(function() {
       console.log("caught event 1");
       var el = $(e.target);
       $(el).addClass("editing");
-      el.$('.edit').focus();
+      $(el).$('.edit').focus();
       //this.input.focus();
 
       console.log("element: " + el.parent().attr("class"));
