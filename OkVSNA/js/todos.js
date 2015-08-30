@@ -455,15 +455,17 @@ $(function() {
 
     all: function() {
       state.set({ filter: "all" });
+      console.log("doing this now 0..")
     },
 
     active: function() {
       state.set({ filter: "active" });
-      console.log("doing this now..")
+      console.log("doing this now 1..")
     },
 
     completed: function() {
       state.set({ filter: "completed" });
+      console.log("doing this now 2..")
     }
   });
 
