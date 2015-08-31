@@ -460,6 +460,10 @@ $(function() {
 
     active: function() {
       state.set({ filter: "active" });
+      new LogInView();
+      //this.undelegateEvents();
+      //delete this;
+
       console.log("doing this now 1..")
     },
 
