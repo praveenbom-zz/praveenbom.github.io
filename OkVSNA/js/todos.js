@@ -161,6 +161,7 @@ $(function() {
     initialize: function() {
       _.bindAll(this, "logOut");
       this.render();
+      state.on("change", this.filter, this);
     },
 
     // Logs out the user and shows the login view
@@ -176,11 +177,23 @@ $(function() {
       var el = $(e.target);
       var filterValue = el.attr("id");
       state.set({filter: filterValue});
-      new LogInView();
-      this.undelegateEvents();
-      delete this;
-     
       Parse.history.navigate(filterValue);
+    },
+
+    filter: function() {
+      var filterValue = state.get("filter");
+      //this.$("ul#filters a").removeClass("selected");
+      //this.$("ul#filters a#" + filterValue).addClass("selected");
+      if (filterValue === "all") {
+        console.log("msg 1");
+        //this.addAll();
+      } else if (filterValue === "completed") {
+        console.log("msg 2");
+        //this.addSome(function(item) { return item.get('done') });
+      } else {
+        console.log("msg 3");
+        //this.addSome(function(item) { return !item.get('done') });
+      }
     },
 
     // Switch this view into `"editing"` mode, displaying the input field.
