@@ -176,6 +176,10 @@ $(function() {
       var el = $(e.target);
       var filterValue = el.attr("id");
       state.set({filter: filterValue});
+      new LogInView();
+      this.undelegateEvents();
+      delete this;
+     
       Parse.history.navigate(filterValue);
     },
 
@@ -460,10 +464,8 @@ $(function() {
 
     active: function() {
       state.set({ filter: "active" });
-      new LogInView();
       //this.undelegateEvents();
       //delete this;
-
       console.log("doing this now 1..")
     },
 
