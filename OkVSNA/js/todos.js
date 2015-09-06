@@ -185,13 +185,13 @@ $(function() {
       //this.$("ul#filters a").removeClass("selected");
       //this.$("ul#filters a#" + filterValue).addClass("selected");
       if (filterValue === "all") {
-        console.log("msg 1");
+        console.log("msg 1: profile for me");
         //this.addAll();
       } else if (filterValue === "completed") {
-        console.log("msg 2");
+        console.log("msg 2: matches");
         //this.addSome(function(item) { return item.get('done') });
       } else {
-        console.log("msg 3");
+        console.log("msg 3: messages");
         //this.addSome(function(item) { return !item.get('done') });
       }
     },
