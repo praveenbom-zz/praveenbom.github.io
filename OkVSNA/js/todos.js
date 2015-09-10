@@ -481,6 +481,7 @@ $(function() {
     },
 
     initialize: function(options) {
+      state.set({ filter: "all" });
     },
 
     all: function() {
