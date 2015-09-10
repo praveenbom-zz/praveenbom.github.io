@@ -433,6 +433,7 @@ $(function() {
           }
 
                 new ProfileView();//ManageTodosView();
+                Parse.history.navigate("all");
                 self.undelegateEvents();
                 delete self;
         },
@@ -499,8 +500,6 @@ $(function() {
   var state = new AppState;
 
   new AppRouter;
-  Parse.history.start();
+  Parse.history.start({pushState: true})
   new AppView;
-  //Parse.history.start();
-  //Parse.history.start({pushState: true})
 });
