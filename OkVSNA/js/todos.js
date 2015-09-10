@@ -189,9 +189,17 @@ $(function() {
         //this.addAll();
       } else if (filterValue === "completed") {
         console.log("msg 2: matches");
+        //
         //this.addSome(function(item) { return item.get('done') });
+
+        this.$('#profile').html("");
+        this.$('#matches').html("Matches");
+        this.$('#messages').html("");
       } else {
         console.log("msg 3: messages");
+        this.$('#profile').html("");
+        this.$('#matches').html("");
+        this.$('#messages').html("Messages");
         //this.addSome(function(item) { return !item.get('done') });
       }
     },

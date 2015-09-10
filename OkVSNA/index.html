@@ -48,6 +48,7 @@
       <div id="nav"></div>
 
       <header id="header"></header>
+      <div id="profile">
       <h4>Public profile</h4>
       <div class="view">
         <label class="profile-field">Display name: </label> <label class="todo-content"> <%= Parse.User.current().escape("first_name") %></label>
@@ -60,6 +61,9 @@
         <button class="todo-destroy"></button>
         <input class="edit" value="<%= Parse.User.current().escape("email") %>" >
       </div>
+      </div>
+      <div id="matches"></div>
+      <div id="messages"></div>
     </script>
 
     <script type="text/template" id="login-template">
