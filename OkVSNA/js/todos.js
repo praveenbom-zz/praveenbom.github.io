@@ -162,8 +162,6 @@ $(function() {
       _.bindAll(this, "logOut");
       this.render();
       state.on("change", this.filter, this);
-      state.set({filter: "all"});
-      Parse.history.navigate("all");
     },
 
     // Logs out the user and shows the login view
@@ -467,6 +465,7 @@ $(function() {
     render: function() {
       if (Parse.User.current()) {
         new ProfileView();//ManageTodosView();
+        Parse.history.navigate("all");
       } else {
         new LogInView();
       }
@@ -481,7 +480,7 @@ $(function() {
     },
 
     initialize: function(options) {
-      Parse.history.navigate("all");
+      //Parse.history.navigate("all");
     },
 
     all: function() {
