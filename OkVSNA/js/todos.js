@@ -501,5 +501,6 @@ $(function() {
 
   new AppRouter;
   new AppView;
-  Parse.history.start();
+  //Parse.history.start();
+  Parse.history.start({pushState: true})
 });
