@@ -481,7 +481,7 @@ $(function() {
     },
 
     initialize: function(options) {
-      state.set({ filter: "all" });
+      Parse.history.navigate("all");
     },
 
     all: function() {
