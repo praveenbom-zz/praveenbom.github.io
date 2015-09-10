@@ -162,6 +162,8 @@ $(function() {
       _.bindAll(this, "logOut");
       this.render();
       state.on("change", this.filter, this);
+      state.set({filter: "all"});
+      Parse.history.navigate("all");
     },
 
     // Logs out the user and shows the login view
