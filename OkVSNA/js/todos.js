@@ -186,6 +186,9 @@ $(function() {
       //this.$("ul#filters a#" + filterValue).addClass("selected");
       if (filterValue === "all") {
         console.log("msg 1: profile for me");
+        this.$('#profile').html("Profile");
+        this.$('#matches').html("");
+        this.$('#messages').html("");
         //this.addAll();
       } else if (filterValue === "completed") {
         console.log("msg 2: matches");
