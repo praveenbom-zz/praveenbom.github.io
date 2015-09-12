@@ -73,7 +73,7 @@ $(function() {
     // Filter down the list of all todo items that are finished.
     done: function() {
       return this.filter(function(todo){ return todo.get('done'); });
-    },
+    //},
 
     // Filter down the list to only todo items that are still not finished.
     //remaining: function() {
@@ -572,6 +572,6 @@ $(function() {
   var state = new AppState;
 
   new AppRouter;
-  Parse.history.start({pushState: true})
+  Parse.history.start(); //({pushState: true})
   new AppView;
 });
