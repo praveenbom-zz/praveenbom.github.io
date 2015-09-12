@@ -439,10 +439,10 @@ $(function() {
         done:       done,
         remaining:  remaining
       }));
-
+      this.$('#nav').html(this.navTemplate({}));
       this.delegateEvents();
 
-      //this.allCheckbox.checked = !remaining;
+      this.allCheckbox.checked = !remaining;
     },
 
     // Filters the list based on which type of filter is selected
