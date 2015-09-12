@@ -66,32 +66,32 @@ $(function() {
   // ---------------
   var TodoList = Parse.Collection.extend({
 
-   // Reference to this collection's model.
-   model: Todo,
+	  // Reference to this collection's model.
+	  model: Todo,
 
-   // Filter down the list of all todo items that are finished.
-   done: function() {
-       return this.filter(function(todo){ return todo.get('done'); });
-   },
+	  // Filter down the list of all todo items that are finished.
+	  done: function() {
+	      return this.filter(function(todo){ return todo.get('done'); });
+	  },
 
-   // Filter down the list to only todo items that are still not finished.
-   remaining: function() {
-       return this.without.apply(this, this.done());
-   },
+	  // Filter down the list to only todo items that are still not finished.
+	  remaining: function() {
+	      return this.without.apply(this, this.done());
+	  },
 
-   // We keep the Todos in sequential order, despite being saved by unordered
-   // GUID in the database. This generates the next order number for new items.
-   nextOrder: function() {
-       if (!this.length) return 1;
-       return this.last().get('order') + 1;
-   },
+	  // We keep the Todos in sequential order, despite being saved by unordered
+	  // GUID in the database. This generates the next order number for new items.
+	  nextOrder: function() {
+	      if (!this.length) return 1;
+	      return this.last().get('order') + 1;
+	  },
 
-   // Todos are sorted by their original insertion order.
-   comparator: function(todo) {
-       return todo.get('order');
-   }
+	  // Todos are sorted by their original insertion order.
+	  comparator: function(todo) {
+	      return todo.get('order');
+	  }
 
-     });
+      });
 
 
 
@@ -259,9 +259,9 @@ $(function() {
       // Setup the query for the collection to look for todos from the current user
       this.todos.query = new Parse.Query(Todo);
       this.todos.query.notEqualTo("user", Parse.User.current());
-      //this.todos.bind('add',     this.addOne);
-      //this.todos.bind('reset',   this.addAll);
-      //this.todos.bind('all',     this.render);
+      this.todos.bind('add',     this.addOne);
+      this.todos.bind('reset',   this.addAll);
+      this.todos.bind('all',     this.render);
 
       // Fetch all the todo items for this user
       this.todos.fetch();
@@ -313,6 +313,28 @@ for (bar in this.todos)
       $(el).addClass("editing");
       $(el).parent().find('.edit').focus();
     },
+
+
+    // Add a single todo item to the list by creating a view for it, and
+    // appending its element to the `<ul>`.
+    addOne: function(todo) {
+      var view = new TodoView({model: todo});
+      this.$("#todo-list").append(view.render().el);
+    },
+
+    // Add all items in the Todos collection at once.
+    addAll: function(collection, filter) {
+      this.$("#todo-list").html("");
+      this.todos.each(this.addOne);
+    },
+
+    // Only adds some todos, based on a filtering function that is passed in
+    addSome: function(filter) {
+      var self = this;
+      this.$("#todo-list").html("");
+      this.todos.chain().filter(filter).each(function(item) { self.addOne(item) });
+    },
+
 
     // Close the `"editing"` mode, saving changes to the todo.
     close: function() {
