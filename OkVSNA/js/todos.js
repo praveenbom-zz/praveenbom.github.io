@@ -375,7 +375,10 @@ $(function() {
     // Our template for the line of statistics at the bottom of the app.
     statsTemplate: _.template($('#stats-template').html()),
 
+    // Our template for the line of statistics at the bottom of the app.
+    navTemplate: _.template($('#navigation-template').html()),
     // Delegated events for creating new items, and clearing completed ones.
+
     events: {
       "keypress #new-todo":  "createOnEnter",
       "click #clear-completed": "clearCompleted",
