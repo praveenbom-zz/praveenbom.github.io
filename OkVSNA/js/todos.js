@@ -34,6 +34,48 @@ $(function() {
     }
   });
 
+  // Our basic Todo model has `content`, `order`, and `done` attributes.
+  var Todo2 = Parse.Object.extend("Todo2", {
+    // Default attributes for the todo.
+    defaults: {
+      content: "empty todo...",
+      done: false
+    },
+
+    // Ensure that each todo created has `content`.
+    initialize: function() {
+      if (!this.get("content")) {
+        this.set({"content": this.defaults.content});
+      }
+    },
+
+    // Toggle the `done` state of this todo item.
+    toggle: function() {
+      this.save({done: !this.get("done")});
+    }
+  });
+
+  // Our basic Todo model has `content`, `order`, and `done` attributes.
+  var Todo3 = Parse.Object.extend("Todo3", {
+    // Default attributes for the todo.
+    defaults: {
+      content: "empty todo...",
+      done: false
+    },
+
+    // Ensure that each todo created has `content`.
+    initialize: function() {
+      if (!this.get("content")) {
+        this.set({"content": this.defaults.content});
+      }
+    },
+
+    // Toggle the `done` state of this todo item.
+    toggle: function() {
+      this.save({done: !this.get("done")});
+    }
+  });
+
   // This is the transient application state, not persisted on Parse
   var AppState = Parse.Object.extend("AppState", {
     defaults: {
@@ -41,128 +83,36 @@ $(function() {
     }
   });
 
-  // Our basic Todo model has `content`, `order`, and `done` attributes.
-  var User = Parse.Object.extend("User", {
-    // Default attributes for the todo.
-    defaults: {
-      //content: "empty todo...",
-      //done: false
-    },
-
-    // Ensure that each todo created has `content`.
-    initialize: function() {
-      //if (!this.get("content")) {
-      //  this.set({"content": this.defaults.content});
-      //}
-    },
-
-    // Toggle the `done` state of this todo item.
-    toggle: function() {
-      console.log("toggle code for match");
-    }
-  });
-
   // Todo Collection
   // ---------------
   var TodoList = Parse.Collection.extend({
 
-	  // Reference to this collection's model.
-	  model: Todo,
-
-	  // Filter down the list of all todo items that are finished.
-	  done: function() {
-	      return this.filter(function(todo){ return todo.get('done'); });
-	  },
-
-	  // Filter down the list to only todo items that are still not finished.
-	  remaining: function() {
-	      return this.without.apply(this, this.done());
-	  },
-
-	  // We keep the Todos in sequential order, despite being saved by unordered
-	  // GUID in the database. This generates the next order number for new items.
-	  nextOrder: function() {
-	      if (!this.length) return 1;
-	      return this.last().get('order') + 1;
-	  },
-
-	  // Todos are sorted by their original insertion order.
-	  comparator: function(todo) {
-	      return todo.get('order');
-	  }
-
-      });
-
-
-
-  var MatchList = Parse.Collection.extend({
-
     // Reference to this collection's model.
-    model: User,
+    model: Todo,
 
     // Filter down the list of all todo items that are finished.
-    //done: function() {
-    //  return this.filter(function(todo){ return todo.get('done'); });
-    //},
+    done: function() {
+        return this.filter(function(todo){ return todo.get('done'); });
+    },
 
     // Filter down the list to only todo items that are still not finished.
-    //remaining: function() {
-    //  return this.without.apply(this, this.done());
-    //},
+    remaining: function() {
+        return this.without.apply(this, this.done());
+    },
+
+    // We keep the Todos in sequential order, despite being saved by unordered
+    // GUID in the database. This generates the next order number for new items.
+    nextOrder: function() {
+        if (!this.length) return 1;
+        return this.last().get('order') + 1;
+    },
 
     // Todos are sorted by their original insertion order.
-    comparator: function(match) {
-      return match.get('createdAt');
+    comparator: function(todo) {
+        return todo.get('order');
     }
-
   });
 
-  var MatchView = Parse.View.extend({
-
-    //... is a list tag.
-    tagName:  "li",
-
-    // Cache the template function for a single item.
-    template: _.template($('#match-template').html()),
-
-    // The DOM events specific to an item.
-    events: {
-      "click .toggle"              : "toggleDone",
-      "dblclick label.todo-content" : "edit",
-      "keypress .edit"      : "updateOnEnter"
-    },
-
-    // The TodoView listens for changes to its model, re-rendering. Since there's
-    // a one-to-one correspondence between a Todo and a TodoView in this
-    // app, we set a direct reference on the model for convenience.
-    initialize: function() {
-      _.bindAll(this, 'render');
-      this.model.bind('change', this.render);
-    },
-
-    // Re-render the contents of the todo item.
-    render: function() {
-      $(this.el).html(this.template(this.model.toJSON()));
-      this.input = this.$('.edit');
-      return this;
-    },
-
-    // Toggle the `"done"` state of the model.
-    toggleDone: function() {
-      this.model.toggle();
-    },
-
-    // Switch this view into `"editing"` mode, displaying the input field.
-    edit: function() {
-      $(this.el).addClass("editing");
-      this.input.focus();
-    },
-
-    // If you hit `enter`, we're through editing the item.
-    updateOnEnter: function(e) {
-      if (e.keyCode == 13) this.close();
-    },
-  });
 
   // Todo Item View
   // --------------
@@ -230,145 +180,206 @@ $(function() {
 
   });
 
-  // The Application
+
+
+  // Todo Collection
   // ---------------
+  var TodoList2 = Parse.Collection.extend({
 
-  var ProfileView = Parse.View.extend({
+    // Reference to this collection's model.
+    model: Todo2,
 
-    // Our template for the line of statistics at the bottom of the app.
-    navTemplate: _.template($('#navigation-template').html()),
+    // Filter down the list of all todo items that are finished.
+    done: function() {
+        return this.filter(function(todo){ return todo.get('done'); });
+    },
 
+    // Filter down the list to only todo items that are still not finished.
+    remaining: function() {
+        return this.without.apply(this, this.done());
+    },
+
+    // We keep the Todos in sequential order, despite being saved by unordered
+    // GUID in the database. This generates the next order number for new items.
+    nextOrder: function() {
+        if (!this.length) return 1;
+        return this.last().get('order') + 1;
+    },
+
+    // Todos are sorted by their original insertion order.
+    comparator: function(todo) {
+        return todo.get('order');
+    }
+  });
+
+
+  // Todo Item View
+  // --------------
+
+  // The DOM element for a todo item...
+  var TodoView2 = Parse.View.extend({
+
+    //... is a list tag.
+    tagName:  "li",
+
+    // Cache the template function for a single item.
+    template: _.template($('#item-template').html()),
+
+    // The DOM events specific to an item.
     events: {
-      "click .log-out": "logOut",
-      "click ul#filters a": "selectFilter",
+      "click .toggle"              : "toggleDone",
       "dblclick label.todo-content" : "edit",
       "click .todo-destroy"   : "clear",
       "keypress .edit"      : "updateOnEnter",
       "blur .edit"          : "close"
     },
 
-    el: ".content",
-
+    // The TodoView listens for changes to its model, re-rendering. Since there's
+    // a one-to-one correspondence between a Todo and a TodoView in this
+    // app, we set a direct reference on the model for convenience.
     initialize: function() {
-      _.bindAll(this, "logOut"); //, "addAll", "addOne");
-      this.render();
-
-      // Create our collection of Todos
-      this.todos = new TodoList;//MatchList;
-
-      // Setup the query for the collection to look for todos from the current user
-      this.todos.query = new Parse.Query(Todo);
-      this.todos.query.notEqualTo("user", Parse.User.current());
-      this.todos.bind('add',     this.addOne);
-      this.todos.bind('reset',   this.addAll);
-      this.todos.bind('all',     this.render);
-
-      // Fetch all the todo items for this user
-      this.todos.fetch();
-
-      state.on("change", this.filter, this);
+      _.bindAll(this, 'render', 'close', 'remove');
+      this.model.bind('change', this.render);
+      this.model.bind('destroy', this.remove);
     },
 
-    // Logs out the user and shows the login view
-    logOut: function(e) {
-      Parse.User.logOut();
-      new LogInView();
-      this.undelegateEvents();
-      delete this;
+    // Re-render the contents of the todo item.
+    render: function() {
+      $(this.el).html(this.template(this.model.toJSON()));
+      this.input = this.$('.edit');
+      return this;
     },
 
-    // Filters the list based on which type of filter is selected
-    selectFilter: function(e) {
-      var el = $(e.target);
-      var filterValue = el.attr("id");
-      state.set({filter: filterValue});
-      Parse.history.navigate(filterValue);
-    },
-
-    filter: function() {
-      var filterValue = state.get("filter");
-      //this.$("ul#filters a").removeClass("selected");
-      //this.$("ul#filters a#" + filterValue).addClass("selected");
-      if (filterValue === "all") {
-        console.log("msg 1: profile for me");
-      } else if (filterValue === "completed") {
-        console.log("msg 2: messages");
-        //this.addAll();
-      } else {
-        console.log("msg 3: matches");
-        //this.addSome(function(item) { return !item.get('done') });
-      }
+    // Toggle the `"done"` state of the model.
+    toggleDone: function() {
+      this.model.toggle();
     },
 
     // Switch this view into `"editing"` mode, displaying the input field.
-    edit: function(e) {
-      var el = $(e.target);
-      $(el).addClass("editing");
-      $(el).parent().find('.edit').focus();
+    edit: function() {
+      $(this.el).addClass("editing");
+      this.input.focus();
     },
-
-
-    // Add a single todo item to the list by creating a view for it, and
-    // appending its element to the `<ul>`.
-    addOne: function(todo) {
-      var view = new TodoView({model: todo});
-      //this.$("#todo-list").append(view.render().el);
-    },
-
-    // Add all items in the Todos collection at once.
-    addAll: function(collection, filter) {
-      //this.$("#todo-list").html("");
-      this.todos.each(this.addOne);
-    },
-
-    // Only adds some todos, based on a filtering function that is passed in
-    addSome: function(filter) {
-      var self = this;
-      //this.$("#todo-list").html("");
-      this.todos.chain().filter(filter).each(function(item) { self.addOne(item) });
-    },
-
 
     // Close the `"editing"` mode, saving changes to the todo.
     close: function() {
-      console.log("caught event 2");
-      //this.model.save({content: this.input.val()});
-      //$(this.el).removeClass("editing");
+      this.model.save({content: this.input.val()});
+      $(this.el).removeClass("editing");
     },
 
     // If you hit `enter`, we're through editing the item.
     updateOnEnter: function(e) {
-      console.log("caught event 3");
-      //if (e.keyCode == 13) this.close();
+      if (e.keyCode == 13) this.close();
     },
 
     // Remove the item, destroy the model.
     clear: function() {
-      console.log("caught event 4");
-      //this.model.destroy();
-    },
-/*
-    // Add all items in the Todos collection at once.
-    addAll: function(collection, filter) {
-      this.$("#match-list").html("");
-      this.todos.each(this.addOne);
+      this.model.destroy();
+    }
+
+  });
+
+
+  // Todo Collection
+  // ---------------
+  var TodoList3 = Parse.Collection.extend({
+
+    // Reference to this collection's model.
+    model: Todo3,
+
+    // Filter down the list of all todo items that are finished.
+    done: function() {
+        return this.filter(function(todo){ return todo.get('done'); });
     },
 
-    addOne: function(todo) {
-      var view = new MatchView({model: todo});
-      this.$("#match-list").append(view.render().el);
+    // Filter down the list to only todo items that are still not finished.
+    remaining: function() {
+        return this.without.apply(this, this.done());
     },
-*/
-    render: function() {
-      this.$el.html(_.template($("#profile-template").html()));
 
-      this.$('#nav').html(this.navTemplate({}));
-      this.$('#matches').html(_.template($("#matches-template").html()))
+    // We keep the Todos in sequential order, despite being saved by unordered
+    // GUID in the database. This generates the next order number for new items.
+    nextOrder: function() {
+        if (!this.length) return 1;
+        return this.last().get('order') + 1;
+    },
 
-      this.delegateEvents();
+    // Todos are sorted by their original insertion order.
+    comparator: function(todo) {
+        return todo.get('order');
     }
   });
 
+
+  // Todo Item View
+  // --------------
+
+  // The DOM element for a todo item...
+  var TodoView3 = Parse.View.extend({
+
+    //... is a list tag.
+    tagName:  "li",
+
+    // Cache the template function for a single item.
+    template: _.template($('#item-template').html()),
+
+    // The DOM events specific to an item.
+    events: {
+      "click .toggle"              : "toggleDone",
+      "dblclick label.todo-content" : "edit",
+      "click .todo-destroy"   : "clear",
+      "keypress .edit"      : "updateOnEnter",
+      "blur .edit"          : "close"
+    },
+
+    // The TodoView listens for changes to its model, re-rendering. Since there's
+    // a one-to-one correspondence between a Todo and a TodoView in this
+    // app, we set a direct reference on the model for convenience.
+    initialize: function() {
+      _.bindAll(this, 'render', 'close', 'remove');
+      this.model.bind('change', this.render);
+      this.model.bind('destroy', this.remove);
+    },
+
+    // Re-render the contents of the todo item.
+    render: function() {
+      $(this.el).html(this.template(this.model.toJSON()));
+      this.input = this.$('.edit');
+      return this;
+    },
+
+    // Toggle the `"done"` state of the model.
+    toggleDone: function() {
+      this.model.toggle();
+    },
+
+    // Switch this view into `"editing"` mode, displaying the input field.
+    edit: function() {
+      $(this.el).addClass("editing");
+      this.input.focus();
+    },
+
+    // Close the `"editing"` mode, saving changes to the todo.
+    close: function() {
+      this.model.save({content: this.input.val()});
+      $(this.el).removeClass("editing");
+    },
+
+    // If you hit `enter`, we're through editing the item.
+    updateOnEnter: function(e) {
+      if (e.keyCode == 13) this.close();
+    },
+
+    // Remove the item, destroy the model.
+    clear: function() {
+      this.model.destroy();
+    }
+
+  });
+
+
+  // The Application
+  // ---------------
   // The main view that lets a user manage their todo items
   var ManageTodosView = Parse.View.extend({
 
@@ -415,7 +426,20 @@ $(function() {
 
       // Fetch all the todo items for this user
       this.todos.fetch();
-      console.log("fetched: " + this.todos.length);
+
+      // Create our collection of Todos
+      this.todos2 = new TodoList2;
+
+      // Setup the query for the collection to look for todos from the current user
+      this.todos2.query = new Parse.Query(Todo2);
+      this.todos2.query.notEqualTo("user", Parse.User.current());
+      this.todos2.bind('add',     this.addOne2);
+      this.todos2.bind('reset',   this.addAll2);
+      this.todos2.bind('all',     this.render);
+
+      // Fetch all the todo items for this user
+      this.todos.fetch();
+
 
       state.on("change", this.filter, this);
     },
