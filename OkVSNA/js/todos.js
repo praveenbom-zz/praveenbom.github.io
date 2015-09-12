@@ -297,7 +297,7 @@ $(function() {
     // Add all items in the Todos collection at once.
     addAll: function(collection, filter) {
       this.$("#match-list").html("");
-      this.matches.each(this.addOne);
+      this.todos.each(this.addOne);
     },
 
     addOne: function(todo) {
