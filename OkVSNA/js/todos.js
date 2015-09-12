@@ -227,7 +227,7 @@ $(function() {
       this.todos = new MatchList;
 
       // Setup the query for the collection to look for todos from the current user
-      this.todos.query = new Parse.Query(User);
+      this.todos.query = new Parse.Query(Todo);
       //this.todos.bind('add',     this.addOne);
       //this.todos.bind('reset',   this.addAll);
       //this.todos.bind('all',     this.render);
