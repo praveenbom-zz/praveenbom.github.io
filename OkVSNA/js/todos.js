@@ -319,19 +319,19 @@ for (bar in this.todos)
     // appending its element to the `<ul>`.
     addOne: function(todo) {
       var view = new TodoView({model: todo});
-      this.$("#todo-list").append(view.render().el);
+      //this.$("#todo-list").append(view.render().el);
     },
 
     // Add all items in the Todos collection at once.
     addAll: function(collection, filter) {
-      this.$("#todo-list").html("");
+      //this.$("#todo-list").html("");
       this.todos.each(this.addOne);
     },
 
     // Only adds some todos, based on a filtering function that is passed in
     addSome: function(filter) {
       var self = this;
-      this.$("#todo-list").html("");
+      //this.$("#todo-list").html("");
       this.todos.chain().filter(filter).each(function(item) { self.addOne(item) });
     },
 
