@@ -1,7 +1,3 @@
-// An example Parse.js Backbone application based on the todo app by
-// [Jérôme Gravel-Niquet](http://jgn.me/). This demo uses Parse to persist
-// the todo items and provide user authentication and sessions.
-
 $(function() {
 
   Parse.$ = jQuery;
@@ -392,10 +388,14 @@ $(function() {
 
     events: {
       "keypress #new-todo":  "createOnEnter",
+      "keypress #new-todo2":  "createOnEnter2",
       "click #clear-completed": "clearCompleted",
+      "click #clear-completed2": "clearCompleted2",
       "click #toggle-all": "toggleAllComplete",
+      "click #toggle-all2": "toggleAllComplete2",
       "click .log-out": "logOut",
       "click ul#filters a": "selectFilter"
+      "click ul#filters2 a": "selectFilter2"
     },
 
     el: ".content",
@@ -406,20 +406,22 @@ $(function() {
     initialize: function() {
       var self = this;
 
-      _.bindAll(this, 'addOne', 'addAll', 'addSome', 'render', 'toggleAllComplete', 'logOut', 'createOnEnter');
+      _.bindAll(this, 'addOne', 'addOne2', 'addAll', 'addAll2', 'addSome', 'addSome2', 'render', 'toggleAllComplete', 'toggleAllComplete2', 'logOut', 'createOnEnter', 'createOnEnter2');
 
       // Main todo management template
       this.$el.html(_.template($("#manage-todos-template").html()));
       
       this.input = this.$("#new-todo");
+      this.input2 = this.$("#new-todo2");
       this.allCheckbox = this.$("#toggle-all")[0];
+      this.allCheckbox2 = this.$("#toggle-all2")[0];
 
       // Create our collection of Todos
       this.todos = new TodoList;
 
       // Setup the query for the collection to look for todos from the current user
       this.todos.query = new Parse.Query(Todo);
-      this.todos.query.notEqualTo("user", Parse.User.current());
+      this.todos.query.equalTo("user", Parse.User.current());
       this.todos.bind('add',     this.addOne);
       this.todos.bind('reset',   this.addAll);
       this.todos.bind('all',     this.render);
@@ -441,7 +443,7 @@ $(function() {
       this.todos2.fetch();
 
       // Create our collection of Todos
-      this.todos3 = new TodoList2;
+      this.todos3 = new TodoList3;
 
       // Setup the query for the collection to look for todos from the current user
       this.todos3.query = new Parse.Query(Todo3);
@@ -475,10 +477,22 @@ $(function() {
         done:       done,
         remaining:  remaining
       }));
+
+      var done2 = this.todos2.done().length;
+      var remaining2 = this.todos2.remaining().length;
+
+      this.$('#todo-stats2').html(this.statsTemplate({
+        total:      this.todos2.length,
+        done:       done2,
+        remaining:  remaining2
+      }));
+
+
       this.$('#nav').html(this.navTemplate({}));
       this.delegateEvents();
 
       this.allCheckbox.checked = !remaining;
+      this.allCheckbox2.checked = !remaining;
     },
 
     // Filters the list based on which type of filter is selected
@@ -529,6 +543,24 @@ $(function() {
       this.todos.chain().filter(filter).each(function(item) { self.addOne(item) });
     },
 
+    addOne2: function(todo2) {
+      var view = new TodoView2({model: todo2});
+      this.$("#todo-list2").append(view.render().el);
+    },
+
+    // Add all items in the Todos collection at once.
+    addAll2: function(collection, filter) {
+      this.$("#todo-list2").html("");
+      this.todos2.each(this.addOne2);
+    },
+
+    // Only adds some todos, based on a filtering function that is passed in
+    addSome2: function(filter) {
+      var self = this;
+      this.$("#todo-list2").html("");
+      this.todos2.chain().filter(filter).each(function(item) { self.addOne2(item) });
+    },
+
     // If you hit return in the main input field, create new Todo model
     createOnEnter: function(e) {
       var self = this;
@@ -555,6 +587,34 @@ $(function() {
     toggleAllComplete: function () {
       var done = this.allCheckbox.checked;
       this.todos.each(function (todo) { todo.save({'done': done}); });
+    }
+
+    // If you hit return in the main input field, create new Todo model
+    createOnEnter2: function(e) {
+      var self = this;
+      if (e.keyCode != 13) return;
+
+      this.todos2.create({
+        content: this.input2.val(),
+        order:   this.todos2.nextOrder(),
+        done:    false,
+        user:    Parse.User.current(),
+        ACL:     new Parse.ACL(Parse.User.current())
+      });
+
+      this.input2.val('');
+      this.resetFilters();
+    },
+
+    // Clear all done todo items, destroying their models.
+    clearCompleted2: function() {
+      _.each(this.todos2.done(), function(todo2){ todo2.destroy(); });
+      return false;
+    },
+
+    toggleAllComplete2: function () {
+      var done = this.allCheckbox2.checked;
+      this.todos2.each(function (todo) { todo.save({'done': done}); });
     }
   });
 
