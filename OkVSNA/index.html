@@ -129,11 +129,9 @@
     </script>
 
     <script type="text/template" id="match-template">
-      <li class="<%= done ? 'completed' : '' %>">
+      <li>
       <div class="view">
-        <!--<input class="toggle" type="checkbox" <%= done ? 'checked="checked"' : '' %>>-->
         <label class="todo-content"><%= _.escape(content) %></label>
-        <!--<button class="todo-destroy"></button>-->
       </div>
       <input class="edit" value="<%= _.escape(content) %>">
       </li>
