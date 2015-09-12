@@ -73,7 +73,7 @@ $(function() {
     // Filter down the list of all todo items that are finished.
     done: function() {
       return this.filter(function(todo){ return todo.get('done'); });
-    //},
+    },
 
     // Filter down the list to only todo items that are still not finished.
     //remaining: function() {
@@ -261,7 +261,7 @@ $(function() {
         console.log("msg 1: profile for me");
       } else if (filterValue === "completed") {
         console.log("msg 2: messages");
-        this.addAll();
+        //this.addAll();
       } else {
         console.log("msg 3: matches");
         //this.addSome(function(item) { return !item.get('done') });
@@ -309,7 +309,7 @@ $(function() {
       this.$el.html(_.template($("#profile-template").html()));
 
       this.$('#nav').html(this.navTemplate({}));
-      this.$('#matches').html(_.template($("#matches-template").html()))
+      //this.$('#matches').html(_.template($("#matches-template").html()))
 
       this.delegateEvents();
     }
