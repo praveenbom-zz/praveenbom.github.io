@@ -565,7 +565,7 @@ for (bar in this.todos)
             alert("User logged in through Facebook!");
           }
 
-                new ProfileView();//ManageTodosView();
+                new ManageTodosView();  // ProfileView();//ManageTodosView();
                 Parse.history.navigate("all");
                 self.undelegateEvents();
                 delete self;
@@ -598,7 +598,7 @@ for (bar in this.todos)
 
     render: function() {
       if (Parse.User.current()) {
-        new ProfileView();//ManageTodosView();
+        new ManageTodosView(); //ProfileView();//ManageTodosView();
         Parse.history.navigate("all");
       } else {
         new LogInView();
