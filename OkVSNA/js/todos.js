@@ -394,7 +394,7 @@ $(function() {
       "click #toggle-all": "toggleAllComplete",
       "click #toggle-all2": "toggleAllComplete2",
       "click .log-out": "logOut",
-      "click ul#filters a": "selectFilter"
+      "click ul#filters a": "selectFilter",
       "click ul#filters2 a": "selectFilter2"
     },
 
@@ -587,7 +587,7 @@ $(function() {
     toggleAllComplete: function () {
       var done = this.allCheckbox.checked;
       this.todos.each(function (todo) { todo.save({'done': done}); });
-    }
+    },
 
     // If you hit return in the main input field, create new Todo model
     createOnEnter2: function(e) {
