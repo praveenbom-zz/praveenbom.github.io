@@ -432,14 +432,26 @@ $(function() {
 
       // Setup the query for the collection to look for todos from the current user
       this.todos2.query = new Parse.Query(Todo2);
-      this.todos2.query.notEqualTo("user", Parse.User.current());
+      this.todos2.query.equalTo("user", Parse.User.current());
       this.todos2.bind('add',     this.addOne2);
       this.todos2.bind('reset',   this.addAll2);
       this.todos2.bind('all',     this.render);
 
       // Fetch all the todo items for this user
-      this.todos.fetch();
+      this.todos2.fetch();
 
+      // Create our collection of Todos
+      this.todos3 = new TodoList2;
+
+      // Setup the query for the collection to look for todos from the current user
+      this.todos3.query = new Parse.Query(Todo3);
+      this.todos3.query.equalTo("user", Parse.User.current());
+      this.todos3.bind('add',     this.addOne3);
+      this.todos3.bind('reset',   this.addAll3);
+      this.todos3.bind('all',     this.render);
+
+      // Fetch all the todo items for this user
+      this.todos3.fetch();
 
       state.on("change", this.filter, this);
     },
