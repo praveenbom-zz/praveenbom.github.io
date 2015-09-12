@@ -220,8 +220,23 @@ $(function() {
     el: ".content",
 
     initialize: function() {
-      _.bindAll(this, "logOut");
+      _.bindAll(this, "logOut", "addAll");
       this.render();
+
+      // Create our collection of Todos
+      this.todos = new MatchList;
+
+      // Setup the query for the collection to look for todos from the current user
+      this.todos.query = new Parse.Query(Todo);
+      this.todos.query.equalTo("user", Parse.User.current());
+      this.todos.bind('add',     this.addOne);
+      this.todos.bind('reset',   this.addAll);
+      this.todos.bind('all',     this.render);
+
+      // Fetch all the todo items for this user
+      this.todos.fetch();
+
+
       state.on("change", this.filter, this);
     },
 
@@ -247,23 +262,11 @@ $(function() {
       //this.$("ul#filters a#" + filterValue).addClass("selected");
       if (filterValue === "all") {
         console.log("msg 1: profile for me");
-        this.$('#profile').html("Profile");
-        this.$('#matches').html("");
-        this.$('#messages').html("");
-        //this.addAll();
       } else if (filterValue === "completed") {
-        console.log("msg 2: matches");
-        //
-        //this.addSome(function(item) { return item.get('done') });
-
-        this.$('#profile').html("");
-        this.$('#matches').html("Matches");
-        this.$('#messages').html("");
+        console.log("msg 2: messages");
+        this.addAll();
       } else {
-        console.log("msg 3: messages");
-        this.$('#profile').html("");
-        this.$('#matches').html("");
-        this.$('#messages').html("Messages");
+        console.log("msg 3: matches");
         //this.addSome(function(item) { return !item.get('done') });
       }
     },
@@ -294,11 +297,17 @@ $(function() {
       //this.model.destroy();
     },
 
+    // Add all items in the Todos collection at once.
+    addAll: function(collection, filter) {
+      this.$("#match-list").html("");
+      this.matches.each(this.addOne);
+    },
+
     render: function() {
       this.$el.html(_.template($("#profile-template").html()));
 
-      this.$('#nav').html(this.navTemplate({
-      }));
+      this.$('#nav').html(this.navTemplate({}));
+      this.$('#matches').html(_.template($("#matches-template").html()))
 
       this.delegateEvents();
     }
