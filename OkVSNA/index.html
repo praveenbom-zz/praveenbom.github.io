@@ -90,6 +90,22 @@
     <script type="text/template" id="manage-todos-template">
 
       <div id="nav"></div>
+      <div id="user-info">
+        Signed in as <%= Parse.User.current().escape("first_name") %> (<a href="#" class="log-out">Log out</a>)
+      </div>
+
+      <ul id="filters">
+        <li>
+          <a href="javascript:void(0)" id="all" class="selected">Me</a>
+        </li>
+        <li>
+          <a href="javascript:void(0)" id="active">Matches</a>
+        </li>
+        <li>
+          <a href="javascript:void(0)" id="completed">Messages</a>
+        </li>
+      </ul>
+
       <div class="section">
 
         <header id="header">
