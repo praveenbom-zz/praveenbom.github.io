@@ -240,7 +240,7 @@ for (bar in this.todos)
 {
     console.log("Foo has property " + bar);
 }
-      console.log("fetched: " + this.todos);
+      console.log("fetched: " + this.todos.length);
 
       state.on("change", this.filter, this);
     },
