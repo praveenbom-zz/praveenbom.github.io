@@ -394,8 +394,7 @@ $(function() {
       "click #toggle-all": "toggleAllComplete",
       "click #toggle-all2": "toggleAllComplete2",
       "click .log-out": "logOut",
-      "click ul#filters a": "selectFilter",
-      "click ul#filters2 a": "selectFilter2"
+      "click ul#filters a": "selectFilter"
     },
 
     el: ".content",
