@@ -41,6 +41,27 @@ $(function() {
     }
   });
 
+  // Our basic Todo model has `content`, `order`, and `done` attributes.
+  var User = Parse.Object.extend("User", {
+    // Default attributes for the todo.
+    defaults: {
+      content: "empty todo...",
+      done: false
+    },
+
+    // Ensure that each todo created has `content`.
+    initialize: function() {
+      if (!this.get("content")) {
+        this.set({"content": this.defaults.content});
+      }
+    },
+
+    // Toggle the `done` state of this todo item.
+    toggle: function() {
+      console.log("toggle code for match");
+    }
+  });
+
   // Todo Collection
   // ---------------
 
