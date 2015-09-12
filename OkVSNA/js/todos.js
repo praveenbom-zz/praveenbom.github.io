@@ -220,23 +220,20 @@ $(function() {
     el: ".content",
 
     initialize: function() {
-      _.bindAll(this, "logOut", "addAll");
+      _.bindAll(this, "logOut", "addAll", "addOne");
       this.render();
 
       // Create our collection of Todos
       this.todos = new MatchList;
 
       // Setup the query for the collection to look for todos from the current user
-      this.todos.query = new Parse.Query(Todo);
-      this.todos.query.equalTo("user", Parse.User.current());
+      this.todos.query = new Parse.Query(User);
       this.todos.bind('add',     this.addOne);
       this.todos.bind('reset',   this.addAll);
       this.todos.bind('all',     this.render);
 
       // Fetch all the todo items for this user
       this.todos.fetch();
-
-
       state.on("change", this.filter, this);
     },
 
@@ -302,6 +299,12 @@ $(function() {
       this.$("#match-list").html("");
       this.matches.each(this.addOne);
     },
+
+    addOne: function(todo) {
+      var view = new MatchView({model: todo});
+      this.$("#match-list").append(view.render().el);
+    },
+
 
     render: function() {
       this.$el.html(_.template($("#profile-template").html()));
