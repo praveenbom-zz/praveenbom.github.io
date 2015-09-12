@@ -305,7 +305,6 @@ $(function() {
       this.$("#match-list").append(view.render().el);
     },
 
-
     render: function() {
       this.$el.html(_.template($("#profile-template").html()));
 
