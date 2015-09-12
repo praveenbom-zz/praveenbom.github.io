@@ -224,7 +224,7 @@ $(function() {
       this.render();
 
       // Create our collection of Todos
-      //this.todos = new MatchList;
+      this.todos = new MatchList;
 
       // Setup the query for the collection to look for todos from the current user
       //this.todos.query = new Parse.Query(User);
