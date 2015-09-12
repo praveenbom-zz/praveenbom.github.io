@@ -220,20 +220,20 @@ $(function() {
     el: ".content",
 
     initialize: function() {
-      _.bindAll(this, "logOut", "addAll", "addOne");
+      _.bindAll(this, "logOut"); //, "addAll", "addOne");
       this.render();
 
       // Create our collection of Todos
-      this.todos = new MatchList;
+      //this.todos = new MatchList;
 
       // Setup the query for the collection to look for todos from the current user
-      this.todos.query = new Parse.Query(User);
-      this.todos.bind('add',     this.addOne);
-      this.todos.bind('reset',   this.addAll);
-      this.todos.bind('all',     this.render);
+      //this.todos.query = new Parse.Query(User);
+      //this.todos.bind('add',     this.addOne);
+      //this.todos.bind('reset',   this.addAll);
+      //this.todos.bind('all',     this.render);
 
       // Fetch all the todo items for this user
-      this.todos.fetch();
+      //this.todos.fetch();
       state.on("change", this.filter, this);
     },
 
@@ -293,7 +293,7 @@ $(function() {
       console.log("caught event 4");
       //this.model.destroy();
     },
-
+/*
     // Add all items in the Todos collection at once.
     addAll: function(collection, filter) {
       this.$("#match-list").html("");
@@ -304,9 +304,9 @@ $(function() {
       var view = new MatchView({model: todo});
       this.$("#match-list").append(view.render().el);
     },
-
+*/
     render: function() {
-      //this.$el.html(_.template($("#profile-template").html()));
+      this.$el.html(_.template($("#profile-template").html()));
 
       this.$('#nav').html(this.navTemplate({}));
       //this.$('#matches').html(_.template($("#matches-template").html()))
