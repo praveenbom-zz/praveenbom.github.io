@@ -236,6 +236,7 @@ $(function() {
       this.todos.fetch();
 
 
+      console.log("fetched: " + this.todos)
 
       state.on("change", this.filter, this);
     },
