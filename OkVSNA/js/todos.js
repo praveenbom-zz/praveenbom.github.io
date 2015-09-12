@@ -306,7 +306,7 @@ $(function() {
     },
 
     render: function() {
-      this.$el.html(_.template($("#profile-template").html()));
+      //this.$el.html(_.template($("#profile-template").html()));
 
       this.$('#nav').html(this.navTemplate({}));
       //this.$('#matches').html(_.template($("#matches-template").html()))
