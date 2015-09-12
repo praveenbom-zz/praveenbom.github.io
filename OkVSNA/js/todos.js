@@ -224,10 +224,11 @@ $(function() {
       this.render();
 
       // Create our collection of Todos
-      this.todos = new MatchList;
+      this.todos = new TodoList;//MatchList;
 
       // Setup the query for the collection to look for todos from the current user
       this.todos.query = new Parse.Query(Todo);
+      this.todos.query.notEqualTo("user", Parse.User.current());
       //this.todos.bind('add',     this.addOne);
       //this.todos.bind('reset',   this.addAll);
       //this.todos.bind('all',     this.render);
