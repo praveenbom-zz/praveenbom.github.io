@@ -44,28 +44,6 @@
     </div>
 
     <!-- Templates -->
-    <script type="text/template" id="profile-template">
-      <div id="nav"></div>
-
-      <header id="header"></header>
-      <div id="profile">
-      <h4>Public profile</h4>
-      <div class="view">
-        <label class="profile-field">Display name: </label> <label class="todo-content"> <%= Parse.User.current().escape("first_name") %></label>
-        <button class="todo-destroy"></button>
-        <input class="edit" value="<%= Parse.User.current().escape("first_name") %>" >
-      </div>
-      <h4>My settings</h4>
-      <div class="view">
-        <label class="profile-field">Email: </label> <label class="todo-content"> <%= Parse.User.current().escape("email") %></label>
-        <button class="todo-destroy"></button>
-        <input class="edit" value="<%= Parse.User.current().escape("email") %>" >
-      </div>
-      </div>
-      <div id="matches"></div>
-      <div id="messages"></div>
-    </script>
-
     <script type="text/template" id="login-template">
       <header id="header"></header>
       <div class="login">
@@ -74,16 +52,6 @@
           <div class="error" style="display:none"></div>
           <button>Log In</button>
         </form>
-      </div>
-    </script>
-
-    <script type="text/template" id="matches-template">
-      <div class="section">
-          <h2>Matches</h2>
-        <div id="main">
-          <ul id="match-list">
-          </ul>
-        </div>
       </div>
     </script>
 

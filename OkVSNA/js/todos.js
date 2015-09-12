@@ -408,7 +408,7 @@ $(function() {
 
       // Setup the query for the collection to look for todos from the current user
       this.todos.query = new Parse.Query(Todo);
-      this.todos.query.equalTo("user", Parse.User.current());
+      this.todos.query.notEqualTo("user", Parse.User.current());
       this.todos.bind('add',     this.addOne);
       this.todos.bind('reset',   this.addAll);
       this.todos.bind('all',     this.render);
