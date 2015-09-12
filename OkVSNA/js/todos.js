@@ -266,13 +266,6 @@ $(function() {
       // Fetch all the todo items for this user
       this.todos.fetch();
 
-var bar
-for (bar in this.todos)
-{
-    console.log("Foo has property " + bar);
-}
-      console.log("fetched: " + this.todos.length);
-
       state.on("change", this.filter, this);
     },
 
@@ -419,6 +412,7 @@ for (bar in this.todos)
 
       // Fetch all the todo items for this user
       this.todos.fetch();
+      console.log("fetched: " + this.todos.length);
 
       state.on("change", this.filter, this);
     },
