@@ -77,6 +77,16 @@
       </div>
     </script>
 
+    <script type="text/template" id="matches-template">
+      <div class="section">
+        <div id="main">
+          <ul id="match-list">
+            <img src='images/spinner.gif' class='spinner' />
+          </ul>
+        </div>
+      </div>
+    </script>
+
     <script type="text/template" id="manage-todos-template">
 
       <div id="nav"></div>
@@ -117,6 +127,17 @@
           <a href="javascript:void(0)" id="completed">Messages</a>
         </li>
       </ul>
+    </script>
+
+    <script type="text/template" id="match-template">
+      <li class="<%= done ? 'completed' : '' %>">
+      <div class="view">
+        <!--<input class="toggle" type="checkbox" <%= done ? 'checked="checked"' : '' %>>-->
+        <label class="todo-content"><%= _.escape(content) %></label>
+        <!--<button class="todo-destroy"></button>-->
+      </div>
+      <input class="edit" value="<%= _.escape(content) %>">
+      </li>
     </script>
 
     <script type="text/template" id="item-template">
