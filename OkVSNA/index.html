@@ -138,9 +138,9 @@
     <script type="text/template" id="item-template">
       <li class="<%= done ? 'completed' : '' %>">
       <div class="view">
-        <!--<input class="toggle" type="checkbox" <%= done ? 'checked="checked"' : '' %>>-->
+        <input class="toggle" type="checkbox" <%= done ? 'checked="checked"' : '' %>>
         <label class="todo-content"><%= _.escape(content) %></label>
-        <!--<button class="todo-destroy"></button>-->
+        <button class="todo-destroy"></button>
       </div>
       <input class="edit" value="<%= _.escape(content) %>">
       </li>
