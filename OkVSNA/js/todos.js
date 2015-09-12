@@ -44,33 +44,73 @@ $(function() {
   // Todo Collection
   // ---------------
 
-  var TodoList = Parse.Collection.extend({
+  var MatchList = Parse.Collection.extend({
 
     // Reference to this collection's model.
-    model: Todo,
+    model: User,
 
     // Filter down the list of all todo items that are finished.
-    done: function() {
-      return this.filter(function(todo){ return todo.get('done'); });
-    },
+    //done: function() {
+    //  return this.filter(function(todo){ return todo.get('done'); });
+    //},
 
     // Filter down the list to only todo items that are still not finished.
-    remaining: function() {
-      return this.without.apply(this, this.done());
-    },
-
-    // We keep the Todos in sequential order, despite being saved by unordered
-    // GUID in the database. This generates the next order number for new items.
-    nextOrder: function() {
-      if (!this.length) return 1;
-      return this.last().get('order') + 1;
-    },
+    //remaining: function() {
+    //  return this.without.apply(this, this.done());
+    //},
 
     // Todos are sorted by their original insertion order.
-    comparator: function(todo) {
-      return todo.get('order');
+    comparator: function(match) {
+      return match.get('createdAt');
     }
 
+  });
+
+  var MatchView = Parse.View.extend({
+
+    //... is a list tag.
+    tagName:  "li",
+
+    // Cache the template function for a single item.
+    template: _.template($('#item-template').html()),
+
+    // The DOM events specific to an item.
+    events: {
+      "click .toggle"              : "toggleDone",
+      "dblclick label.todo-content" : "edit",
+      "keypress .edit"      : "updateOnEnter"
+    },
+
+    // The TodoView listens for changes to its model, re-rendering. Since there's
+    // a one-to-one correspondence between a Todo and a TodoView in this
+    // app, we set a direct reference on the model for convenience.
+    initialize: function() {
+      _.bindAll(this, 'render', 'close', 'remove');
+      this.model.bind('change', this.render);
+    },
+
+    // Re-render the contents of the todo item.
+    render: function() {
+      $(this.el).html(this.template(this.model.toJSON()));
+      this.input = this.$('.edit');
+      return this;
+    },
+
+    // Toggle the `"done"` state of the model.
+    toggleDone: function() {
+      this.model.toggle();
+    },
+
+    // Switch this view into `"editing"` mode, displaying the input field.
+    edit: function() {
+      $(this.el).addClass("editing");
+      this.input.focus();
+    },
+
+    // If you hit `enter`, we're through editing the item.
+    updateOnEnter: function(e) {
+      if (e.keyCode == 13) this.close();
+    },
   });
 
   // Todo Item View
