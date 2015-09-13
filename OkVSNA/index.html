@@ -126,6 +126,17 @@
       </ul>
     </script>
 
+    <script type="text/template" id="match-template">
+      <li class="<%= done ? 'completed' : '' %>">
+      <div class="view">
+        <input class="toggle" type="checkbox" <%= done ? 'checked="checked"' : '' %>>
+        <label class="todo-content"><%= _.escape(first_name) %></label>
+        <button class="todo-destroy"></button>
+      </div>
+      <input class="edit" value="<%= _.escape(first_name) %>">
+      </li>
+    </script>
+
     <script type="text/template" id="item-template">
       <li class="<%= done ? 'completed' : '' %>">
       <div class="view">

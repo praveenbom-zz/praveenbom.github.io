@@ -120,7 +120,7 @@ $(function() {
     tagName:  "li",
 
     // Cache the template function for a single item.
-    template: _.template($('#item-template').html()),
+    template: _.template($('#match-template').html()),
 
     // The DOM events specific to an item.
     events: {
