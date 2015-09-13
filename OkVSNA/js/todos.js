@@ -489,7 +489,7 @@ $(function() {
       this.$('#nav').html(this.navTemplate({}));
       this.delegateEvents();
 
-      this.allCheckbox2.checked = !remaining;
+      this.allCheckbox2.checked = !remaining2;
     },
 
     // Filters the list based on which type of filter is selected
