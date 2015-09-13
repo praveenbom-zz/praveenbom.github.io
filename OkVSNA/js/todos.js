@@ -10,7 +10,7 @@ $(function() {
   // ----------
 
   // Our basic Todo model has `content`, `order`, and `done` attributes.
-  var Todo = Parse.Object.extend("Todo", {
+  var Todo = Parse.Object.extend("User", {
     // Default attributes for the todo.
     defaults: {
       content: "empty todo...",
