@@ -412,7 +412,6 @@ $(function() {
       
       this.input = this.$("#new-todo");
       this.input2 = this.$("#new-todo2");
-      this.allCheckbox = this.$("#toggle-all")[0];
       this.allCheckbox2 = this.$("#toggle-all2")[0];
 
       // Create our collection of Todos
@@ -490,7 +489,6 @@ $(function() {
       this.$('#nav').html(this.navTemplate({}));
       this.delegateEvents();
 
-      this.allCheckbox.checked = !remaining;
       this.allCheckbox2.checked = !remaining;
     },
 
