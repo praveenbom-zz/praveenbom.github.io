@@ -383,6 +383,9 @@ $(function() {
     statsTemplate: _.template($('#stats-template').html()),
 
     // Our template for the line of statistics at the bottom of the app.
+    statsTemplate2: _.template($('#stats-template2').html()),
+
+    // Our template for the line of statistics at the bottom of the app.
     navTemplate: _.template($('#navigation-template').html()),
     // Delegated events for creating new items, and clearing completed ones.
 
@@ -479,7 +482,7 @@ $(function() {
       var done2 = this.todos2.done().length;
       var remaining2 = this.todos2.remaining().length;
 
-      this.$('#todo-stats2').html(this.statsTemplate({
+      this.$('#todo-stats2').html(this.statsTemplate2({
         total:      this.todos2.length,
         done:       done2,
         remaining:  remaining2
