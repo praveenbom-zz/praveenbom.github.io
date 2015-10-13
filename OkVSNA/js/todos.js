@@ -489,7 +489,9 @@ $(function() {
       }));
 
 
-      this.$('#nav').html(this.navTemplate({}));
+      this.$('#nav').html(this.navTemplate({
+        remaining:  remaining2
+      }));
       this.delegateEvents();
 
       this.allCheckbox2.checked = !remaining2;
