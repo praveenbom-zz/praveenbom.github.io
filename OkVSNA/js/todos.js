@@ -506,13 +506,15 @@ $(function() {
     filter: function() {
       var filterValue = state.get("filter");
       this.$("ul#filters a").removeClass("selected");
+      this.$("ul#filters a").hide();
       this.$("ul#filters a#" + filterValue).addClass("selected");
+      this.$("ul#filters a#" + filterValue).show();
       if (filterValue === "all") {
-        this.addAll();
+        //this.addAll();
       } else if (filterValue === "completed") {
-        this.addSome(function(item) { return item.get('done') });
+        //this.addSome(function(item) { return item.get('done') });
       } else {
-        this.addSome(function(item) { return !item.get('done') });
+        //this.addSome(function(item) { return !item.get('done') });
       }
     },
 
