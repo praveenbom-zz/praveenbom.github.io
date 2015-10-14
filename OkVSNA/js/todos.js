@@ -392,6 +392,7 @@ $(function() {
     events: {
       "keypress #new-todo":  "createOnEnter",
       "keypress #new-todo2":  "createOnEnter2",
+      "dblclick #display-name" : "editDisplayName",
       "click #clear-completed": "clearCompleted",
       "click #clear-completed2": "clearCompleted2",
       "click #toggle-all": "toggleAllComplete",
@@ -408,13 +409,14 @@ $(function() {
     initialize: function() {
       var self = this;
 
-      _.bindAll(this, 'addOne', 'addOne2', 'addAll', 'addAll2', 'addSome', 'addSome2', 'render', 'toggleAllComplete', 'toggleAllComplete2', 'logOut', 'createOnEnter', 'createOnEnter2');
+      _.bindAll(this, 'addOne', 'addOne2', 'addAll', 'addAll2', 'addSome', 'addSome2', 'render', 'toggleAllComplete', 'toggleAllComplete2', 'logOut', 'createOnEnter', 'createOnEnter2', 'editDisplayName');
 
       // Main todo management template
       this.$el.html(_.template($("#manage-todos-template").html()));
       
       this.input = this.$("#new-todo");
       this.input2 = this.$("#new-todo2");
+      this.input_display_name = this.$("#display-name-input");
       this.allCheckbox2 = this.$("#toggle-all2")[0];
 
       // Create our collection of Todos
@@ -587,6 +589,10 @@ $(function() {
 
       this.input.val('');
       this.resetFilters();
+    },
+
+    editDisplayName: function(e) {
+      console.log("helllloo");
     },
 
     // Clear all done todo items, destroying their models.
