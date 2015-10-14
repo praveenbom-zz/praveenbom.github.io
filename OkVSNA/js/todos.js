@@ -581,12 +581,12 @@ $(function() {
     },
 
     closeName: function() {
-      console.log(Parse.User.current());
+      console.log(Parse.User.current().escape("contact_email"));
       Parse.User.current().set("first_name", this.input_display_name.val());
       Parse.User.current().save(null, {
         success: function(user) {
           console.log("great success");
-          console.log(Parse.User.current());
+          console.log(Parse.User.current().escape("contact_email"));
         },
         error: function(user) {
           console.log("fail");
