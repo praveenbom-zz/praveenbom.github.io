@@ -582,8 +582,15 @@ $(function() {
 
     closeName: function() {
       console.log("closing");
-      Parse.User.current().set("first_name", "")
-      Parse.User.current().save();
+      Parse.User.current().set("first_name", this.input.val())
+      Parse.User.current().save(null, {
+        success: function(user) {
+          console.log("great success");
+        }
+        error: function(user) {
+          console.log("fail");
+        }
+      });
     },
 
     // If you hit return in the main input field, create new Todo model
