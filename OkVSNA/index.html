@@ -11,7 +11,7 @@
   </head>
 
   <body>
-    10
+    11
     <script>
       // Initialize Parse
       Parse.initialize("BeYZxSllTAa0uompCH7V49osUz0MZlpMHTrtqLpG", "pGpQ1ERlCRDO8rX59aCG2q6rT6uK3RlQbq3uWLX1");
@@ -68,9 +68,9 @@
         </div>
         <h4>My settings</h4>
         <div class="view">
-          <label id="contact-email" class="profile-field">Email: </label> <label class="todo-content"> <%= Parse.User.current().escape("email") %></label>
+          <label id="contact-email" class="profile-field">Email: </label> <label class="todo-content"> <%= Parse.User.current().escape("content") %></label>
           <button class="todo-destroy"></button>
-          <input class="edit" value="<%= Parse.User.current().escape("email") %>" >
+          <input class="edit" value="<%= Parse.User.current().escape("content") %>" >
         </div>
       </div>
       <div id="matches" style="display: none;" class="section">
