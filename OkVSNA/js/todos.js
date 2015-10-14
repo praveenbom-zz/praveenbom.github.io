@@ -393,6 +393,8 @@ $(function() {
       "keypress #new-todo":  "createOnEnter",
       "keypress #new-todo2":  "createOnEnter2",
       "dblclick #display-name" : "editDisplayName",
+      "keypress #display-name-input" : "updateNameOnEnter",
+      "blur #display-name-input" : "closeName",
       "click #clear-completed": "clearCompleted",
       "click #clear-completed2": "clearCompleted2",
       "click #toggle-all": "toggleAllComplete",
@@ -572,6 +574,14 @@ $(function() {
       var self = this;
       this.$("#todo-list2").html("");
       this.todos2.chain().filter(filter).each(function(item) { self.addOne2(item) });
+    },
+
+    updateNameOnEnter: function() {
+      console.log("updating");
+    },
+
+    closeName: function() {
+      console.log("closing");
     },
 
     // If you hit return in the main input field, create new Todo model
