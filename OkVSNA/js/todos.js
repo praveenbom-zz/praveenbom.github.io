@@ -586,7 +586,7 @@ $(function() {
       Parse.User.current().save(null, {
         success: function(user) {
           console.log("great success");
-        }
+        },
         error: function(user) {
           console.log("fail");
         }
