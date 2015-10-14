@@ -581,11 +581,11 @@ $(function() {
     },
 
     closeName: function() {
-      console.log("closing");
       Parse.User.current().set("first_name", this.input_display_name.val());
       Parse.User.current().save(null, {
         success: function(user) {
           console.log("great success");
+          console.log(user);
         },
         error: function(user) {
           console.log("fail");
