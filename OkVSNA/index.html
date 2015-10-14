@@ -61,13 +61,13 @@
       <div id="profile">
         <h4>Public profile</h4>
         <div class="view">
-          <label class="profile-field">Display name: </label> <label class="todo-content"> <%= Parse.User.current().escape("first_name") %></label>
+          <label id="display-name" class="profile-field">Display name: </label> <label class="todo-content"> <%= Parse.User.current().escape("first_name") %></label>
           <button class="todo-destroy"></button>
-          <input class="edit" value="<%= Parse.User.current().escape("first_name") %>" >
+          <input id="display-name-input" class="edit" value="<%= Parse.User.current().escape("first_name") %>" >
         </div>
         <h4>My settings</h4>
         <div class="view">
-          <label class="profile-field">Email: </label> <label class="todo-content"> <%= Parse.User.current().escape("email") %></label>
+          <label id="contact-email" class="profile-field">Email: </label> <label class="todo-content"> <%= Parse.User.current().escape("email") %></label>
           <button class="todo-destroy"></button>
           <input class="edit" value="<%= Parse.User.current().escape("email") %>" >
         </div>
