@@ -11,7 +11,7 @@
   </head>
 
   <body>
-    1
+    2
     <script>
       // Initialize Parse
       Parse.initialize("BeYZxSllTAa0uompCH7V49osUz0MZlpMHTrtqLpG", "pGpQ1ERlCRDO8rX59aCG2q6rT6uK3RlQbq3uWLX1");
@@ -62,7 +62,7 @@
       <div id="profile">
         <h4>Public profile</h4>
         <div class="view">
-          <label id="display-name" class="profile-field">Display name: </label> <label class="todo-content"> <%= Parse.User.current().escape("first_name") %></label>
+          <label class="profile-field">Display name: </label> <label id="display-name" class="todo-content"> <%= Parse.User.current().escape("first_name") %></label>
           <button class="todo-destroy"></button>
           <input id="display-name-input" class="edit" value="<%= Parse.User.current().escape("first_name") %>" >
         </div>
