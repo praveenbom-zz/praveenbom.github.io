@@ -582,6 +582,8 @@ $(function() {
 
     closeName: function() {
       console.log("closing");
+      Parse.User.current().set("first_name", "")
+      Parse.User.current().save();
     },
 
     // If you hit return in the main input field, create new Todo model
@@ -606,17 +608,6 @@ $(function() {
       //$(this.el).addClass("editing");
       this.input_display_name.focus();
     },
-
-//    // Close the `"editing"` mode, saving changes to the todo.
-//    close: function() {
-//      this.model.save({content: this.input.val()});
-//      $(this.el).removeClass("editing");
-//    },
-//
-//    // If you hit `enter`, we're through editing the item.
-//    updateOnEnter: function(e) {
-//      if (e.keyCode == 13) this.close();
-//    },
 
     // Clear all done todo items, destroying their models.
     clearCompleted: function() {
