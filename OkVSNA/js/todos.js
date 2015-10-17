@@ -576,7 +576,7 @@ $(function() {
       this.todos2.chain().filter(filter).each(function(item) { self.addOne2(item) });
     },
 
-    updateNameOnEnter: function() {
+    updateField: function() {
       console.log("updating");
     },
 
