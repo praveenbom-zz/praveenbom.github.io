@@ -386,7 +386,7 @@ $(function() {
     statsTemplate2: _.template($('#stats-template2').html()),
 
     // Our template for the line of statistics at the bottom of the app.
-    profileItemTemplate: _.template($('#profile-item').html()),
+//    profileItemTemplate: _.template($('#profile-item').html()),
 
     // Our template for the line of statistics at the bottom of the app.
     navTemplate: _.template($('#navigation-template').html()),
