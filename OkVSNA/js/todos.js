@@ -419,6 +419,9 @@ $(function() {
       // Main todo management template
       this.$el.html(_.template($("#manage-todos-template").html()));
       
+      this.$('#public-profile').append("lolz"
+      );
+
       this.input = this.$("#new-todo");
       this.input2 = this.$("#new-todo2");
       this.input_display_name = this.$("#display-name-input");
@@ -495,8 +498,6 @@ $(function() {
         remaining:  remaining2
       }));
 
-      this.$('#public-profile').append("lolz"
-      );
 
       this.$('#nav').html(this.navTemplate({
         remaining:  remaining2
