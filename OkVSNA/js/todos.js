@@ -588,7 +588,7 @@ $(function() {
       Parse.User.current().save(null, {
         success: function(user) {
           console.log("great success");
-          //Parse.User.current().fetch();
+          Parse.User.current().fetch();
         },
         error: function(user) {
           console.log("fail");
