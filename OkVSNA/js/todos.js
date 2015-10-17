@@ -392,6 +392,9 @@ $(function() {
     navTemplate: _.template($('#navigation-template').html()),
     // Delegated events for creating new items, and clearing completed ones.
 
+
+    profileItemTemplate: _.template($('#stats-template2').html()),
+
     events: {
       "keypress #new-todo":  "createOnEnter",
       "keypress #new-todo2":  "createOnEnter2",
