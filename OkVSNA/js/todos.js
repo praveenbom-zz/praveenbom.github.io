@@ -412,9 +412,9 @@ $(function() {
 
       // Main todo management template
       this.$el.html(_.template($("#manage-todos-template").html()));
-      this.$('#public-profile').append(this.profileItemTemplate({
-        label: "first_name"
-      }));
+      this.$('#public-profile').append(this.profileItemTemplate({label: "first_name"}));
+      this.$('#settings').append(this.profileItemTemplate({label: "contact_email"}));
+
 
       this.input = this.$("#new-todo");
       this.input2 = this.$("#new-todo2");
