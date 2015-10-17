@@ -390,7 +390,7 @@ $(function() {
       "keypress #new-todo":  "createOnEnter",
       "keypress #new-todo2":  "createOnEnter2",
       "dblclick .profile-label" : "editField",
-      "keypress #display-name-input" : "updateField",
+      "keypress .editProfileField" : "updateField",
       "blur .editProfileField" : "closeField",
       "click #clear-completed": "clearCompleted",
       "click #clear-completed2": "clearCompleted2",
@@ -589,8 +589,8 @@ $(function() {
       this.todos2.chain().filter(filter).each(function(item) { self.addOne2(item) });
     },
 
-    updateField: function() {
-      console.log("updating");
+    updateField: function(e) {
+      if (e.keyCode == 13) this.closeField(e);
     },
 
     closeField: function(e) {
