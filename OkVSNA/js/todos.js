@@ -381,12 +381,8 @@ $(function() {
 
     // Our template for the line of statistics at the bottom of the app.
     statsTemplate: _.template($('#stats-template').html()),
-
-    // Our template for the line of statistics at the bottom of the app.
     statsTemplate2: _.template($('#stats-template2').html()),
-
     navTemplate: _.template($('#navigation-template').html()),
-
     profileItemTemplate: _.template($('#profile-item-template').html()),
 
     // Delegated events for creating new items, and clearing completed ones.
@@ -416,9 +412,9 @@ $(function() {
 
       // Main todo management template
       this.$el.html(_.template($("#manage-todos-template").html()));
-      
-      this.$('#public-profile').append("lolz"
-      );
+      this.$('#public-profile').append(this.profileItemTemplate({
+        label: "first_name"
+      }));
 
       this.input = this.$("#new-todo");
       this.input2 = this.$("#new-todo2");
