@@ -413,6 +413,8 @@ $(function() {
       // Main todo management template
       this.$el.html(_.template($("#manage-todos-template").html()));
       this.$('#public-profile').append(this.profileItemTemplate({label: "first_name"}));
+      this.$('#public-profile').append(this.profileItemTemplate({label: "about_me"}));
+      this.$('#public-profile').append(this.profileItemTemplate({label: "education"}));
       this.$('#settings').append(this.profileItemTemplate({label: "contact_email"}));
 
 
