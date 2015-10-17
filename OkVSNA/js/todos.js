@@ -412,10 +412,22 @@ $(function() {
 
       // Main todo management template
       this.$el.html(_.template($("#manage-todos-template").html()));
-      this.$('#public-profile').append(this.profileItemTemplate({label: "first_name"}));
-      this.$('#public-profile').append(this.profileItemTemplate({label: "about_me"}));
-      this.$('#public-profile').append(this.profileItemTemplate({label: "education"}));
-      this.$('#settings').append(this.profileItemTemplate({label: "contact_email"}));
+      this.$('#public-profile').append(this.profileItemTemplate({
+        label: "first_name",
+        field_name: "Display name"
+      }));
+      this.$('#public-profile').append(this.profileItemTemplate({
+        label: "about_me",
+        field_name: "About me"
+      }));
+      this.$('#public-profile').append(this.profileItemTemplate({
+        label: "education",
+        field_name: "Education"
+      }));
+      this.$('#settings').append(this.profileItemTemplate({
+        label: "contact_email",
+        field_name: "Contact email"
+      }));
 
 
       this.input = this.$("#new-todo");
