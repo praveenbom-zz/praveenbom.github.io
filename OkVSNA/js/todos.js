@@ -432,6 +432,10 @@ $(function() {
         label: "max_age",
         field_name: "Max age"
       }));
+      this.$('#interested-in').append(this.profileItemTemplate({
+        label: "max_distance",
+        field_name: "Max distance"
+      }));
       this.$('#settings').append(this.profileItemTemplate({
         label: "contact_email",
         field_name: "Contact email"
