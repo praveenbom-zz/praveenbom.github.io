@@ -583,10 +583,10 @@ $(function() {
 
     closeField: function(e) {
       var el = $(e.target);
-      var fieldName = el.attr("id");
-      console.log("#"+fieldName+"-input");
+      var fieldName = el.attr("id").split("-")[0];
+      console.log("#"+fieldName);
       console.log("setting " + this.$("#"+fieldName).val());
-      Parse.User.current().set(fieldName, this.$("#"+fieldName).val());
+      Parse.User.current().set(fieldName, this.$("#"+fieldName+"-input").val());
       Parse.User.current().save(null, {
         success: function(user) {
           console.log("great success");
