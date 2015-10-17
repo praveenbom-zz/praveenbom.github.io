@@ -610,13 +610,9 @@ $(function() {
     },
 
     editField: function(e) {
-
-      var el = $(e.target);                                                                                                                             
+      var el = $(e.target);
       var fieldName = el.attr("id");
-
-      console.log(fieldName);
-      //this.$("#display-name-input").focus();
-      //this.input_display_name.focus();
+      this.$("#"+fieldName).focus();
     },
 
     // Clear all done todo items, destroying their models.
