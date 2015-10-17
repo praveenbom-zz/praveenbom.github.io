@@ -57,7 +57,7 @@
 
     <script type="text/template" id="profile-item-template">
        <div class="view">
-         <label class="profile-field">Display name: </label> <label id="<%= label %>" class="todo-content"> <%= Parse.User.current().escape(label) %></label>
+         <label class="profile-field">Display name: </label> <label id="<%= label %>" class="profile-label"> <%= Parse.User.current().escape(label) %></label>
          <button class="todo-destroy"></button>
          <input id="<%= label %>-input" class="edit" value="<%= Parse.User.current().escape(label) %>" >
        </div>
@@ -73,11 +73,8 @@
         <div id="looking-for">
         <h4>Looking for</h4>
         </div>
+        <div id="settings">
         <h4>Settings</h4>
-        <div class="view">
-          <label id="contact-email" class="profile-field">Email: </label> <label class="todo-content"> <%= Parse.User.current().escape("contact_email") %></label>
-          <button class="todo-destroy"></button>
-          <input class="edit" value="<%= Parse.User.current().escape("contact_email") %>" >
         </div>
       </div>
       <div id="matches" style="display: none;" class="section">
