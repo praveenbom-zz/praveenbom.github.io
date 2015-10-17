@@ -389,7 +389,7 @@ $(function() {
     events: {
       "keypress #new-todo":  "createOnEnter",
       "keypress #new-todo2":  "createOnEnter2",
-      "dblclick .profile-label" : "editField",
+      "dblclick #first_name" : "editField",
       "keypress #display-name-input" : "updateField",
       "blur #display-name-input" : "closeName",
       "click #clear-completed": "clearCompleted",
