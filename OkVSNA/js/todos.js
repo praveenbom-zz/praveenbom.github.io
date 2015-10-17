@@ -591,7 +591,7 @@ $(function() {
 
     updateField: function(e) {
       if (e.keyCode == 13) {
-        this.blur();
+        $(e.target).blur();
       }
     },
 
