@@ -495,8 +495,7 @@ $(function() {
         remaining:  remaining2
       }));
 
-      this.$('public-profile').append("lolz"
-
+      this.$('#public-profile').append("lolz"
       );
 
       this.$('#nav').html(this.navTemplate({
