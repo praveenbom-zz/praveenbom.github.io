@@ -391,7 +391,7 @@ $(function() {
       "keypress #new-todo2":  "createOnEnter2",
       "dblclick .profile-label" : "editField",
       "keypress #display-name-input" : "updateField",
-      "blur #display-name-input" : "closeField",
+      "blur .editProfileField" : "closeField",
       "click #clear-completed": "clearCompleted",
       "click #clear-completed2": "clearCompleted2",
       "click #toggle-all": "toggleAllComplete",
@@ -579,8 +579,10 @@ $(function() {
       console.log("updating");
     },
 
-    closeField: function() {
-      Parse.User.current().set("first_name", this.input_display_name.val());
+    closeField: function(e) {
+      var el = $(e.target);
+      var fieldName = el.attr("id");
+      Parse.User.current().set(fieldName, this.input_display_name.val());
       Parse.User.current().save(null, {
         success: function(user) {
           console.log("great success");
@@ -604,7 +606,6 @@ $(function() {
         user:    Parse.User.current(),
         ACL:     new Parse.ACL(Parse.User.current())
       });
-
       this.input.val('');
       this.resetFilters();
     },
