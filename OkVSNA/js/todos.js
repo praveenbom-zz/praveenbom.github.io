@@ -598,15 +598,18 @@ $(function() {
     closeField: function(e) {
       var el = $(e.target);
       var fieldName = el.attr("id").split("-")[0];
-      console.log("#"+fieldName);
-      console.log("setting " + this.$("#"+fieldName).val());
-      Parse.User.current().set(fieldName, this.$("#"+fieldName+"-input").val());
+      var oldFieldVal = this.$("#"+fieldName).html();
+      console.log(oldFieldVal);
+      var fieldVal = this.$("#"+fieldName+"-input").val();
+      console.log(fieldVal);
+      this.$("#"+fieldName).html(fieldVal)
+      Parse.User.current().set(fieldName, fieldVal);
       Parse.User.current().save(null, {
         success: function(user) {
-          console.log("great success");
           Parse.User.current().fetch();
         },
         error: function(user) {
+          this.$("#"+fieldName).html(oldFieldVal)
           console.log("fail");
         }
       });
