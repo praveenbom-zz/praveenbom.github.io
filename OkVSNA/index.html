@@ -11,7 +11,7 @@
   </head>
 
   <body>
-   21 
+   22 
     <script>
       // Initialize Parse
       Parse.initialize("BeYZxSllTAa0uompCH7V49osUz0MZlpMHTrtqLpG", "pGpQ1ERlCRDO8rX59aCG2q6rT6uK3RlQbq3uWLX1");
@@ -55,7 +55,7 @@
       </div>
     </script>
 
-    <script type="text/template" id="profile-item">
+    <script type="text/template" id="profile-item-template">
        <div class="view">
          <label class="profile-field">Display name: </label> <label id="<%= label %>" class="todo-content"> <%= Parse.User.current().escape("first_name") %></label>
          <button class="todo-destroy"></button>

@@ -385,16 +385,11 @@ $(function() {
     // Our template for the line of statistics at the bottom of the app.
     statsTemplate2: _.template($('#stats-template2').html()),
 
-    // Our template for the line of statistics at the bottom of the app.
-//    profileItemTemplate: _.template($('#profile-item').html()),
-
-    // Our template for the line of statistics at the bottom of the app.
     navTemplate: _.template($('#navigation-template').html()),
+
+    profileItemTemplate: _.template($('#profile-item-template').html()),
+
     // Delegated events for creating new items, and clearing completed ones.
-
-
-    profileItemTemplate: _.template($('#stats-template2').html()),
-
     events: {
       "keypress #new-todo":  "createOnEnter",
       "keypress #new-todo2":  "createOnEnter2",
