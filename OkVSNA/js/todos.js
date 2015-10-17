@@ -391,7 +391,7 @@ $(function() {
       "keypress #new-todo2":  "createOnEnter2",
       "dblclick .profile-label" : "editField",
       "keypress #display-name-input" : "updateField",
-      "blur #display-name-input" : "closeName",
+      "blur #display-name-input" : "closeField",
       "click #clear-completed": "clearCompleted",
       "click #clear-completed2": "clearCompleted2",
       "click #toggle-all": "toggleAllComplete",
@@ -418,7 +418,6 @@ $(function() {
 
       this.input = this.$("#new-todo");
       this.input2 = this.$("#new-todo2");
-      this.input_display_name = this.$("#display-name-input");
       this.allCheckbox2 = this.$("#toggle-all2")[0];
 
       // Create our collection of Todos
@@ -611,8 +610,9 @@ $(function() {
     },
 
     editField: function(e) {
-      console.log("helllloo");
+      console.log(e);
       //$(this.el).addClass("editing");
+      //this.$("#display-name-input");
       //this.input_display_name.focus();
     },
 
