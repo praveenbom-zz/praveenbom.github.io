@@ -610,9 +610,12 @@ $(function() {
     },
 
     editField: function(e) {
-      console.log(e);
-      //$(this.el).addClass("editing");
-      //this.$("#display-name-input");
+
+      var el = $(e.target);                                                                                                                             
+      var fieldName = el.attr("id");
+
+      console.log(fieldName);
+      //this.$("#display-name-input").focus();
       //this.input_display_name.focus();
     },
 
