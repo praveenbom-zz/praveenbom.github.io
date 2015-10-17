@@ -582,7 +582,7 @@ $(function() {
     closeField: function(e) {
       var el = $(e.target);
       var fieldName = el.attr("id");
-      Parse.User.current().set(fieldName, this.$("#"+fieldName+"-input"));
+      Parse.User.current().set(fieldName, this.$("#"+fieldName+"-input").val());
       Parse.User.current().save(null, {
         success: function(user) {
           console.log("great success");
