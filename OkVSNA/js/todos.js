@@ -421,8 +421,16 @@ $(function() {
         field_name: "About me"
       }));
       this.$('#public-profile').append(this.profileItemTemplate({
-        label: "education",
-        field_name: "Education"
+        label: "occupation",
+        field_name: "Occupation"
+      }));
+      this.$('#interested-in').append(this.profileItemTemplate({
+        label: "min_age",
+        field_name: "Min age"
+      }));
+      this.$('#interested-in').append(this.profileItemTemplate({
+        label: "max_age",
+        field_name: "Max age"
       }));
       this.$('#settings').append(this.profileItemTemplate({
         label: "contact_email",
