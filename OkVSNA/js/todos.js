@@ -389,8 +389,8 @@ $(function() {
     events: {
       "keypress #new-todo":  "createOnEnter",
       "keypress #new-todo2":  "createOnEnter2",
-      "dblclick #display-name" : "editDisplayName",
-      "keypress #display-name-input" : "updateNameOnEnter",
+      "dblclick .profile-label" : "editField",
+      "keypress #display-name-input" : "updateField",
       "blur #display-name-input" : "closeName",
       "click #clear-completed": "clearCompleted",
       "click #clear-completed2": "clearCompleted2",
@@ -408,7 +408,7 @@ $(function() {
     initialize: function() {
       var self = this;
 
-      _.bindAll(this, 'addOne', 'addOne2', 'addAll', 'addAll2', 'addSome', 'addSome2', 'render', 'toggleAllComplete', 'toggleAllComplete2', 'logOut', 'createOnEnter', 'createOnEnter2', 'editDisplayName');
+      _.bindAll(this, 'addOne', 'addOne2', 'addAll', 'addAll2', 'addSome', 'addSome2', 'render', 'toggleAllComplete', 'toggleAllComplete2', 'logOut', 'createOnEnter', 'createOnEnter2', 'editField');
 
       // Main todo management template
       this.$el.html(_.template($("#manage-todos-template").html()));
@@ -610,10 +610,10 @@ $(function() {
       this.resetFilters();
     },
 
-    editDisplayName: function(e) {
+    editField: function(e) {
       console.log("helllloo");
       //$(this.el).addClass("editing");
-      this.input_display_name.focus();
+      //this.input_display_name.focus();
     },
 
     // Clear all done todo items, destroying their models.
