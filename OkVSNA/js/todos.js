@@ -579,7 +579,7 @@ $(function() {
       console.log("updating");
     },
 
-    closeName: function() {
+    closeField: function() {
       Parse.User.current().set("first_name", this.input_display_name.val());
       Parse.User.current().save(null, {
         success: function(user) {
