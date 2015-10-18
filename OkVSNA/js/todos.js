@@ -745,10 +745,10 @@ $(function() {
             alert("User logged in through Facebook!");
           }
 
-                new ManageTodosView();  // ProfileView();//ManageTodosView();
-                Parse.history.navigate("all");
-                self.undelegateEvents();
-                delete self;
+        new ManageTodosView();  // ProfileView();//ManageTodosView();
+        //Parse.history.navigate("all");
+        self.undelegateEvents();
+        delete self;
         },
         error: function(user, error) {
           alert("User cancelled the Facebook login or did not fully authorize.");
