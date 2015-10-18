@@ -746,7 +746,7 @@ $(function() {
           }
 
         new ManageTodosView();  // ProfileView();//ManageTodosView();
-        //Parse.history.navigate("all");
+        Parse.history.navigate("all");
         self.undelegateEvents();
         delete self;
         },
