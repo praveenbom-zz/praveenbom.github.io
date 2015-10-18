@@ -779,9 +779,12 @@ $(function() {
     render: function() {
       if (Parse.User.current()) {
         new ManageTodosView(); //ProfileView();//ManageTodosView();
-        console.log("dfsfds");
+        var rte = ""
+        var url = window.location.href
+        if (url.length > url.split('#')[0] + 1) rte = url.split('#')[1]
+        if (rte == "active" || rte == "completed") console.log("fml")
+        else Parse.history.navigate("all");
         console.log(window.location.href);
-        //Parse.history.navigate("all");
       } else {
         new LogInView();
       }
