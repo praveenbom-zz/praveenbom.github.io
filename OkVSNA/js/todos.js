@@ -126,7 +126,7 @@ $(function() {
     events: {
       "click .toggle"              : "toggleDone",
       "dblclick label.todo-content" : "edit",
-      "click .todo-destroy"   : "clear",
+      "click .profile-field-pencil"   : "edit",
       "keypress .edit"      : "updateOnEnter",
       "blur .edit"          : "close"
     },
