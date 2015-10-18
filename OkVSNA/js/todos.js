@@ -467,6 +467,7 @@ $(function() {
 
       // Setup the query for the collection to look for todos from the current user
       this.todos.query = new Parse.Query(Todo);
+      console.log(Parse.User.current().escape("objectId"));
       this.todos.query.notEqualTo("objectId", Parse.User.current().escape("objectId"));
       this.todos.bind('add',     this.addOne);
       this.todos.bind('reset',   this.addAll);
