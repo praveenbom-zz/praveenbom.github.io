@@ -424,6 +424,10 @@ $(function() {
         label: "occupation",
         field_name: "Occupation"
       }));
+      this.$('#public-profile').append(this.profileItemTemplate({
+        label: "gender",
+        field_name: "Gender"
+      }));
       this.$('#interested-in').append(this.profileItemTemplate({
         label: "min_age",
         field_name: "Min age"
