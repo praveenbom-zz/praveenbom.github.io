@@ -417,16 +417,20 @@ $(function() {
         field_name: "Display name"
       }));
       this.$('#public-profile').append(this.profileItemTemplate({
+        label: "gender",
+        field_name: "Gender"
+      }));
+      this.$('#public-profile').append(this.profileItemTemplate({
+        label: "zip_code",
+        field_name: "Zip Code"
+      }));
+      this.$('#public-profile').append(this.profileItemTemplate({
         label: "about_me",
         field_name: "About me"
       }));
       this.$('#public-profile').append(this.profileItemTemplate({
         label: "occupation",
         field_name: "Occupation"
-      }));
-      this.$('#public-profile').append(this.profileItemTemplate({
-        label: "gender",
-        field_name: "Gender"
       }));
       this.$('#interested-in').append(this.profileItemTemplate({
         label: "min_age",
