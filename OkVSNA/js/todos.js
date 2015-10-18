@@ -779,6 +779,8 @@ $(function() {
     render: function() {
       if (Parse.User.current()) {
         new ManageTodosView(); //ProfileView();//ManageTodosView();
+        console.log("dfsfds");
+        console.log(window.location.href);
         //Parse.history.navigate("all");
       } else {
         new LogInView();
