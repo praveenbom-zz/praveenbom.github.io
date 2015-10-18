@@ -421,6 +421,10 @@ $(function() {
         field_name: "Gender"
       }));
       this.$('#public-profile').append(this.profileItemTemplate({
+        label: "birthdate",
+        field_name: "Birthdate"
+      }));
+      this.$('#public-profile').append(this.profileItemTemplate({
         label: "zip_code",
         field_name: "Zip Code"
       }));
