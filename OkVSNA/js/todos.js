@@ -782,6 +782,9 @@ $(function() {
         console.log(window.location.href);
         var rte = ""
         var url = window.location.href
+        console.log(url.length);
+        console.log(url.split('#')[0] + 1);
+        console.log(url.split('#'));
         if (url.length > url.split('#')[0] + 1) rte = url.split('#')[1]
         console.log(rte);
         if (rte == "active" || rte == "completed") console.log("fml")
