@@ -663,7 +663,7 @@ $(function() {
     editField: function(e) {
       var el = $(e.target);
       var fieldName = el.attr("id");
-      if (s.indexOf("pencil") > -1) fieldName = fieldName.substring(0,length-7);
+      if (fieldName.indexOf("pencil") > -1) fieldName = fieldName.substring(0,length-7);
       this.$("#"+fieldName+"-input").focus();
     },
 
