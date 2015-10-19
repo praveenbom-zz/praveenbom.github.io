@@ -628,9 +628,7 @@ $(function() {
       var el = $(e.target);
       var fieldName = el.attr("id").split("-")[0];
       var oldFieldVal = this.$("#"+fieldName).html();
-      console.log(oldFieldVal);
       var fieldVal = this.$("#"+fieldName+"-input").val();
-      console.log(fieldVal);
       this.$("#"+fieldName).html(fieldVal)
       Parse.User.current().set(fieldName, fieldVal);
       Parse.User.current().save(null, {
@@ -663,8 +661,6 @@ $(function() {
     editField: function(e) {
       var el = $(e.target);
       var fieldName = el.attr("id");
-      console.log(fieldName);
-      console.log(fieldName.substring(0,fieldName.length-7));
       if (fieldName.indexOf("pencil") > -1) fieldName = fieldName.substring(0,fieldName.length-7);
       this.$("#"+fieldName+"-input").focus();
     },
