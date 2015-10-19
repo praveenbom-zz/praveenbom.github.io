@@ -390,7 +390,7 @@ $(function() {
       "keypress #new-todo":  "createOnEnter",
       "keypress #new-todo2":  "createOnEnter2",
       "dblclick .profile-label" : "editField",
-      "click profile-field-pencil"   : "editField",
+      "click .profile-field-pencil"   : "editField",
       "keypress .editProfileField" : "updateField",
       "blur .editProfileField" : "closeField",
       "click #clear-completed": "clearCompleted",
