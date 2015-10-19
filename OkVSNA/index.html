@@ -57,7 +57,7 @@
     <script type="text/template" id="profile-item-template">
        <div class="view">
          <label class="profile-field"><%= field_name %>: </label> <label id="<%= label %>" class="profile-label"> <%= Parse.User.current().escape(label) %></label>
-         <button class="profile-field-pencil"></button>
+         <button id="<%= label %>-pencil" class="profile-field-pencil"></button>
          <input id="<%= label %>-input" class="editProfileField" value="<%= Parse.User.current().escape(label) %>" >
        </div>
     </script>

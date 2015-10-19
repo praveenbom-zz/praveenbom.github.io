@@ -126,7 +126,7 @@ $(function() {
     events: {
       "click .toggle"              : "toggleDone",
       "dblclick label.todo-content" : "edit",
-      "click .profile-field-pencil"   : "edit",
+      "click .todo-destroy"   : "clear",
       "keypress .edit"      : "updateOnEnter",
       "blur .edit"          : "close"
     },
@@ -390,6 +390,7 @@ $(function() {
       "keypress #new-todo":  "createOnEnter",
       "keypress #new-todo2":  "createOnEnter2",
       "dblclick .profile-label" : "editField",
+      "click profile-field-pencil"   : "editField",
       "keypress .editProfileField" : "updateField",
       "blur .editProfileField" : "closeField",
       "click #clear-completed": "clearCompleted",
@@ -662,6 +663,7 @@ $(function() {
     editField: function(e) {
       var el = $(e.target);
       var fieldName = el.attr("id");
+      if (s.indexOf("oo") > -1) fieldName = fieldName.substring(0,length-7);
       this.$("#"+fieldName+"-input").focus();
     },
 
