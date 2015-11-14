@@ -67,7 +67,7 @@
          <label class="profile-field"><%= field_name %>: </label>
          <select class="editProfileFieldMC">
            <% _.each(opts, function(opt) { %> 
-               <option><%= opt %></option>
+               <option <%= Parse.User.current().escape(label) == opt ? 'selected' : '' %> ><%= opt %></option>
            <% }); %>
          </select>
        </div>
