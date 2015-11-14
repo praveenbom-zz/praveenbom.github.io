@@ -384,6 +384,7 @@ $(function() {
     statsTemplate2: _.template($('#stats-template2').html()),
     navTemplate: _.template($('#navigation-template').html()),
     profileItemTemplate: _.template($('#profile-item-template').html()),
+    profileItemTemplateMC: _.template($('#profile-item-template-mc').html()),
 
     // Delegated events for creating new items, and clearing completed ones.
     events: {
@@ -420,6 +421,12 @@ $(function() {
       this.$('#public-profile').append(this.profileItemTemplate({
         label: "gender",
         field_name: "Gender"
+      }));
+      this.$('#public-profile').append(this.profileItemTemplateMC({
+        opts: [
+          "Male",
+          "Female"
+        ]
       }));
       this.$('#public-profile').append(this.profileItemTemplate({
         label: "birthdate",
