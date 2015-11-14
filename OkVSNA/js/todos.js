@@ -424,7 +424,7 @@ $(function() {
         field_name: "Gender"
       }));
       this.$('#public-profile').append(this.profileItemTemplateMC({
-        field_name: "Gender"
+        field_name: "Gender",
         opts: [
           "Male",
           "Female"
