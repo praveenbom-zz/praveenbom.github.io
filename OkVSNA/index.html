@@ -65,9 +65,9 @@
     <script type="text/template" id="profile-item-template-mc">
        <div class="view">
          <select>
-           <%=
-             "<option>"+opts[0]+"</option>"
-           %>
+           <% _.each(opts, function(opt) { %> 
+               <option><%= opt %></option>
+           <% }); %>
          </select>
        </div>
     </script>
