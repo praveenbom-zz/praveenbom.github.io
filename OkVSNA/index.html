@@ -65,9 +65,9 @@
     <script type="text/template" id="profile-item-template-mc">
        <div class="view">
          <select>
-           {{#each opts}}
-             <option>{{this}}</option>
-           {{/each}}
+           <%=
+             "<option>"+opts[0]+"</option>"
+           %>
          </select>
        </div>
     </script>
