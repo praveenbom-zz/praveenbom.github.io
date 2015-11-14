@@ -64,7 +64,8 @@
 
     <script type="text/template" id="profile-item-template-mc">
        <div class="view">
-         <select>
+         <label class="profile-field"><%= field_name %>: </label>
+         <select class="editProfileFieldMC">
            <% _.each(opts, function(opt) { %> 
                <option><%= opt %></option>
            <% }); %>

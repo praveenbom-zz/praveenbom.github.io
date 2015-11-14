@@ -394,6 +394,7 @@ $(function() {
       "click .profile-field-pencil"   : "editField",
       "keypress .editProfileField" : "updateField",
       "blur .editProfileField" : "closeField",
+      "blur .editProfileFieldMC" : "closeFieldMC",
       "click #clear-completed": "clearCompleted",
       "click #clear-completed2": "clearCompleted2",
       "click #toggle-all": "toggleAllComplete",
@@ -423,6 +424,7 @@ $(function() {
         field_name: "Gender"
       }));
       this.$('#public-profile').append(this.profileItemTemplateMC({
+        field_name: "Gender"
         opts: [
           "Male",
           "Female"
@@ -647,6 +649,10 @@ $(function() {
           console.log("fail");
         }
       });
+    },
+
+    closeFieldMC: function(e) {
+      console.log("got hereee")
     },
 
     // If you hit return in the main input field, create new Todo model
