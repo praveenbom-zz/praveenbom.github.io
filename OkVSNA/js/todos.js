@@ -660,7 +660,8 @@ $(function() {
       var oldFieldVal = Parse.User.current().escape(label);
       var fieldVal = this.$("#"+fieldName).find(":selected").text();
 
-      Parse.User.current().set(fieldName, fieldVal);
+      console.log("got here yo");
+      Parse.User.current().set(label, fieldVal);
       Parse.User.current().save(null, {
         success: function(user) {
           Parse.User.current().fetch();
