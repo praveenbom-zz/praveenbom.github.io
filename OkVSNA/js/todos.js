@@ -419,14 +419,11 @@ $(function() {
         label: "first_name",
         field_name: "Display name"
       }));
-      this.$('#public-profile').append(this.profileItemTemplate({
-        label: "gender",
-        field_name: "Gender"
-      }));
       this.$('#public-profile').append(this.profileItemTemplateMC({
         label: "gender",
         field_name: "Gender",
         opts: [
+          "Choose gender",
           "Male",
           "Female"
         ]
