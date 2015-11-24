@@ -661,7 +661,7 @@ $(function() {
       var fieldVal = this.$("#"+fieldName).find(":selected").text();
 
       console.log("fieldName: " + fieldName )
-      console.log("oldFieldName: " +oldFieldName )
+      console.log("oldFieldVal: " +oldFieldVal )
       console.log("fieldVal: " + fieldVal )
     },
 
