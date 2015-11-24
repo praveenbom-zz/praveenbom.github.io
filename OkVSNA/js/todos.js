@@ -660,9 +660,17 @@ $(function() {
       var oldFieldVal = Parse.User.current().escape(label);
       var fieldVal = this.$("#"+fieldName).find(":selected").text();
 
-      console.log("fieldName: " + fieldName )
-      console.log("oldFieldVal: " +oldFieldVal )
-      console.log("fieldVal: " + fieldVal )
+      Parse.User.current().set(fieldName, fieldVal);
+      Parse.User.current().save(null, {
+        success: function(user) {
+          Parse.User.current().fetch();
+        },
+        error: function(user) {
+          $('option:selected', 'select[name=fieldName]').removeAttr('selected');
+          $('select[name=fieldName]').find('option:contains(oldFieldVal)').attr("selected",true);
+          console.log("fail");
+        }
+      });
     },
 
     // If you hit return in the main input field, create new Todo model
