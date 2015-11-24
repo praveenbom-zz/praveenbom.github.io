@@ -65,7 +65,7 @@
     <script type="text/template" id="profile-item-template-mc">
        <div class="view">
          <label class="profile-field"><%= field_name %>: </label>
-         <select class="editProfileFieldMC">
+         <select id="<%= label %>-input" class="editProfileFieldMC">
            <% _.each(opts, function(opt) { %> 
                <option <%= Parse.User.current().escape(label) == opt ? 'selected' : '' %> ><%= opt %></option>
            <% }); %>

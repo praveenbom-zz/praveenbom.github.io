@@ -424,7 +424,6 @@ $(function() {
         label: "gender",
         field_name: "Gender",
         opts: [
-          "Choose gender",
           "Male",
           "Female"
         ]
@@ -655,7 +654,14 @@ $(function() {
     },
 
     closeFieldMC: function(e) {
-      console.log("got hereee")
+      var el = $(e.target);
+      var fieldName = el.attr("id");
+      var oldFieldVal = Parse.User.current().escape(label);
+      var fieldVal = this.$("#"+fieldName).find(":selected").text();
+
+      console.log("fieldName: " + fieldName )
+      console.log("oldFieldName: " +oldFieldName )
+      console.log("fieldVal: " + fieldVal )
     },
 
     // If you hit return in the main input field, create new Todo model
