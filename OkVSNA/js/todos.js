@@ -633,7 +633,7 @@ $(function() {
     },
 
     updateFieldMC: function(e) {
-      console.log("got here ...!")
+      $(e.target).blur();
     },
 
     closeField: function(e) {
