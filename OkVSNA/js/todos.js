@@ -393,6 +393,7 @@ $(function() {
       "dblclick .profile-label" : "editField",
       "click .profile-field-pencil"   : "editField",
       "keypress .editProfileField" : "updateField",
+      "change .editProfileFieldMC" : "updateFieldMC",
       "blur .editProfileField" : "closeField",
       "blur .editProfileFieldMC" : "closeFieldMC",
       "click #clear-completed": "clearCompleted",
@@ -629,6 +630,10 @@ $(function() {
       if (e.keyCode == 13) {
         $(e.target).blur();
       }
+    },
+
+    updateFieldMC: function(e) {
+      console.log("got here ...!")
     },
 
     closeField: function(e) {
