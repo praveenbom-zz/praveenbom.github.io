@@ -656,6 +656,7 @@ $(function() {
     closeFieldMC: function(e) {
       var el = $(e.target);
       var fieldName = el.attr("id");
+      var label = fieldName.split("-")[0];
       var oldFieldVal = Parse.User.current().escape(label);
       var fieldVal = this.$("#"+fieldName).find(":selected").text();
 
