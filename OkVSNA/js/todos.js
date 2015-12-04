@@ -444,9 +444,15 @@ $(function() {
         label: "occupation",
         field_name: "Occupation"
       }));
-      this.$('#public-profile').append(this.profileItemTemplate({
+      this.$('#public-profile').append(this.profileItemTemplateMC({
         label: "diet",
-        field_name: "Diet"
+        field_name: "",
+        opts: [
+          "Vegan",
+          "Vegetarian",
+          "Mostly Vegetarian",
+          "Mostly Anything"
+        ]
       }));
       this.$('#interested-in').append(this.profileItemTemplate({
         label: "min_age",
@@ -660,7 +666,6 @@ $(function() {
       var oldFieldVal = Parse.User.current().escape(label);
       var fieldVal = this.$("#"+fieldName).find(":selected").text();
 
-      console.log("got here yo");
       Parse.User.current().set(label, fieldVal);
       Parse.User.current().save(null, {
         success: function(user) {
