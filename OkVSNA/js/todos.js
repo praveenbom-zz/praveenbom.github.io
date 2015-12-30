@@ -446,7 +446,7 @@ $(function() {
       }));
       this.$('#public-profile').append(this.profileItemTemplateMC({
         label: "diet",
-        field_name: "",
+        field_name: "Diet",
         opts: [
           "Vegan",
           "Vegetarian",
@@ -466,6 +466,16 @@ $(function() {
         label: "max_distance",
         field_name: "Max distance"
       }));
+//      this.$('#interested-in').append(this.profileItemTemplateMC({
+//        label: "max_distance",
+//        field_name: "Diet",
+//        opts: [
+//          "Vegan",
+//          "Vegetarian",
+//          "Mostly Vegetarian",
+//          "Mostly Anything"
+//        ]
+//      }));
       this.$('#settings').append(this.profileItemTemplate({
         label: "contact_email",
         field_name: "Contact email"
