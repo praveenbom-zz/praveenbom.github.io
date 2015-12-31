@@ -392,6 +392,7 @@ $(function() {
       "keypress #new-todo2":  "createOnEnter2",
       "dblclick .profile-label" : "editField",
       "click .profile-field-pencil"   : "editField",
+      "click #submit_new": "submitNewPhoto",
       "keypress .editProfileField" : "updateField",
       "change .editProfileFieldMC" : "updateFieldMC",
       "blur .editProfileField" : "closeField",
@@ -412,7 +413,7 @@ $(function() {
     initialize: function() {
       var self = this;
 
-      _.bindAll(this, 'addOne', 'addOne2', 'addAll', 'addAll2', 'addSome', 'addSome2', 'render', 'toggleAllComplete', 'toggleAllComplete2', 'logOut', 'createOnEnter', 'createOnEnter2', 'editField');
+      _.bindAll(this, 'addOne', 'addOne2', 'addAll', 'addAll2', 'addSome', 'addSome2', 'render', 'toggleAllComplete', 'toggleAllComplete2', 'logOut', 'createOnEnter', 'createOnEnter2', 'editField', 'submitNewPhoto');
 
       // Main todo management template
       this.$el.html(_.template($("#manage-todos-template").html()));
@@ -710,6 +711,12 @@ $(function() {
       var fieldName = el.attr("id");
       if (fieldName.indexOf("pencil") > -1) fieldName = fieldName.substring(0,fieldName.length-7);
       this.$("#"+fieldName+"-input").focus();
+    },
+
+    submitNewPhoto: function(e) {
+      var el = $(e.target);
+      var fieldName = el.attr("id");
+      console.log("changing photo code executes now...")
     },
 
     // Clear all done todo items, destroying their models.
