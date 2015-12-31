@@ -724,7 +724,8 @@ $(function() {
 
       parseFile.save().then(function() {
       // The file has been saved to Parse.
-        Parse.User.current().set("profilePic", parseFile);
+        Parse.User.current().set("profile_pic", parseFile);
+        console.log("saving attached picture");
         Parse.User.current().save(null, {
           success: function(user) {
             Parse.User.current().fetch();
