@@ -728,7 +728,7 @@ $(function() {
         Parse.User.current().save(null, {
           success: function(user) {
             Parse.User.current().fetch();
-            $("profile_pic")[0].src = Parse.User.current().get("profile_pic").url();
+            $("#profile_pic")[0].src = Parse.User.current().get("profile_pic").url();
           },
           error: function(user) {
             console.log("fail");
