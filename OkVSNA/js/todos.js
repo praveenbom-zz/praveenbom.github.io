@@ -725,11 +725,10 @@ $(function() {
       parseFile.save().then(function() {
       // The file has been saved to Parse.
         Parse.User.current().set("profile_pic", parseFile);
-        console.log("saving attached picture");
         Parse.User.current().save(null, {
           success: function(user) {
             Parse.User.current().fetch();
-            console.log("saved pic");
+            $("profile_pic")[0].src = Parse.User.current().get("profile_pic").url();
           },
           error: function(user) {
             console.log("fail");
@@ -737,7 +736,6 @@ $(function() {
         });
       }, function(error) {
       // The file either could not be read, or could not be saved to Parse.
-        console.log("saving error");
       });
     },
 

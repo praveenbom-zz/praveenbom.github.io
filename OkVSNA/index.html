@@ -79,7 +79,7 @@
       <div id="profile">
         <div id="public-profile">
         <h4>Public profile</h4>
-        <img src="<%= Parse.User.current().get("profile_pic").url() %>" alt="Smiley face" height="300">
+        <img id="profile_pic" src="<%= Parse.User.current().get("profile_pic").url() %>" alt="Smiley face" height="300">
         <br/>
         <input type="file" id="profilePhotoFileUpload"><button type="button" id="submit_new">Submit new photo</button>
         <br/>
