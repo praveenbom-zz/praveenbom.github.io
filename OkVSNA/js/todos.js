@@ -714,9 +714,30 @@ $(function() {
     },
 
     submitNewPhoto: function(e) {
-      var el = $(e.target);
-      var fieldName = el.attr("id");
       console.log("changing photo code executes now...")
+      var fileUploadControl = $("#profilePhotoFileUpload")[0];
+      if (fileUploadControl.files.length > 0) {
+        var file = fileUploadControl.files[0];
+        var name = "photo.jpg";
+        var parseFile = new Parse.File(name, file);
+      }
+
+      parseFile.save().then(function() {
+      // The file has been saved to Parse.
+        Parse.User.current().set("profilePic", parseFile);
+        Parse.User.current().save(null, {
+          success: function(user) {
+            Parse.User.current().fetch();
+            console.log("saved pic");
+          },
+          error: function(user) {
+            console.log("fail");
+          }
+        });
+      }, function(error) {
+      // The file either could not be read, or could not be saved to Parse.
+        console.log("saving error");
+      });
     },
 
     // Clear all done todo items, destroying their models.
