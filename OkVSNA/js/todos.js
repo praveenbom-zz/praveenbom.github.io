@@ -759,10 +759,11 @@ $(function() {
       parseFile.save().then(function() {
       // The file has been saved to Parse.
         Parse.User.current().set("profile_pic", parseFile);
+        Parse.User.current().set("profile_pic_url", parseFile.url());
         Parse.User.current().save(null, {
           success: function(user) {
             Parse.User.current().fetch();
-            $("#profile_pic")[0].src = Parse.User.current().get("profile_pic").url();
+            $("#profile_pic")[0].src = Parse.User.current().get("profile_pic_url");
           },
           error: function(user) {
             console.log("fail");
