@@ -686,7 +686,7 @@ $(function() {
           Parse.User.current().fetch();
         },
         error: function(user) {
-          this.$("#"+fieldName).html(oldFieldVal)
+          $("#"+fieldName).html(oldFieldVal)
           console.log("fail");
         }
       });
@@ -709,10 +709,6 @@ $(function() {
         var m = month_map[Parse.User.current().escape("birth_month")];
         var d = Number(Parse.User.current().escape("birth_day"));
         var date = new Date(y, m, d, 0, 0, 0, 0);
-        console.log(y);
-        console.log(m);
-        console.log(d);
-        console.log(date);
         Parse.User.current().set("birthdate", date);
       }
       Parse.User.current().save(null, {
