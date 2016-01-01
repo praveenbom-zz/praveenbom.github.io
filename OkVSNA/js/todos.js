@@ -700,7 +700,7 @@ $(function() {
       var fieldVal = this.$("#"+fieldName).find(":selected").text();
 
       Parse.User.current().set(label, fieldVal);
-      if (label.contains("birth")) {
+      if (label.indexOf("birth") > -1) {
         var y = Number(Parse.User.current().escape("birth_year"));
         var m = Number(Parse.User.current().escape("birth_month"));
         var d = Number(Parse.User.current().escape("birth_day"));
