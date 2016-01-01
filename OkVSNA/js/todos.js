@@ -833,6 +833,9 @@ $(function() {
       
       Parse.User.logIn(username, password, {
         success: function(user) {
+          if (typeof Parse.User.current().escape("profile_pic_url") === "undefined") {
+            Parse.User.current().set("profile_pic_url", "images/default_person.jpg");
+          }
           new ManageTodosView();
           self.undelegateEvents();
           delete self;
@@ -856,6 +859,7 @@ $(function() {
       
       Parse.User.signUp(username, password, { ACL: new Parse.ACL() }, {
         success: function(user) {
+          Parse.User.current().set("profile_pic_url", "images/default_person.jpg");
           new ManageTodosView();
           self.undelegateEvents();
           delete self;
