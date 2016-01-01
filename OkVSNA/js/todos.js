@@ -430,9 +430,28 @@ $(function() {
         ]
       }));
       this.$('#public-profile').append(this.profileItemTemplate({
-        label: "birthdate",
-        field_name: "Birthdate"
+        label: "birth_day",
+        field_name: "Birth Day",
+        opts: [
+          1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
+        ]
       }));
+      this.$('#public-profile').append(this.profileItemTemplate({
+        label: "birth_month",
+        field_name: "Birth Month",
+        opts: [
+          "January", "February", "March", "April", "May", "June",
+          "July", "August", "September", "October", "November", "December"
+        ]
+      }));
+      this.$('#public-profile').append(this.profileItemTemplate({
+        label: "birth_year",
+        field_name: "Birth Year",
+        opts: [
+          1970, 1971, 1972, 1973, 1974, 1975, 1976, 1977, 1978, 1979, 1980, 
+          1981, 1982, 1983, 1984, 1985, 1986, 1987, 1988, 1989, 1990, 1991, 
+          1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000
+        ]     }));
       this.$('#public-profile').append(this.profileItemTemplate({
         label: "zip_code",
         field_name: "Zip Code"
