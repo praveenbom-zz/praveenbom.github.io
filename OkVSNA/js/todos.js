@@ -429,14 +429,14 @@ $(function() {
           "Female"
         ]
       }));
-      this.$('#public-profile').append(this.profileItemTemplate({
+      this.$('#public-profile').append(this.profileItemTemplateMC({
         label: "birth_day",
         field_name: "Birth Day",
         opts: [
           1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
         ]
       }));
-      this.$('#public-profile').append(this.profileItemTemplate({
+      this.$('#public-profile').append(this.profileItemTemplateMC({
         label: "birth_month",
         field_name: "Birth Month",
         opts: [
@@ -444,7 +444,7 @@ $(function() {
           "July", "August", "September", "October", "November", "December"
         ]
       }));
-      this.$('#public-profile').append(this.profileItemTemplate({
+      this.$('#public-profile').append(this.profileItemTemplateMC({
         label: "birth_year",
         field_name: "Birth Year",
         opts: [
