@@ -704,7 +704,7 @@ $(function() {
         var y = Number(Parse.User.current().escape("birth_year"));
         var m = Number(Parse.User.current().escape("birth_month"));
         var d = Number(Parse.User.current().escape("birth_day"));
-        Parse.User.current().set("birthdate", new Date(, month, day, 0, 0, 0, 0));
+        Parse.User.current().set("birthdate", new Date(y, m, d, 0, 0, 0, 0));
       }
       Parse.User.current().save(null, {
         success: function(user) {
