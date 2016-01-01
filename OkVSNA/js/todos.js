@@ -833,6 +833,8 @@ $(function() {
       
       Parse.User.logIn(username, password, {
         success: function(user) {
+          console.log("got here");
+          console.log(Parse.User.current().escape("profile_pic_url").length);
           if (Parse.User.current().escape("profile_pic_url").length < 1) {
             Parse.User.current().set("profile_pic_url", "images/default_person.jpg");
           }
