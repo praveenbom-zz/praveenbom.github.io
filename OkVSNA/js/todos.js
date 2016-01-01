@@ -848,6 +848,29 @@ $(function() {
       return false;
     },
 
+    signUp: function(e) {
+      var self = this;
+      var username = this.$("#signup-username").val();
+      var password = this.$("#signup-password").val();
+      
+      Parse.User.signUp(username, password, { ACL: new Parse.ACL() }, {
+        success: function(user) {
+          new ManageTodosView();
+          self.undelegateEvents();
+          delete self;
+        },
+
+        error: function(user, error) {
+          self.$(".signup-form .error").html(_.escape(error.message)).show();
+          self.$(".signup-form button").removeAttr("disabled");
+        }
+      });
+
+      this.$(".signup-form button").attr("disabled", "disabled");
+
+      return false;
+    },
+
     render: function() {
       this.$el.html(_.template($("#login-template").html()));
       this.delegateEvents();
