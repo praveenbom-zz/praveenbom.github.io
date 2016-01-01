@@ -687,7 +687,8 @@ $(function() {
         },
         error: function(user) {
           $("#"+fieldName).html(oldFieldVal)
-          console.log("fail");
+          $("#"+fieldName+"-input").val(oldFieldVal)
+          console.log("failed to save");
         }
       });
     },
