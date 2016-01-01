@@ -815,13 +815,13 @@ $(function() {
 
   var LogInView = Parse.View.extend({
     events: {
-      "submit form.login-form": "logIn"
+      "submit form.login-form": "logIn",
+      "submit form.signup-form": "signUp 
     },
 
     el: ".content",
-    
     initialize: function() {
-      _.bindAll(this, "logIn");
+      _.bindAll(this, "logIn", "signUp");
       this.render();
     },
 
@@ -829,37 +829,17 @@ $(function() {
       var self = this;
       var username = this.$("#login-username").val();
       var password = this.$("#login-password").val();
-
-      Parse.FacebookUtils.logIn("public_profile,email,user_friends", {
+      
+      Parse.User.logIn(username, password, {
         success: function(user) {
-          if (!user.existed()) {
-            FB.api("/me/?fields=email,name,age_range,bio,address,about,education,first_name,last_name,location,hometown,gender,interested_in,work,languages,birthday,likes", function(response) {
-              console.log(JSON.stringify(response));
-
-              user.set("name", response.name);
-              user.set("first_name", response.first_name);
-              user.set("last_name", response.last_name);
-              user.set("email", response.email);
-              user.set("gender", response.gender);
-              user.set("fb_id", response.id);
-              user.save(null, {
-                success: function(user) {
-                  // This succeeds, since the user was authenticated on the device
-                  // Get the user from a non-authenticated method
-                }
-              });
-            });
-          } else {
-            alert("User logged in through Facebook!");
-          }
-
-        new ManageTodosView();  // ProfileView();//ManageTodosView();
-        //Parse.history.navigate("all");
-        self.undelegateEvents();
-        delete self;
+          new ManageTodosView();
+          self.undelegateEvents();
+          delete self;
         },
+
         error: function(user, error) {
-          alert("User cancelled the Facebook login or did not fully authorize.");
+          self.$(".login-form .error").html("Invalid username or password. Please try again.").show();
+          self.$(".login-form button").removeAttr("disabled");
         }
       });
 
