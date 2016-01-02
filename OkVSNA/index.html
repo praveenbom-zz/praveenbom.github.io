@@ -35,7 +35,7 @@
     <!-- Todo App Interface -->
     <div id="todoapp">
       <div class="title">
-        <h1>OkVSNA</h1>
+        <h2>OkVSNA</h2>
       </div>
 
       <div class="content">
@@ -99,7 +99,6 @@
       <hr/>
       <div id="profile">
         <div id="public-profile">
-        <h4>Public profile</h4>
         <img id="profile_pic" src="<%= Parse.User.current().get("profile_pic_url") %>" alt="Smiley face" height="300">
         <br/>
         <input type="file" id="profilePhotoFileUpload"><button type="button" id="submit_new">Submit new photo</button>
@@ -115,7 +114,6 @@
       </div>
       <div id="matches" style="display: none;" class="section">
         <div id="main">
-          <h4>Matches</h4>
           <ul id="todo-list">
             <img src='images/spinner.gif' class='spinner' />
           </ul>
@@ -123,7 +121,6 @@
         <div id="todo-stats"></div>
       </div>
       <div id="messages" style="display: none;">
-         <h4>Messages</h4>
         <header id="header">
           <input id="new-todo2" placeholder="What needs to be done?" type="text" />
         </header>
