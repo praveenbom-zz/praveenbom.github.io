@@ -625,8 +625,8 @@ $(function() {
         if (Parse.User.current().escape("max_age").length > 0) {
           oldest = Number(Parse.User.current().escape("max_age"));
         }
-        d1.setFullYear(now.getFullYear() - oldest)
-        d2.setFullYear(now.getFullYear() - youngest)
+        d1.setFullYear(d1.getFullYear() - oldest)
+        d2.setFullYear(d2.getFullYear() - youngest)
 
 
         // Setup the query for the collection to look for todos from the current user
