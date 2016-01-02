@@ -640,13 +640,12 @@ $(function() {
 
         // Fetch all the todo items for this user
         this.todos.fetch();
-        this.addAll();
+        //this.addAll();
       }
     },
 
     // Resets the filters to display all todos
     resetFilters: function() {
-      console.log("this did happen");
       this.$("ul#filters a").removeClass("selected");
       this.$("ul#filters a#all").addClass("selected");
       this.addAll();
