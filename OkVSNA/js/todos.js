@@ -619,7 +619,7 @@ $(function() {
   
         // Fetch all the todo items for this user
         this.todos.fetch();
-  
+        this.addAll(); 
 
       } else {
         this.$("#profile").hide();
