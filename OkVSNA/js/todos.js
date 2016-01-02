@@ -608,8 +608,14 @@ $(function() {
         this.$("#matches").hide();
         this.$("#messages").show();
         ///this.addSome(function(item) { return item.get('done') });
+
+
+      } else {
+        this.$("#profile").hide();
+        this.$("#matches").show();
+        this.$("#messages").hide();
+        //this.addSome(function(item) { return !item.get('done') });
         this.todos = new TodoList;
-  
         // Setup the query for the collection to look for todos from the current user
         //this.todos.query = new Parse.Query(Todo);
         //this.todos.query.notEqualTo("objectId", Parse.User.current().id);
@@ -621,12 +627,6 @@ $(function() {
         this.todos.fetch();
         this.addAll(); 
         console.log("doing this thing..");
-
-      } else {
-        this.$("#profile").hide();
-        this.$("#matches").show();
-        this.$("#messages").hide();
-        //this.addSome(function(item) { return !item.get('done') });
       }
     },
 
