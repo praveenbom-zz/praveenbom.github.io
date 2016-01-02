@@ -613,6 +613,7 @@ $(function() {
         this.$("#matches").show();
         this.$("#messages").hide();
         //this.addSome(function(item) { return !item.get('done') });
+        /*
         this.todos = new TodoList;
 
         var d1 = new Date();
@@ -640,8 +641,7 @@ $(function() {
   
         // Fetch all the todo items for this user
         this.todos.fetch();
-        this.addAll(); 
-        console.log("doing this thing..");
+        this.addAll(); */
       }
     },
 
