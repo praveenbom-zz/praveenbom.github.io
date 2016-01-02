@@ -598,13 +598,13 @@ $(function() {
       var filterValue = state.get("filter");
       this.$("ul#filters a").removeClass("selected");
       this.$("ul#filters a#" + filterValue).addClass("selected");
-      if (filterValue === "all") {
+      if (filterValue === "me") {
         this.$("#profile").show();
         this.$("#matches").hide();
         this.$("#messages").hide();
         window.scrollTo(0, 0);
         //this.addAll();
-      } else if (filterValue === "completed") {
+      } else if (filterValue === "messages") {
         this.$("#profile").hide();
         this.$("#matches").hide();
         this.$("#messages").show();
