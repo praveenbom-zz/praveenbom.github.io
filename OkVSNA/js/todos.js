@@ -646,6 +646,7 @@ $(function() {
 
     // Resets the filters to display all todos
     resetFilters: function() {
+      console.log("this did happen");
       this.$("ul#filters a").removeClass("selected");
       this.$("ul#filters a#all").addClass("selected");
       this.addAll();
