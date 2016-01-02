@@ -494,7 +494,8 @@ $(function() {
       }));
       this.$('#interested-in').append(this.profileItemTemplateMC({
         label: "max_distance",
-        field_name: "Max distance"
+        field_name: "Max distance",
+        opts: ["near", "far", "wherever you are"]
       }));
 //      this.$('#interested-in').append(this.profileItemTemplateMC({
 //        label: "max_distance",
