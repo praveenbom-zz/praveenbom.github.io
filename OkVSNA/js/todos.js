@@ -620,6 +620,7 @@ $(function() {
         // Fetch all the todo items for this user
         this.todos.fetch();
         this.addAll(); 
+        console.log("doing this thing..");
 
       } else {
         this.$("#profile").hide();
