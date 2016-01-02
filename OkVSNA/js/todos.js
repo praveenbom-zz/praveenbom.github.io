@@ -882,8 +882,11 @@ $(function() {
       var self = this;
       var username = this.$("#signup-username").val();
       var password = this.$("#signup-password").val();
-      
-      Parse.User.signUp(username, password, { ACL: new Parse.ACL() }, {
+
+      var userACL = new Parse.ACL();
+      userACL.setPublicReadAccess(true);
+
+      Parse.User.signUp(username, password, { ACL: userACL }, {
         success: function(user) {
           Parse.User.current().set("profile_pic_url", "images/default_person.jpg");
           new ManageTodosView();
