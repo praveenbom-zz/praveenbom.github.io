@@ -583,7 +583,7 @@ $(function() {
       }));
       this.delegateEvents();
 
-      this.allCheckbox2.checked = !remaining2;
+      //this.allCheckbox2.checked = !remaining2;
     },
 
     // Filters the list based on which type of filter is selected
