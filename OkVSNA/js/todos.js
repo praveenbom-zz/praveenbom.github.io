@@ -635,7 +635,7 @@ $(function() {
         this.todos.query.greaterThan("birthdate",   d1)  ;
         this.todos.query.lessThan("birthdate",      d2);
         this.todos.bind('add',     this.addOne);
-        //this.todos.bind('reset',   this.addAll);
+        this.todos.bind('reset',   this.addAll);
         this.todos.bind('all',     this.render);
 
         // Fetch all the todo items for this user
