@@ -507,7 +507,7 @@ $(function() {
       this.allCheckbox2 = this.$("#toggle-all2")[0];
 
       // Create our collection of Todos
-      //this.todos = new TodoList;
+      this.todos = new TodoList;
 
       // Setup the query for the collection to look for todos from the current user
       //this.todos.query = new Parse.Query(Todo);
