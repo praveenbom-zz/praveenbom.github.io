@@ -616,8 +616,15 @@ $(function() {
         this.todos = new TodoList;
 
         var now = new Date();
-        var youngest = Parse.User.current().escape("min_age")
-        var oldest = Parse.User.current().escape("max_age")
+        var youngest = 18;
+        if (Parse.User.current().escape("min_age").length > 0) {
+          youngest = Number(Parse.User.current().escape("min_age"));
+        }
+        var oldest = 100;
+        if (Parse.User.current().escape("max_age").length > 0) {
+          oldest = Number(Parse.User.current().escape("max_age"));
+        }
+
         // Setup the query for the collection to look for todos from the current user
         this.todos.query = new Parse.Query(Todo);
         this.todos.query.notEqualTo("objectId",     Parse.User.current().id);
@@ -848,8 +855,6 @@ $(function() {
       
       Parse.User.logIn(username, password, {
         success: function(user) {
-          console.log("got here");
-          console.log(Parse.User.current().escape("profile_pic_url").length);
           if (Parse.User.current().escape("profile_pic_url").length < 1) {
             Parse.User.current().set("profile_pic_url", "images/default_person.jpg");
           }
