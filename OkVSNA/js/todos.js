@@ -615,7 +615,8 @@ $(function() {
         //this.addSome(function(item) { return !item.get('done') });
         this.todos = new TodoList;
 
-        var now = new Date();
+        var d1 = new Date();
+        var d2 = new Date();
         var youngest = 18;
         if (Parse.User.current().escape("min_age").length > 0) {
           youngest = Number(Parse.User.current().escape("min_age"));
@@ -624,12 +625,15 @@ $(function() {
         if (Parse.User.current().escape("max_age").length > 0) {
           oldest = Number(Parse.User.current().escape("max_age"));
         }
+        d1.setFullYear(now.getFullYear() - oldest))
+        d2.setFullYear(now.getFullYear() - youngest))
+
 
         // Setup the query for the collection to look for todos from the current user
         this.todos.query = new Parse.Query(Todo);
         this.todos.query.notEqualTo("objectId",     Parse.User.current().id);
-        //this.todos.query.greaterThan("birthdate",   now.setFullYear(now.getFullYear() - oldest));
-        //this.todos.query.lessThan("birthdate",      now.setFullYear(now.getFullYear() - youngest));
+        this.todos.query.greaterThan("birthdate",   d1)  ;
+        this.todos.query.lessThan("birthdate",      d2);
         this.todos.bind('add',     this.addOne);
         this.todos.bind('reset',   this.addAll);
         this.todos.bind('all',     this.render);
