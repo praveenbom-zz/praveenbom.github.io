@@ -6,16 +6,12 @@ html,body {
 button {
     margin: 0;
     padding: 0;
-    border: 0;
+    border: 1;
     background: none;
     font-size: 100%;
     vertical-align: baseline;
     font-family: inherit;
     color: inherit;
-    -webkit-appearance: none;
-    -ms-appearance: none;
-    -o-appearance: none;
-    appearance: none;
 }
 
 body {
