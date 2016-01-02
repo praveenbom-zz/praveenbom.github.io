@@ -157,6 +157,7 @@
     <script type="text/template" id="match-template">
       <li class="<%= done ? 'completed' : '' %>">
       <div class="view">
+        <img src="<%= _.get("profile_pic_url") %>" alt="pic" height="75">
         <input class="toggle" type="checkbox" <%= done ? 'checked="checked"' : '' %>>
         <label class="todo-content"><%= _.escape(username) %></label>
         <button class="todo-destroy"></button>
