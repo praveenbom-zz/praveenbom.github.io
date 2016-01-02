@@ -607,7 +607,20 @@ $(function() {
         this.$("#profile").hide();
         this.$("#matches").hide();
         this.$("#messages").show();
-        //this.addSome(function(item) { return item.get('done') });
+        ///this.addSome(function(item) { return item.get('done') });
+        this.todos = new TodoList;
+  
+        // Setup the query for the collection to look for todos from the current user
+        //this.todos.query = new Parse.Query(Todo);
+        //this.todos.query.notEqualTo("objectId", Parse.User.current().id);
+        this.todos.bind('add',     this.addOne);
+        this.todos.bind('reset',   this.addAll);
+        this.todos.bind('all',     this.render);
+  
+        // Fetch all the todo items for this user
+        this.todos.fetch();
+  
+
       } else {
         this.$("#profile").hide();
         this.$("#matches").show();
