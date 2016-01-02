@@ -589,7 +589,7 @@ $(function() {
     // Filters the list based on which type of filter is selected
     selectFilter: function(e) {
       var el = $(e.target);
-      var filterValue = el.attr("id");
+      var filterValue = el.attr("id").split("-")[0];
       state.set({filter: filterValue});
       Parse.history.navigate(filterValue);
     },
