@@ -601,19 +601,19 @@ $(function() {
       if (filterValue === "me") {
         this.$("#profile").show();
         this.$("#matches").hide();
-        this.$("#messages").hide();
+        this.$("#msgs").hide();
         window.scrollTo(0, 0);
         //this.addAll();
       } else if (filterValue === "messages") {
         this.$("#profile").hide();
         this.$("#matches").hide();
-        this.$("#messages").show();
+        this.$("#msgs").show();
         window.scrollTo(0, 0);
         ///this.addSome(function(item) { return item.get('done') });
       } else {
         this.$("#profile").hide();
         this.$("#matches").show();
-        this.$("#messages").hide();
+        this.$("#msgs").hide();
         //this.addSome(function(item) { return !item.get('done') });
         this.todos = new TodoList;
 
