@@ -507,20 +507,20 @@ $(function() {
       this.allCheckbox2 = this.$("#toggle-all2")[0];
 
       // Create our collection of Todos
-      this.todos = new TodoList;
+      //this.todos = new TodoList;
 
       // Setup the query for the collection to look for todos from the current user
-      this.todos.query = new Parse.Query(Todo);
-      this.todos.query.notEqualTo("objectId", Parse.User.current().id);
-      this.todos.bind('add',     this.addOne);
-      this.todos.bind('reset',   this.addAll);
-      this.todos.bind('all',     this.render);
+      //this.todos.query = new Parse.Query(Todo);
+      //this.todos.query.notEqualTo("objectId", Parse.User.current().id);
+      //this.todos.bind('add',     this.addOne);
+      //this.todos.bind('reset',   this.addAll);
+      //this.todos.bind('all',     this.render);
 
       // Fetch all the todo items for this user
-      this.todos.fetch();
+      //this.todos.fetch();
 
       // Create our collection of Todos
-      this.todos2 = new TodoList2;
+      //this.todos2 = new TodoList2;
 
       // Setup the query for the collection to look for todos from the current user
       this.todos2.query = new Parse.Query(Todo2);
@@ -614,10 +614,15 @@ $(function() {
         this.$("#messages").hide();
         //this.addSome(function(item) { return !item.get('done') });
         this.todos = new TodoList;
-  
+
+        var now = new Date();
+        var youngest = Parse.User.current().escape("min_age")
+        var oldest = Parse.User.current().escape("max_age")
         // Setup the query for the collection to look for todos from the current user
-        //this.todos.query = new Parse.Query(Todo);
-        //this.todos.query.notEqualTo("objectId", Parse.User.current().id);
+        this.todos.query = new Parse.Query(Todo);
+        this.todos.query.notEqualTo("objectId",     Parse.User.current().id);
+        this.todos.query.greaterThan("birthdate",   now.setFullYear(now.getFullYear() - oldest));
+        this.todos.query.lessThan("birthdate",      now.setFullYear(now.getFullYear() - youngest));
         this.todos.bind('add',     this.addOne);
         this.todos.bind('reset',   this.addAll);
         this.todos.bind('all',     this.render);
