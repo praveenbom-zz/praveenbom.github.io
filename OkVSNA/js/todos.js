@@ -635,7 +635,7 @@ $(function() {
         this.todos.bind('all',     this.render);
   
         // Fetch all the todo items for this user
-        //this.todos.fetch();
+        this.todos.fetch();
         this.addAll(); 
         console.log("doing this thing..");
       }
