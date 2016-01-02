@@ -608,25 +608,25 @@ $(function() {
         this.$("#matches").hide();
         this.$("#messages").show();
         ///this.addSome(function(item) { return item.get('done') });
-
+        this.todos2 = new TodoList;
+  
+        // Setup the query for the collection to look for todos from the current user
+        //this.todos.query = new Parse.Query(Todo);
+        //this.todos.query.notEqualTo("objectId", Parse.User.current().id);
+        this.todos2.bind('add',     this.addOne);
+        this.todos2.bind('reset',   this.addAll);
+        this.todos2.bind('all',     this.render);
+  
+        // Fetch all the todo items for this user
+        this.todos2.fetch();
+        this.addAll2(); 
+        console.log("doing this thing..");
 
       } else {
         this.$("#profile").hide();
         this.$("#matches").show();
         this.$("#messages").hide();
         //this.addSome(function(item) { return !item.get('done') });
-        this.todos = new TodoList;
-        // Setup the query for the collection to look for todos from the current user
-        //this.todos.query = new Parse.Query(Todo);
-        //this.todos.query.notEqualTo("objectId", Parse.User.current().id);
-        this.todos.bind('add',     this.addOne);
-        this.todos.bind('reset',   this.addAll);
-        this.todos.bind('all',     this.render);
-  
-        // Fetch all the todo items for this user
-        this.todos.fetch();
-        this.addAll(); 
-        console.log("doing this thing..");
       }
     },
 
