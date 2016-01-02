@@ -474,15 +474,23 @@ $(function() {
           "Mostly Anything"
         ]
       }));
-      this.$('#interested-in').append(this.profileItemTemplate({
+      this.$('#interested-in').append(this.profileItemTemplateMC({
         label: "min_age",
-        field_name: "Min age"
-      }));
-      this.$('#interested-in').append(this.profileItemTemplate({
+        field_name: "Min age",
+        opts: [
+          "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28",
+          "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39"
+          ]
+     }));
+      this.$('#interested-in').append(this.profileItemTemplateMC({
         label: "max_age",
-        field_name: "Max age"
+        field_name: "Max age",
+        opts: [
+          "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28",
+          "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39"
+          ]
       }));
-      this.$('#interested-in').append(this.profileItemTemplate({
+      this.$('#interested-in').append(this.profileItemTemplateMC({
         label: "max_distance",
         field_name: "Max distance"
       }));
