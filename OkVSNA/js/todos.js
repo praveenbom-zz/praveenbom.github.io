@@ -602,11 +602,13 @@ $(function() {
         this.$("#profile").show();
         this.$("#matches").hide();
         this.$("#messages").hide();
+        window.scrollTo(0, 0);
         //this.addAll();
       } else if (filterValue === "completed") {
         this.$("#profile").hide();
         this.$("#matches").hide();
         this.$("#messages").show();
+        window.scrollTo(0, 0);
         ///this.addSome(function(item) { return item.get('done') });
       } else {
         this.$("#profile").hide();
@@ -641,6 +643,7 @@ $(function() {
         // Fetch all the todo items for this user
         this.todos.fetch();
         this.addAll();
+        window.scrollTo(0, 0);
       }
     },
 
