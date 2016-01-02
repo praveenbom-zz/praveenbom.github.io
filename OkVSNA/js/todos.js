@@ -520,7 +520,7 @@ $(function() {
       //this.todos.fetch();
 
       // Create our collection of Todos
-      //this.todos2 = new TodoList2;
+      this.todos2 = new TodoList2;
 
       // Setup the query for the collection to look for todos from the current user
       this.todos2.query = new Parse.Query(Todo2);
