@@ -75,7 +75,7 @@ $(function() {
   // This is the transient application state, not persisted on Parse
   var AppState = Parse.Object.extend("AppState", {
     defaults: {
-      filter: "all"
+      filter: "me"
     }
   });
 
@@ -650,7 +650,7 @@ $(function() {
     // Resets the filters to display all todos
     resetFilters: function() {
       this.$("ul#filters a").removeClass("selected");
-      this.$("ul#filters a#all").addClass("selected");
+      this.$("ul#filters a#me").addClass("selected");
       this.addAll();
     },
 
@@ -931,10 +931,10 @@ $(function() {
         var url = window.location.href
         if (url.length > url.split('#')[0].length + 1) 
           rte = url.split('#')[1]
-        if (rte == "active" || rte == "completed") {
+        if (rte == "matches" || rte == "messages") {
           state.set({ filter: rte });
         }
-        else Parse.history.navigate("all");
+        else Parse.history.navigate("me");
       } else {
         new LogInView();
       }
@@ -943,9 +943,9 @@ $(function() {
 
   var AppRouter = Parse.Router.extend({
     routes: {
-      "all": "all",
-      "active": "active",
-      "completed": "completed"
+      "me": "me",
+      "matches": "matches",
+      "messages": "messages"
     },
 
     initialize: function(options) {
@@ -953,15 +953,15 @@ $(function() {
     },
 
     all: function() {
-      state.set({ filter: "all" });
+      state.set({ filter: "me" });
     },
 
     active: function() {
-      state.set({ filter: "active" });
+      state.set({ filter: "matches" });
     },
 
     completed: function() {
-      state.set({ filter: "completed" });
+      state.set({ filter: "messages" });
     }
   });
 
