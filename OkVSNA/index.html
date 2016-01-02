@@ -73,15 +73,6 @@
         </form>
       </div>
     </script>
-
-    <script type="text/template" id="profile-item-template">
-       <div class="view">
-         <label class="profile-field"><%= field_name %>: </label> <label id="<%= label %>" class="profile-label"> <%= Parse.User.current().escape(label) %></label>
-         <button id="<%= label %>-pencil" class="profile-field-pencil"></button>
-         <input id="<%= label %>-input" class="editProfileField" value="<%= Parse.User.current().escape(label) %>" >
-       </div>
-    </script>
-
     <script type="text/template" id="profile-item-template-mc">
        <div class="view">
          <label class="profile-field"><%= field_name %>: </label>
@@ -153,6 +144,15 @@
         </li>
       </ul>
     </script>
+
+    <script type="text/template" id="profile-item-template">
+       <div class="view">
+         <label class="profile-field todo-content"><%= field_name %>: </label> <label id="<%= label %>" class="profile-label"> <%= Parse.User.current().escape(label) %></label>
+         <button id="<%= label %>-pencil" class="profile-field-pencil todo-destroy"></button>
+         <input id="<%= label %>-input" class="editProfileField edit" value="<%= Parse.User.current().escape(label) %>" >
+       </div>
+    </script>
+
 
     <script type="text/template" id="match-template">
       <li class="<%= done ? 'completed' : '' %>">
