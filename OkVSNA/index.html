@@ -158,6 +158,7 @@
       <li class="<%= done ? 'completed' : '' %>">
       <div class="view">
         <img src="<%= _.escape(profile_pic_url) %>" alt="pic" height="75">
+        <br/>
         <input class="toggle" type="checkbox" <%= done ? 'checked="checked"' : '' %>>
         <label class="todo-content"><%= _.escape(username) %></label>
         <button class="todo-destroy"></button>
