@@ -562,11 +562,11 @@ $(function() {
       var done = this.todos.done().length;
       var remaining = this.todos.remaining().length;
 
-      this.$('#todo-stats').html(this.statsTemplate({
-        total:      this.todos.length,
-        done:       done,
-        remaining:  remaining
-      }));
+      //this.$('#todo-stats').html(this.statsTemplate({
+      //  total:      this.todos.length,
+      //  done:       done,
+      //  remaining:  remaining
+      //}));
 
       var done2 = this.todos2.done().length;
       var remaining2 = this.todos2.remaining().length;
