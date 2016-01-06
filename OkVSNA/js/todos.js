@@ -151,6 +151,15 @@ $(function() {
     toggleDone: function() {
       console.log("add to user likes array");
       Parse.User.current().addUnique("likes", "flying");
+      Parse.User.current().save(null, {
+        success: function(user) {
+          Parse.User.current().fetch();
+        },
+        error: function(user) {
+          console.log("failed to save");
+          // probably uncheck the box in this case
+        }
+      });
       //this.model.toggle();
     },
 
