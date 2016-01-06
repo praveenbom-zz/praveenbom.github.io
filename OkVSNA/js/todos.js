@@ -149,7 +149,9 @@ $(function() {
 
     // Toggle the `"done"` state of the model.
     toggleDone: function() {
-      this.model.toggle();
+      console.log("add to user likes array");
+      Parse.User.current().addUnique("likes", "flying");
+      //this.model.toggle();
     },
 
     // Switch this view into `"editing"` mode, displaying the input field.
@@ -495,18 +497,8 @@ $(function() {
       this.$('#interested-in').append(this.profileItemTemplateMC({
         label: "max_distance",
         field_name: "Max distance",
-        opts: ["near", "far", "wherever you are"]
+        opts: ["Near", "Far", "Wherever you are"]
       }));
-//      this.$('#interested-in').append(this.profileItemTemplateMC({
-//        label: "max_distance",
-//        field_name: "Diet",
-//        opts: [
-//          "Vegan",
-//          "Vegetarian",
-//          "Mostly Vegetarian",
-//          "Mostly Anything"
-//        ]
-//      }));
       this.$('#settings').append(this.profileItemTemplate({
         label: "contact_email",
         field_name: "Contact email"
