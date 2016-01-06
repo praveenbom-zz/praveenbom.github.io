@@ -14,7 +14,7 @@ $(function() {
     // Default attributes for the todo.
     defaults: {
       content: "empty todo...",
-      done: false
+      done: Parse.User.current().get("likes").contains("flying")
     },
 
     // Ensure that each todo created has `content`.
@@ -88,7 +88,7 @@ $(function() {
 
     // Filter down the list of all todo items that are finished.
     done: function() {
-        return this.filter(function(todo){ return Parse.User.current().get("likes").contains("flying"); });
+        return this.filter(function(todo){ return todo.get('done'); });
     },
 
     // Filter down the list to only todo items that are still not finished.
