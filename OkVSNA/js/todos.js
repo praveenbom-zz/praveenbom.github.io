@@ -13,7 +13,8 @@ $(function() {
   var Todo = Parse.Object.extend("User", {
     // Default attributes for the todo.
     //
-    console.log(Parse.User.current().escape("likes").toString());
+    console.log("add to user likes array");
+    console.log(Parse.User.current().toString());
     defaults: {
       content: "empty todo...",
       done: true 
