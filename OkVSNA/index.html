@@ -155,7 +155,7 @@
       <div class="view">
         <img src="<%= _.escape(profile_pic_url) %>" alt="pic" height="75">
         <br/>
-        <%= Parse.User.current().get("likes").toString() %>
+        <%= Parse.User.current().get("likes").contains("flying").toString() %>
         <input class="toggle" type="checkbox" <%= done ? 'checked="checked"' : '' %>>
         <label class="todo-content"><%= _.escape(username) %></label>
         <!--<button class="todo-destroy"></button>-->
