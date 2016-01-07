@@ -11,10 +11,9 @@ $(function() {
 
   // Our basic Todo model has `content`, `order`, and `done` attributes.
   var Todo = Parse.Object.extend("User", {
-    // Default attributes for the todo.
-    //
+    // Default attributes for the todo
     console.log("add to user likes array");
-    console.log(Parse.User.current().toString());
+    console.log(Parse.User.current().escape("likes").toString());
     defaults: {
       content: "empty todo...",
       done: true 
