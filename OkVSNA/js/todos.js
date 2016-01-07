@@ -611,7 +611,7 @@ $(function() {
     },
 
     filter: function() {
-      console.log(Parse.User.current().escape("likes").toString);
+      console.log(Parse.User.current().escape("likes").toString());
       var filterValue = state.get("filter");
       this.$("ul#filters a").removeClass("selected");
       this.$("ul#filters a#" + filterValue).addClass("selected");
