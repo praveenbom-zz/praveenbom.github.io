@@ -25,6 +25,9 @@ $(function() {
       if (!this.get("content")) {
         this.set({"content": this.defaults.content});
       }
+      if (!this.get("done")) {
+        this.set({"": this.defaults.done})
+      }
     },
 
     // Toggle the `done` state of this todo item.
