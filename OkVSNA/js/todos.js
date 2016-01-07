@@ -21,7 +21,7 @@ $(function() {
     initialize: function() {
 
       console.log("add to user likes array");
-      console.log(Parse.User.current().escape("likes").toString());
+      console.log(Parse.User.current().toString());
       if (!this.get("content")) {
         this.set({"content": this.defaults.content});
       }
