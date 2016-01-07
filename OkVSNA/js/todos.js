@@ -19,8 +19,6 @@ $(function() {
 
     // Ensure that each todo created has `content`.
     initialize: function() {
-      console.log("another one");
-      console.log(Parse.User.current().escape("likes").toString());
       if (!this.get("content")) {
         this.set({"content": this.defaults.content});
       }
