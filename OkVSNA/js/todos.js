@@ -20,8 +20,6 @@ $(function() {
     // Ensure that each todo created has `content`.
     initialize: function() {
 
-      console.log("add to user likes array");
-      console.log(Parse.User.current().toString());
       if (!this.get("content")) {
         this.set({"content": this.defaults.content});
       }
@@ -613,6 +611,7 @@ $(function() {
     },
 
     filter: function() {
+      console.log(Parse.User.current().escape("likes").toString);
       var filterValue = state.get("filter");
       this.$("ul#filters a").removeClass("selected");
       this.$("ul#filters a#" + filterValue).addClass("selected");
