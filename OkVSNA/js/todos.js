@@ -23,7 +23,7 @@ $(function() {
         this.set({"content": this.defaults.content});
       }
       if (!this.get("done")) {
-        this.set({"done": this.defaults.done})
+        this.set({"done": this.defaults.done});
       }
     },
 
