@@ -19,12 +19,13 @@ $(function() {
 
     // Ensure that each todo created has `content`.
     initialize: function() {
-
+      console.log("another one");
+      console.log(Parse.User.current().escape("likes").toString());
       if (!this.get("content")) {
         this.set({"content": this.defaults.content});
       }
       if (!this.get("done")) {
-        this.set({"": this.defaults.done})
+        this.set({"done": this.defaults.done})
       }
     },
 
@@ -611,7 +612,6 @@ $(function() {
     },
 
     filter: function() {
-      console.log(Parse.User.current().escape("likes").toString());
       var filterValue = state.get("filter");
       this.$("ul#filters a").removeClass("selected");
       this.$("ul#filters a#" + filterValue).addClass("selected");
