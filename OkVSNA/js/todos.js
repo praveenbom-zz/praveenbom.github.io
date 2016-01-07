@@ -153,6 +153,7 @@ $(function() {
     // Toggle the `"done"` state of the model.
     toggleDone: function() {
       console.log("add to user likes array");
+      console.log(this.model.toString());
       Parse.User.current().addUnique("likes", this.model.escape(username));
       Parse.User.current().save(null, {
         success: function(user) {
