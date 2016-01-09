@@ -145,7 +145,7 @@ $(function() {
 
     // Re-render the contents of the todo item.
     render: function() {
-      console.log(this.template.toString());
+      console.log(this.template(this.model.toJSON()));
       console.log("b");
       console.log(this.model.escape("username").toString());
       console.log(this.el.toString());
