@@ -149,7 +149,7 @@ $(function() {
       console.log("b");
       console.log(this.model.escape("username").toString());
       console.log(this.el.toString());
-      $(this.el).html(this.template(this.model.toJSON()));
+      //$(this.el).html(this.template(this.model.toJSON()));
       this.input = this.$('.edit');
       return this;
     },
