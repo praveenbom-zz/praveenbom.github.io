@@ -146,11 +146,11 @@ $(function() {
     // Re-render the contents of the todo item.
     render: function() {
       //console.log(this.template(this.model.toJSON()));
-      //console.log("b");
-      //console.log(this.model.toJSON());
-      //console.log(this.el.toString());
-      //$(this.el).html("debug");
-      $(this.el).html(this.template(this.model.toJSON()));
+      console.log("b");
+      console.log(this.model.toJSON());
+      console.log(this.el.toString());
+      $(this.el).html(this.model.toJSON());
+      //$(this.el).html(this.template(this.model.toJSON()));
       this.input = this.$('.edit');
       return this;
     },
@@ -531,14 +531,14 @@ $(function() {
       this.todos = new TodoList;
 
       // Setup the query for the collection to look for todos from the current user
-      this.todos.query = new Parse.Query(Todo);
-      this.todos.query.notEqualTo("objectId", Parse.User.current().id);
-      this.todos.bind('add',     this.addOne);
-      this.todos.bind('reset',   this.addAll);
-      this.todos.bind('all',     this.render);
+      //this.todos.query = new Parse.Query(Todo);
+      //this.todos.query.notEqualTo("objectId", Parse.User.current().id);
+      //this.todos.bind('add',     this.addOne);
+      //this.todos.bind('reset',   this.addAll);
+      //this.todos.bind('all',     this.render);
 
       // Fetch all the todo items for this user
-      this.todos.fetch();
+      //this.todos.fetch();
 
       // Create our collection of Todos
       this.todos2 = new TodoList2;
@@ -636,8 +636,6 @@ $(function() {
         this.$("#matches").show();
         this.$("#msgs").hide();
         //this.addSome(function(item) { return !item.get('done') });
-        //
-        /*
         this.todos = new TodoList;
 
         var d1 = new Date();
@@ -667,7 +665,6 @@ $(function() {
         this.todos.fetch();
         this.addAll();
         window.scrollTo(0, 0);
-        */
       }
     },
 
