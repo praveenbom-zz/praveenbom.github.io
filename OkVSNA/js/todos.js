@@ -146,11 +146,11 @@ $(function() {
     // Re-render the contents of the todo item.
     render: function() {
       //console.log(this.template(this.model.toJSON()));
-      console.log("b");
-      console.log(this.model.toJSON());
-      console.log(this.el.toString());
-      $(this.el).html("debug");
-      //$(this.el).html(this.template(this.model.toJSON()));
+      //console.log("b");
+      //console.log(this.model.toJSON());
+      //console.log(this.el.toString());
+      //$(this.el).html("debug");
+      $(this.el).html(this.template(this.model.toJSON()));
       this.input = this.$('.edit');
       return this;
     },
