@@ -884,6 +884,9 @@ $(function() {
           if (Parse.User.current().escape("profile_pic_url").length < 1) {
             Parse.User.current().set("profile_pic_url", "images/default_person.jpg");
           }
+          if (!Parse.User.current().get("likes")) {
+            Parse.User.current().set("likes", []);
+          }
           new ManageTodosView();
           self.undelegateEvents();
           delete self;
@@ -911,6 +914,7 @@ $(function() {
       Parse.User.signUp(username, password, { ACL: userACL }, {
         success: function(user) {
           Parse.User.current().set("profile_pic_url", "images/default_person.jpg");
+          Parse.User.current().set("likes", []);
           new ManageTodosView();
           self.undelegateEvents();
           delete self;
