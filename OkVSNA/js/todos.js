@@ -145,11 +145,7 @@ $(function() {
 
     // Re-render the contents of the todo item.
     render: function() {
-      //console.log(this.template(this.model.toJSON()));
-      console.log("b");
-      console.log(this.model.toJSON());
-      $(this.el).html(this.model.toJSON().username);
-      //$(this.el).html(this.template(this.model.toJSON()));
+      $(this.el).html(this.template(this.model.toJSON()));
       this.input = this.$('.edit');
       return this;
     },
@@ -884,9 +880,7 @@ $(function() {
           if (Parse.User.current().escape("profile_pic_url").length < 1) {
             Parse.User.current().set("profile_pic_url", "images/default_person.jpg");
           }
-          if (!Parse.User.current().get("likes")) {
-            Parse.User.current().set("likes", []);
-          }
+          Parse.User.current().addUnique("likes", "");
           new ManageTodosView();
           self.undelegateEvents();
           delete self;
@@ -914,7 +908,7 @@ $(function() {
       Parse.User.signUp(username, password, { ACL: userACL }, {
         success: function(user) {
           Parse.User.current().set("profile_pic_url", "images/default_person.jpg");
-          Parse.User.current().set("likes", []);
+          Parse.User.current().addUnique("likes", "");
           new ManageTodosView();
           self.undelegateEvents();
           delete self;
