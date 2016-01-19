@@ -672,21 +672,21 @@ $(function() {
     },
 
     addOne2: function(conversationMatch) {
-      var view = new TodoView2({model: conversationMatch});
+      var view = new MatchView({model: conversationMatch});
       this.$("#todo-list2").append(view.render().el);
     },
 
     // Add all items in the Todos collection at once.
     addAll2: function(collection, filter) {
       this.$("#todo-list2").html("");
-      this.todos2.each(this.addOne2);
+      this.conversationMatches.each(this.addOne2);
     },
 
     // Only adds some todos, based on a filtering function that is passed in
     addSome2: function(filter) {
       var self = this;
       this.$("#todo-list2").html("");
-      this.todos2.chain().filter(filter).each(function(item) { self.addOne2(item) });
+      this.conversationMatches.chain().filter(filter).each(function(item) { self.addOne2(item) });
     },
 
     updateField: function(e) {
@@ -785,30 +785,30 @@ $(function() {
 
     // If you hit return in the main input field, create new Todo model
     createOnEnter2: function(e) {
-      var self = this;
-      if (e.keyCode != 13) return;
+     // var self = this;
+     // if (e.keyCode != 13) return;
 
-      this.todos2.create({
-        content: this.input2.val(),
-        order:   this.todos2.nextOrder(),
-        done:    false,
-        user:    Parse.User.current(),
-        ACL:     new Parse.ACL(Parse.User.current())
-      });
+     // this.todos2.create({
+     //   content: this.input2.val(),
+     //   order:   this.todos2.nextOrder(),
+     //   done:    false,
+     //   user:    Parse.User.current(),
+     //   ACL:     new Parse.ACL(Parse.User.current())
+     // });
 
-      this.input2.val('');
-      this.resetFilters();
+     // this.input2.val('');
+     // this.resetFilters();
     },
 
     // Clear all done todo items, destroying their models.
     clearCompleted2: function() {
-      _.each(this.todos2.done(), function(todo2){ todo2.destroy(); });
-      return false;
+      //_.each(this.todos2.done(), function(todo2){ todo2.destroy(); });
+      //return false;
     },
 
     toggleAllComplete2: function () {
-      var done = this.allCheckbox2.checked;
-      this.todos2.each(function (todo) { todo.save({'done': done}); });
+      //var done = this.allCheckbox2.checked;
+      //this.todos2.each(function (todo) { todo.save({'done': done}); });
     }
   });
 
