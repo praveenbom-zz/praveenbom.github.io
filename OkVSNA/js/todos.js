@@ -367,7 +367,6 @@ $(function() {
 
     // Delegated events for creating new items, and clearing completed ones.
     events: {
-      "keypress #new-todo":  "createOnEnter",
       "keypress #new-todo2":  "createOnEnter2",
       "dblclick .profile-label" : "editField",
       "click .profile-field-pencil"   : "editField",
