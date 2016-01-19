@@ -522,8 +522,7 @@ $(function() {
       this.conversationMatches = new MatchList;
 
       // Setup the query for the collection to look for todos from the current user
-      this.conversationMatches.query = new Parse.Query(Todo2);
-      this.conversationMatches.query.equalTo("user", Parse.User.current());
+      this.conversationMatches.query = new Parse.Query(Match);
       this.conversationMatches.bind('add',     this.addOne2);
       this.conversationMatches.bind('reset',   this.addAll2);
       this.conversationMatches.bind('all',     this.render);
@@ -600,13 +599,11 @@ $(function() {
         this.$("#profile").show();
         this.$("#matches").hide();
         this.$("#msgs").hide();
-        window.scrollTo(0, 0);
         //this.addAll();
       } else if (filterValue === "messages") {
         this.$("#profile").hide();
         this.$("#matches").hide();
         this.$("#msgs").show();
-        window.scrollTo(0, 0);
         ///this.addSome(function(item) { return item.get('done') });
       } else {
         this.$("#profile").hide();
@@ -672,7 +669,7 @@ $(function() {
     },
 
     addOne2: function(conversationMatch) {
-      var view = new MatchView({model: conversationMatch});
+      var view = new ConversationMatchView({model: conversationMatch});
       this.$("#todo-list2").append(view.render().el);
     },
 
