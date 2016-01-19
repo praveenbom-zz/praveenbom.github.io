@@ -383,8 +383,8 @@ $(function() {
 
     el: ".content",
 
-    // At initialization we bind to the relevant events on the `Todos`
-    // collection, when items are added or changed. Kick things off by
+    // At initialization we bind to the relevant events on the profile
+    // fields, when items are added or changed. Kick things off by
     // loading any preexisting todos that might be saved to Parse.
     initialize: function() {
       var self = this;
@@ -483,7 +483,7 @@ $(function() {
       this.input2 = this.$("#new-todo2");
       this.allCheckbox2 = this.$("#toggle-all2")[0];
 
-      // Create our collection of Todos
+      // Create our collection of Matches 
       this.matches = new MatchList;
 
       // Setup the query for the collection to look for todos from the current user
@@ -608,7 +608,7 @@ $(function() {
 
 
         // Setup the query for the collection to look for todos from the current user
-        this.matches.query = new Parse.Query(Todo);
+        this.matches.query = new Parse.Query(Match);
         this.matches.query.notEqualTo("objectId",     Parse.User.current().id);
         this.matches.query.greaterThan("birthdate",   d1)  ;
         this.matches.query.lessThan("birthdate",      d2);
