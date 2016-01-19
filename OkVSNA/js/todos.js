@@ -523,6 +523,8 @@ $(function() {
 
       // Setup the query for the collection to look for todos from the current user
       this.conversationMatches.query = new Parse.Query(Match);
+      this.conversationMatches.query.containedIn("username", Parse.User.current().get("likes"));
+      this.conversationMatches.query.equalTo("likes", Parse.User.current().escape("username"));
       this.conversationMatches.bind('add',     this.addOne2);
       this.conversationMatches.bind('reset',   this.addAll2);
       this.conversationMatches.bind('all',     this.render);
