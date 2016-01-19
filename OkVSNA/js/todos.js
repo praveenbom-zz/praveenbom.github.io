@@ -96,10 +96,6 @@ $(function() {
     // The DOM events specific to an item.
     events: {
       "click .toggle"              : "toggleLike",
-      //"dblclick label.todo-content" : "edit",
-      //"click .todo-destroy"   : "clear",
-      //"keypress .edit"      : "updateOnEnter",
-      //"blur .edit"          : "close"
     },
 
     // The MatchView listens for changes to its model, re-rendering. Since there's
@@ -130,29 +126,6 @@ $(function() {
         }
       });
     },
-
-    // Switch this view into `"editing"` mode, displaying the input field.
-    edit: function() {
-      $(this.el).addClass("editing");
-      this.input.focus();
-    },
-
-    // Close the `"editing"` mode, saving changes to the todo.
-    close: function() {
-      this.model.save({content: this.input.val()});
-      $(this.el).removeClass("editing");
-    },
-
-    // If you hit `enter`, we're through editing the item.
-    updateOnEnter: function(e) {
-      if (e.keyCode == 13) this.close();
-    },
-
-    // Remove the item, destroy the model.
-    clear: function() {
-      this.model.destroy();
-    }
-
   });
 
 
