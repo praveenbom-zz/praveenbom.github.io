@@ -129,6 +129,55 @@ $(function() {
   });
 
 
+  // ConversationMatch View
+  // --------------
+
+  // The DOM element for a todo item...
+  var ConversationMatchView = Parse.View.extend({
+
+    //... is a list tag.
+    tagName:  "li",
+
+    // Cache the template function for a single item.
+    template: _.template($('#match-template').html()),
+
+    // The DOM events specific to an item.
+    events: {
+      "click .toggle"              : "toggleLike",
+    },
+
+    // The MatchView listens for changes to its model, re-rendering. Since there's
+    // a one-to-one correspondence between a Match and a MatchView in this
+    // app, we set a direct reference on the model for convenience.
+    initialize: function() {
+      _.bindAll(this, 'render');
+      this.model.bind('change', this.render);
+    },
+
+    // Re-render the match.
+    render: function() {
+      $(this.el).html(this.template(this.model.toJSON()));
+      this.input = this.$('.edit');
+      return this;
+    },
+
+    // Toggle the `"done"` state of the model.
+    toggleLike: function() {
+      Parse.User.current().addUnique("likes", this.model.escape("username"));
+      Parse.User.current().save(null, {
+        success: function(user) {
+          Parse.User.current().fetch();
+        },
+        error: function(user) {
+          console.log("failed to save");
+          // TODO: probably uncheck the box in this case
+        }
+      });
+    },
+  });
+
+
+
 
   // Todo Collection
   // ---------------
@@ -470,17 +519,17 @@ $(function() {
       //this.todos.fetch();
 
       // Create our collection of Todos
-      this.todos2 = new TodoList2;
+      this.conversationMatches = new MatchList;
 
       // Setup the query for the collection to look for todos from the current user
-      this.todos2.query = new Parse.Query(Todo2);
-      this.todos2.query.equalTo("user", Parse.User.current());
-      this.todos2.bind('add',     this.addOne2);
-      this.todos2.bind('reset',   this.addAll2);
-      this.todos2.bind('all',     this.render);
+      this.conversationMatches.query = new Parse.Query(Todo2);
+      this.conversationMatches.query.equalTo("user", Parse.User.current());
+      this.conversationMatches.bind('add',     this.addOne2);
+      this.conversationMatches.bind('reset',   this.addAll2);
+      this.conversationMatches.bind('all',     this.render);
 
       // Fetch all the todo items for this user
-      this.todos2.fetch();
+      this.conversationMatches.fetch();
 
       // Create our collection of Todos
       this.todos3 = new TodoList3;
@@ -517,18 +566,18 @@ $(function() {
       //  remaining:  remaining
       //}));
 
-      var done2 = this.todos2.done().length;
-      var remaining2 = this.todos2.remaining().length;
+      //var done2 = this.todos2.done().length;
+      //var remaining2 = this.todos2.remaining().length;
 
       this.$('#todo-stats2').html(this.statsTemplate2({
-        total:      this.todos2.length,
-        done:       done2,
-        remaining:  remaining2
+        total:      0,//this.todos2.length,
+        done:       0,//done2,
+        remaining:  0//remaining2
       }));
 
 
       this.$('#nav').html(this.navTemplate({
-        remaining:  remaining2
+        remaining:  0 //remaining2
       }));
       this.delegateEvents();
 
@@ -622,8 +671,8 @@ $(function() {
       this.matches.chain().filter(filter).each(function(item) { self.addOne(item) });
     },
 
-    addOne2: function(todo2) {
-      var view = new TodoView2({model: todo2});
+    addOne2: function(conversationMatch) {
+      var view = new TodoView2({model: conversationMatch});
       this.$("#todo-list2").append(view.render().el);
     },
 
