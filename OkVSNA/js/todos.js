@@ -6,31 +6,16 @@ $(function() {
   Parse.initialize("BeYZxSllTAa0uompCH7V49osUz0MZlpMHTrtqLpG",
                    "pGpQ1ERlCRDO8rX59aCG2q6rT6uK3RlQbq3uWLX1");
 
-  // Todo Model
+  // Match Model
   // ----------
 
-  // Our basic Todo model has `content`, `order`, and `done` attributes.
-  var Todo = Parse.Object.extend("User", {
-    // Default attributes for the todo
-    defaults: {
-      content: "empty todo...",
-      done: true 
-    },
+  // Our basic Match model.
+  var Match = Parse.Object.extend("User", {
+    // Default attributes for the match
+    defaults: {},
 
-    // Ensure that each todo created has `content`.
-    initialize: function() {
-      if (!this.get("content")) {
-        this.set({"content": this.defaults.content});
-      }
-      if (!this.get("done")) {
-        this.set({"done": this.defaults.done});
-      }
-    },
-
-    // Toggle the `done` state of this todo item.
-    toggle: function() {
-      this.save({done: !this.get("done")});
-    }
+    // Ensure that defaults are set if attribute doesn't exist
+    initialize: function() {},
   });
 
   // Our basic Todo model has `content`, `order`, and `done` attributes.
@@ -82,42 +67,25 @@ $(function() {
     }
   });
 
-  // Todo Collection
+  // Match Collection
   // ---------------
-  var TodoList = Parse.Collection.extend({
-
+  var MatchList = Parse.Collection.extend({
     // Reference to this collection's model.
-    model: Todo,
+    model: Match,
 
-    // Filter down the list of all todo items that are finished.
-    done: function() {
-        return this.filter(function(todo){ return todo.get('done'); });
-    },
-
-    // Filter down the list to only todo items that are still not finished.
-    remaining: function() {
-        return this.without.apply(this, this.done());
-    },
-
-    // We keep the Todos in sequential order, despite being saved by unordered
-    // GUID in the database. This generates the next order number for new items.
-    nextOrder: function() {
-        if (!this.length) return 1;
-        return this.last().get('order') + 1;
-    },
-
-    // Todos are sorted by their original insertion order.
-    comparator: function(todo) {
-        return todo.get('order');
+    // Matches are sorted by birthdate 
+    // TODO: is sorting necessary?
+    comparator: function(match) {
+        return match.get('birthdate');
     }
   });
 
 
-  // Todo Item View
+  // Match View
   // --------------
 
   // The DOM element for a todo item...
-  var TodoView = Parse.View.extend({
+  var MatchView = Parse.View.extend({
 
     //... is a list tag.
     tagName:  "li",
@@ -127,23 +95,22 @@ $(function() {
 
     // The DOM events specific to an item.
     events: {
-      "click .toggle"              : "toggleDone",
-      "dblclick label.todo-content" : "edit",
-      "click .todo-destroy"   : "clear",
-      "keypress .edit"      : "updateOnEnter",
-      "blur .edit"          : "close"
+      "click .toggle"              : "toggleLike",
+      //"dblclick label.todo-content" : "edit",
+      //"click .todo-destroy"   : "clear",
+      //"keypress .edit"      : "updateOnEnter",
+      //"blur .edit"          : "close"
     },
 
-    // The TodoView listens for changes to its model, re-rendering. Since there's
-    // a one-to-one correspondence between a Todo and a TodoView in this
+    // The MatchView listens for changes to its model, re-rendering. Since there's
+    // a one-to-one correspondence between a Match and a MatchView in this
     // app, we set a direct reference on the model for convenience.
     initialize: function() {
-      _.bindAll(this, 'render', 'close', 'remove');
+      _.bindAll(this, 'render', 'close');
       this.model.bind('change', this.render);
-      this.model.bind('destroy', this.remove);
     },
 
-    // Re-render the contents of the todo item.
+    // Re-render the match.
     render: function() {
       $(this.el).html(this.template(this.model.toJSON()));
       this.input = this.$('.edit');
@@ -151,9 +118,7 @@ $(function() {
     },
 
     // Toggle the `"done"` state of the model.
-    toggleDone: function() {
-      console.log("add to user likes array");
-      console.log(this.model.escape("username"));
+    toggleLike: function() {
       Parse.User.current().addUnique("likes", this.model.escape("username"));
       Parse.User.current().save(null, {
         success: function(user) {
@@ -161,10 +126,9 @@ $(function() {
         },
         error: function(user) {
           console.log("failed to save");
-          // probably uncheck the box in this case
+          // TODO: probably uncheck the box in this case
         }
       });
-      //this.model.toggle();
     },
 
     // Switch this view into `"editing"` mode, displaying the input field.
@@ -412,9 +376,7 @@ $(function() {
       "change .editProfileFieldMC" : "updateFieldMC",
       "blur .editProfileField" : "closeField",
       "blur .editProfileFieldMC" : "closeFieldMC",
-      "click #clear-completed": "clearCompleted",
       "click #clear-completed2": "clearCompleted2",
-      "click #toggle-all": "toggleAllComplete",
       "click #toggle-all2": "toggleAllComplete2",
       "click .log-out": "logOut",
       "click ul#filters a": "selectFilter"
@@ -428,7 +390,7 @@ $(function() {
     initialize: function() {
       var self = this;
 
-      _.bindAll(this, 'addOne', 'addOne2', 'addAll', 'addAll2', 'addSome', 'addSome2', 'render', 'toggleAllComplete', 'toggleAllComplete2', 'logOut', 'createOnEnter', 'createOnEnter2', 'editField', 'submitNewPhoto');
+      _.bindAll(this, 'addOne', 'addOne2', 'addAll', 'addAll2', 'addSome', 'addSome2', 'render', 'toggleAllComplete2', 'logOut', 'createOnEnter2', 'editField', 'submitNewPhoto');
 
       // Main todo management template
       this.$el.html(_.template($("#manage-todos-template").html()));
@@ -523,7 +485,7 @@ $(function() {
       this.allCheckbox2 = this.$("#toggle-all2")[0];
 
       // Create our collection of Todos
-      this.todos = new TodoList;
+      this.matches = new MatchList;
 
       // Setup the query for the collection to look for todos from the current user
       //this.todos.query = new Parse.Query(Todo);
@@ -575,9 +537,8 @@ $(function() {
     // Re-rendering the App just means refreshing the statistics -- the rest
     // of the app doesn't change.
     render: function() {
-      var done = this.todos.done().length;
-      var remaining = this.todos.remaining().length;
-
+      //var done = this.todos.done().length;
+      //var remaining = this.todos.remaining().length;
       //this.$('#todo-stats').html(this.statsTemplate({
       //  total:      this.todos.length,
       //  done:       done,
@@ -631,7 +592,7 @@ $(function() {
         this.$("#matches").show();
         this.$("#msgs").hide();
         //this.addSome(function(item) { return !item.get('done') });
-        this.todos = new TodoList;
+        this.matches = new MatchList;
 
         var d1 = new Date();
         var d2 = new Date();
@@ -648,18 +609,17 @@ $(function() {
 
 
         // Setup the query for the collection to look for todos from the current user
-        this.todos.query = new Parse.Query(Todo);
-        this.todos.query.notEqualTo("objectId",     Parse.User.current().id);
-        this.todos.query.greaterThan("birthdate",   d1)  ;
-        this.todos.query.lessThan("birthdate",      d2);
-        this.todos.bind('add',     this.addOne);
-        this.todos.bind('reset',   this.addAll);
+        this.matches.query = new Parse.Query(Todo);
+        this.matches.query.notEqualTo("objectId",     Parse.User.current().id);
+        this.matches.query.greaterThan("birthdate",   d1)  ;
+        this.matches.query.lessThan("birthdate",      d2);
+        this.matches.bind('add',     this.addOne);
+        this.matches.bind('reset',   this.addAll);
         //this.todos.bind('all',     this.render);
 
         // Fetch all the todo items for this user
-        this.todos.fetch();
+        this.matches.fetch();
         this.addAll();
-        window.scrollTo(0, 0);
       }
     },
 
@@ -672,22 +632,22 @@ $(function() {
 
     // Add a single todo item to the list by creating a view for it, and
     // appending its element to the `<ul>`.
-    addOne: function(todo) {
-      var view = new TodoView({model: todo});
+    addOne: function(match) {
+      var view = new MatchView({model: match});
       this.$("#todo-list").append(view.render().el);
     },
 
     // Add all items in the Todos collection at once.
     addAll: function(collection, filter) {
       this.$("#todo-list").html("");
-      this.todos.each(this.addOne);
+      this.matches.each(this.addOne);
     },
 
     // Only adds some todos, based on a filtering function that is passed in
     addSome: function(filter) {
       var self = this;
       this.$("#todo-list").html("");
-      this.todos.chain().filter(filter).each(function(item) { self.addOne(item) });
+      this.matches.chain().filter(filter).each(function(item) { self.addOne(item) });
     },
 
     addOne2: function(todo2) {
@@ -768,22 +728,6 @@ $(function() {
       });
     },
 
-    // If you hit return in the main input field, create new Todo model
-    createOnEnter: function(e) {
-      var self = this;
-      if (e.keyCode != 13) return;
-
-      this.todos.create({
-        content: this.input.val(),
-        order:   this.todos.nextOrder(),
-        done:    false,
-        user:    Parse.User.current(),
-        ACL:     new Parse.ACL(Parse.User.current())
-      });
-      this.input.val('');
-      this.resetFilters();
-    },
-
     editField: function(e) {
       var el = $(e.target);
       var fieldName = el.attr("id");
@@ -816,17 +760,6 @@ $(function() {
       }, function(error) {
       // The file either could not be read, or could not be saved to Parse.
       });
-    },
-
-    // Clear all done todo items, destroying their models.
-    clearCompleted: function() {
-      _.each(this.todos.done(), function(todo){ todo.destroy(); });
-      return false;
-    },
-
-    toggleAllComplete: function () {
-      var done = this.allCheckbox.checked;
-      this.todos.each(function (todo) { todo.save({'done': done}); });
     },
 
     // If you hit return in the main input field, create new Todo model
