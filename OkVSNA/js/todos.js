@@ -102,7 +102,7 @@ $(function() {
     // a one-to-one correspondence between a Match and a MatchView in this
     // app, we set a direct reference on the model for convenience.
     initialize: function() {
-      _.bindAll(this, 'render', 'close');
+      _.bindAll(this, 'render');
       this.model.bind('change', this.render);
     },
 
