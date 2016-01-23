@@ -162,12 +162,12 @@ $(function() {
     },
 
     // Toggle the `"done"` state of the model.
-    toggleConvo: function() {
+    toggleLike: function() {
       console.log("make a new conversation set appear. what permissions are available from here?");
-        }
-      });
     },
   });
+
+
 
 
   // Todo Collection
