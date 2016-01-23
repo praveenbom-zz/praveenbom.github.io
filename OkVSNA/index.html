@@ -149,7 +149,6 @@
        </div>
     </script>
 
-
     <script type="text/template" id="match-template">
       <li class="<%= done ? 'completed' : '' %>">
       <div class="view">
@@ -157,11 +156,18 @@
         <br/>
         <input class="toggle" type="checkbox" <%= Parse.User.current().get("likes").indexOf(_.escape(username)) > -1 ? 'checked="checked"' : '' %>>
         <label class="todo-content"><%= _.escape(username) %></label>
-        <!--<button class="todo-destroy"></button>-->
       </div>
-      <!--<input class="edit" value="<%= _.escape(username) %>">-->
         <br/>
         <br/>
+      </li>
+    </script>
+
+    <script type="text/template" id="conversation-match-template">
+      <li class="<%= done ? 'completed' : '' %>">
+      <div class="view">
+        <input class="toggle" type="checkbox" <%= Parse.User.current().get("likes").indexOf(_.escape(username)) > -1 ? 'checked="checked"' : '' %>>
+        <label class="todo-content"><%= _.escape(username) %></label>
+      </div>
       </li>
     </script>
 

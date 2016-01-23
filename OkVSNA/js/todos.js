@@ -139,11 +139,11 @@ $(function() {
     tagName:  "li",
 
     // Cache the template function for a single item.
-    template: _.template($('#match-template').html()),
+    template: _.template($('#conversation-match-template').html()),
 
     // The DOM events specific to an item.
     events: {
-      "click .toggle"              : "toggleLike",
+      "click .toggle"              : "toggleConvo",
     },
 
     // The MatchView listens for changes to its model, re-rendering. Since there's
@@ -162,21 +162,12 @@ $(function() {
     },
 
     // Toggle the `"done"` state of the model.
-    toggleLike: function() {
-      Parse.User.current().addUnique("likes", this.model.escape("username"));
-      Parse.User.current().save(null, {
-        success: function(user) {
-          Parse.User.current().fetch();
-        },
-        error: function(user) {
-          console.log("failed to save");
-          // TODO: probably uncheck the box in this case
+    toggleConvo: function() {
+      console.log("make a new conversation set appear. what permissions are available from here?");
         }
       });
     },
   });
-
-
 
 
   // Todo Collection
