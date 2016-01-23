@@ -162,7 +162,7 @@ $(function() {
     },
 
     // Toggle the `"done"` state of the model.
-    toggleLike: function() {
+    toggleConvo: function() {
       console.log("make a new conversation set appear. what permissions are available from here?");
     },
   });
