@@ -117,7 +117,7 @@ $(function() {
       var viewModel = this.model.toJSON();
       var cur = new Date();
       var birthdate = new Date(viewModel.birthdate.iso)
-      var diff = cur - viewModel.birthdate; // This is the difference in milliseconds
+      var diff = cur - birthdate; // This is the difference in milliseconds
       console.log(cur);
       console.log(viewModel.birthdate.iso);
       console.log(diff);
