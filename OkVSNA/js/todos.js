@@ -116,9 +116,10 @@ $(function() {
     render: function() {
       var viewModel = this.model.toJSON();
       var cur = new Date();
-      var diff = cur.getMilliseconds() - viewModel.birthdate; // This is the difference in milliseconds
-      console.log(cur.getMilliseconds());
-      console.log(viewModel.birthdate);
+      var birthdate = new Date(viewModel.birthdate.iso)
+      var diff = cur - viewModel.birthdate; // This is the difference in milliseconds
+      console.log(cur);
+      console.log(viewModel.birthdate.iso);
       console.log(diff);
       viewModel.age = Math.floor(diff/31536000000); // Divide by 1000*60*60*24*365
       $(this.el).html(this.template(viewModel));
