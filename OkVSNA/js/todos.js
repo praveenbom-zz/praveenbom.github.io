@@ -164,7 +164,7 @@ $(function() {
 
     // Toggle the `"done"` state of the model.
     toggleConvo: function() {
-      $("#convo-thread").html("converstion thread for " + _.escape(username))
+      $("#convo-thread").html(this.convoTemplate(this.model.toJSON()));
     },
   });
 
