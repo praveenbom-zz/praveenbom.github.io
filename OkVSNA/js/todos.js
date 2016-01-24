@@ -111,7 +111,6 @@ $(function() {
     render: function() {
       console.log(this.model.toJSON().toString());
       console.log(this.model.toJSON());
-      console.log(this.model.toJSON().stringify());
       $(this.el).html(this.template(this.model.toJSON()));
       this.input = this.$('.edit');
       return this;
