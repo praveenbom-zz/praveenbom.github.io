@@ -16,7 +16,6 @@ $(function() {
 
     // Ensure that defaults are set if attribute doesn't exist
     initialize: function() {
-      this.set({"dummy1": "dummyOne"});
     },
   });
 
@@ -110,6 +109,7 @@ $(function() {
 
     // Re-render the match.
     render: function() {
+      console.log(this.model.toJSON().toString());
       $(this.el).html(this.template(this.model.toJSON()));
       this.input = this.$('.edit');
       return this;
