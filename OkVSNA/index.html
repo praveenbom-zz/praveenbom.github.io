@@ -155,8 +155,9 @@
       <div class="view">
         <img src="<%= _.escape(profile_pic_url) %>" alt="pic" height="75">
         <br/>
+        <label class="todo-content"><%= _.escape(username)+", "+_.escape(age) %></label>
+        <br/>
         <label>Like?</label><input class="toggle" type="checkbox" <%= Parse.User.current().get("likes").indexOf(_.escape(username)) > -1 ? 'checked="checked"' : '' %>>
-        <label class="todo-content"><%= _.escape(username)+","+_.escape(age) %></label>
       </div>
         <br/>
         <br/>
