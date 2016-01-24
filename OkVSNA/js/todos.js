@@ -140,6 +140,7 @@ $(function() {
 
     // Cache the template function for a single item.
     template: _.template($('#conversation-match-template').html()),
+    convoTemplate: _.template($('#conversation-template').html()),
 
     // The DOM events specific to an item.
     events: {
@@ -163,7 +164,7 @@ $(function() {
 
     // Toggle the `"done"` state of the model.
     toggleConvo: function() {
-      console.log("make a new conversation set appear. what permissions are available from here?");
+      $("#convo-thread").html("converstion thread for" + _.escape("username"))
     },
   });
 
@@ -561,11 +562,11 @@ $(function() {
       //var done2 = this.todos2.done().length;
       //var remaining2 = this.todos2.remaining().length;
 
-      this.$('#todo-stats2').html(this.statsTemplate2({
-        total:      0,//this.todos2.length,
-        done:       0,//done2,
-        remaining:  0//remaining2
-      }));
+      //this.$('#todo-stats2').html(this.statsTemplate2({
+      //  total:      0,//this.todos2.length,
+      //  done:       0,//done2,
+      //  remaining:  0//remaining2
+      //}));
 
 
       this.$('#nav').html(this.navTemplate({
@@ -888,7 +889,6 @@ $(function() {
     render: function() {
       if (Parse.User.current()) {
         new ManageTodosView(); //ProfileView();//ManageTodosView();
-        console.log(window.location.href);
         var rte = ""
         var url = window.location.href
         if (url.length > url.split('#')[0].length + 1) 
