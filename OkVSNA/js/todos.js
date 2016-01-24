@@ -13,14 +13,14 @@ $(function() {
   var Match = Parse.Object.extend("User", {
     // Default attributes for the match
     defaults: {
-      content: "empty todo...!",
+      //content: "empty todo...!",
     },
 
     // Ensure that defaults are set if attribute doesn't exist
     initialize: function() {
-      if (!this.get("content")) {
-        this.set({"content": this.defaults.content});
-      }
+      //if (!this.get("content")) {
+        //this.set({"content": this.defaults.content});
+      //}
     },
   });
 
@@ -114,9 +114,9 @@ $(function() {
 
     // Re-render the match.
     render: function() {
-      console.log(this.model.toJSON().toString());
-      console.log(this.model.toJSON());
-      $(this.el).html(this.template(this.model.toJSON()));
+      var viewModel = this.model.toJSON();
+      viewModel.age = 300;
+      $(this.el).html(this.template(viewModel));
       this.input = this.$('.edit');
       return this;
     },
