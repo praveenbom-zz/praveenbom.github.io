@@ -115,7 +115,9 @@ $(function() {
     // Re-render the match.
     render: function() {
       var viewModel = this.model.toJSON();
-      viewModel.age = 300;
+      var cur = new Date();
+      var diff = cur - viewModel.birthdate; // This is the difference in milliseconds
+      viewModel.age = Math.floor(diff/31536000000); // Divide by 1000*60*60*24*365
       $(this.el).html(this.template(viewModel));
       this.input = this.$('.edit');
       return this;
