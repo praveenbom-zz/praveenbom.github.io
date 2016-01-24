@@ -15,7 +15,9 @@ $(function() {
     defaults: {},
 
     // Ensure that defaults are set if attribute doesn't exist
-    initialize: function() {},
+    initialize: function() {
+      this.set({"dummy1": "dummyOne"});
+    },
   });
 
   // Our basic Todo model has `content`, `order`, and `done` attributes.
