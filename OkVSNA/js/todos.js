@@ -12,16 +12,10 @@ $(function() {
   // Our basic Match model.
   var Match = Parse.Object.extend("User", {
     // Default attributes for the match
-    defaults: {
-      //content: "empty todo...!",
-    },
+    defaults: {},
 
     // Ensure that defaults are set if attribute doesn't exist
-    initialize: function() {
-      //if (!this.get("content")) {
-        //this.set({"content": this.defaults.content});
-      //}
-    },
+    initialize: function() {},
   });
 
   // Our basic Todo model has `content`, `order`, and `done` attributes.

@@ -151,7 +151,7 @@
     </script>
 
     <script type="text/template" id="match-template">
-      <li class="<%= done ? 'completed' : '' %>">
+      <li>
       <div class="view">
         <img src="<%= _.escape(profile_pic_url) %>" alt="pic" height="75">
         <br/>
@@ -165,7 +165,7 @@
     </script>
 
     <script type="text/template" id="conversation-match-template">
-      <li class="<%= done ? 'completed' : '' %>">
+      <li>
       <div class="view">
         <input class="toggle" type="checkbox" <%= Parse.User.current().get("likes").indexOf(_.escape(username)) > -1 ? 'checked="checked"' : '' %>>
         <label class="todo-content"><%= _.escape(username) %></label>
