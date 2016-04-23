@@ -593,6 +593,8 @@ $(function() {
 
     selectConversation: function(e) {
       console.log("got this far");
+      state.set({filter: "conversation"});
+//      Parse.history.navigate("conversation");
     },
 
     filter: function() {
@@ -609,6 +611,10 @@ $(function() {
         this.$("#matches").hide();
         this.$("#msgs").show();
         ///this.addSome(function(item) { return item.get('done') });
+      } else if (filterValue === "conversation") {
+        this.$("#profile").show();
+        this.$("#matches").hide();
+        this.$("#msgs").hide();
       } else {
         this.$("#profile").hide();
         this.$("#matches").show();
