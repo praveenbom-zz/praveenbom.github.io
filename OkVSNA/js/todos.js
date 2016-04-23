@@ -397,7 +397,8 @@ $(function() {
       "click #clear-completed2": "clearCompleted2",
       "click #toggle-all2": "toggleAllComplete2",
       "click .log-out": "logOut",
-      "click ul#filters a": "selectFilter"
+      "click ul#filters a": "selectFilter",
+      "click .conversation-link": "selectConversation"
     },
 
     el: ".content",
@@ -588,6 +589,10 @@ $(function() {
       var filterValue = el.attr("id").split("-")[0];
       state.set({filter: filterValue});
       Parse.history.navigate(filterValue);
+    },
+
+    selectConversation: function(e) {
+      console.log("got this far");
     },
 
     filter: function() {
