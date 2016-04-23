@@ -51,37 +51,13 @@
 
       <div class="section">
 
-        <header id="header">
-          <input id="new-todo" placeholder="What needs to be done?" type="text" />
-        </header>
-
         <div id="main">
-          <input id="toggle-all" type="checkbox">
-          <label for="toggle-all">Mark all as complete</label>
-          
-          <ul id="todo-list">
-            <img src='images/spinner.gif' class='spinner' />
-          </ul>
         </div>
-
-        <div id="todo-stats"></div>
       </div>
-    </script>
-
-    <script type="text/template" id="item-template">
-      <li class="<%= done ? 'completed' : '' %>">
-	<div class="view">
-	  <input class="toggle" type="checkbox" <%= done ? 'checked="checked"' : '' %>>
-	  <label class="todo-content"><%= _.escape(content) %></label>
-	  <button class="todo-destroy"></button>
-	</div>
-	<input class="edit" value="<%= _.escape(content) %>">
-      </li>
     </script>
 
     <script type="text/template" id="stats-template">
       <footer id="footer">
-	<span id="todo-count"><strong><%= remaining %></strong> <%= remaining == 1 ? 'item' : 'items' %> left</span>
 	<ul id="filters">
 	  <li>
 	    <a href="javascript:void(0)" id="all" class="selected">All</a>
