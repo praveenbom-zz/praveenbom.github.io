@@ -946,6 +946,6 @@ $(function() {
   var state = new AppState;
 
   new AppRouter;
-  Parse.history.start(); //({pushState: true})
+  Parse.history.start({pushState: true});
   new AppView;
 });
