@@ -929,6 +929,10 @@ $(function() {
     initialize: function(options) {
       //Parse.history.navigate("all");
     },
+  
+    back: function() {
+      console.log("got to this place!");
+    }
 
     all: function() {
       state.set({ filter: "me" });
