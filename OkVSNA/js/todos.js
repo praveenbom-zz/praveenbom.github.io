@@ -594,7 +594,7 @@ $(function() {
     selectConversation: function(e) {
       console.log("got this far");
       state.set({filter: "conversation"});
-//      Parse.history.navigate("conversation");
+      Parse.history.navigate("conversation");
     },
 
     filter: function() {
