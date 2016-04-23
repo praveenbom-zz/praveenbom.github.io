@@ -932,7 +932,7 @@ $(function() {
   
     back: function() {
       console.log("got to this place!");
-    }
+    },
 
     all: function() {
       state.set({ filter: "me" });
