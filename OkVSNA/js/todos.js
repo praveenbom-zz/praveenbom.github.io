@@ -920,7 +920,6 @@ $(function() {
   });
 
   var AppRouter = Parse.Router.extend({
-    console.log("fuck off");
     routes: {
       "me": "me",
       "matches": "matches",
