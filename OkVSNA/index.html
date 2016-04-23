@@ -167,8 +167,7 @@
     <script type="text/template" id="conversation-match-template">
       <li>
       <div class="view">
-        <input class="toggle" type="checkbox" <%= Parse.User.current().get("likes").indexOf(_.escape(username)) > -1 ? 'checked="checked"' : '' %>>
-        <label class="todo-content"><%= _.escape(username) %></label>
+        <a href="javascript:void(0)" id="conversation-link"><label class="todo-content"><%= _.escape(username) %></label></a>
       </div>
       </li>
     </script>
