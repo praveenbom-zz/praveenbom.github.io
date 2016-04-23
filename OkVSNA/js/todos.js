@@ -19,27 +19,6 @@ $(function() {
   });
 
   // Our basic Todo model has `content`, `order`, and `done` attributes.
-  var Todo2 = Parse.Object.extend("Todo2", {
-    // Default attributes for the todo.
-    defaults: {
-      content: "empty todo...",
-      done: false
-    },
-
-    // Ensure that each todo created has `content`.
-    initialize: function() {
-      if (!this.get("content")) {
-        this.set({"content": this.defaults.content});
-      }
-    },
-
-    // Toggle the `done` state of this todo item.
-    toggle: function() {
-      this.save({done: !this.get("done")});
-    }
-  });
-
-  // Our basic Todo model has `content`, `order`, and `done` attributes.
   var Todo3 = Parse.Object.extend("Todo3", {
     // Default attributes for the todo.
     defaults: {
@@ -172,107 +151,6 @@ $(function() {
       $("#convo-thread").html(this.convoTemplate(this.model.toJSON()));
     },
   });
-
-
-
-
-  // Todo Collection
-  // ---------------
-  var TodoList2 = Parse.Collection.extend({
-
-    // Reference to this collection's model.
-    model: Todo2,
-
-    // Filter down the list of all todo items that are finished.
-    done: function() {
-        return this.filter(function(todo){ return todo.get('done'); });
-    },
-
-    // Filter down the list to only todo items that are still not finished.
-    remaining: function() {
-        return this.without.apply(this, this.done());
-    },
-
-    // We keep the Todos in sequential order, despite being saved by unordered
-    // GUID in the database. This generates the next order number for new items.
-    nextOrder: function() {
-        if (!this.length) return 1;
-        return this.last().get('order') + 1;
-    },
-
-    // Todos are sorted by their original insertion order.
-    comparator: function(todo) {
-        return todo.get('order');
-    }
-  });
-
-
-  // Todo Item View
-  // --------------
-
-  // The DOM element for a todo item...
-  var TodoView2 = Parse.View.extend({
-
-    //... is a list tag.
-    tagName:  "li",
-
-    // Cache the template function for a single item.
-    template: _.template($('#item-template').html()),
-
-    // The DOM events specific to an item.
-    events: {
-      "click .toggle"              : "toggleDone",
-      "dblclick label.todo-content" : "edit",
-      "click .todo-destroy"   : "clear",
-      "keypress .edit"      : "updateOnEnter",
-      "blur .edit"          : "close"
-    },
-
-    // The TodoView listens for changes to its model, re-rendering. Since there's
-    // a one-to-one correspondence between a Todo and a TodoView in this
-    // app, we set a direct reference on the model for convenience.
-    initialize: function() {
-      _.bindAll(this, 'render', 'close', 'remove');
-      this.model.bind('change', this.render);
-      this.model.bind('destroy', this.remove);
-    },
-
-    // Re-render the contents of the todo item.
-    render: function() {
-      $(this.el).html(this.template(this.model.toJSON()));
-      this.input = this.$('.edit');
-      return this;
-    },
-
-    // Toggle the `"done"` state of the model.
-    toggleDone: function() {
-      this.model.toggle();
-    },
-
-    // Switch this view into `"editing"` mode, displaying the input field.
-    edit: function() {
-      $(this.el).addClass("editing");
-      this.input.focus();
-    },
-
-    // Close the `"editing"` mode, saving changes to the todo.
-    close: function() {
-      this.model.save({content: this.input.val()});
-      $(this.el).removeClass("editing");
-    },
-
-    // If you hit `enter`, we're through editing the item.
-    updateOnEnter: function(e) {
-      if (e.keyCode == 13) this.close();
-    },
-
-    // Remove the item, destroy the model.
-    clear: function() {
-      this.model.destroy();
-    }
-
-  });
-
 
   // Todo Collection
   // ---------------
@@ -930,10 +808,6 @@ $(function() {
       //Parse.history.navigate("all");
     },
   
-    back: function() {
-      console.log("got to this place!");
-    },
-
     all: function() {
       state.set({ filter: "me" });
     },
