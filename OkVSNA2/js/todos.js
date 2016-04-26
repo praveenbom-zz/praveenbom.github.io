@@ -10,6 +10,13 @@ $(function() {
   Parse.initialize("i1r8DgIlgGjAydvKkwuhkYPDJiMwfOHH8Cixt1xt",
                    "3xxfSDNK0PKUBlj49lP0UnMzeK1pPZxPLbKoSIau");
 
+  // This is the transient application state, not persisted on Parse
+  var AppState = Parse.Object.extend("AppState", {
+    defaults: {
+      filter: "all"
+    }
+  });
+
   // The Application
   // ---------------
 
