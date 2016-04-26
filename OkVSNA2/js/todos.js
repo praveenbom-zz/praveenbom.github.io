@@ -46,6 +46,7 @@ $(function() {
       this.$el.html(_.template($("#manage-todos-template").html()));
 
       state.on("change", this.filter, this);
+      this.render();
     },
 
     // Logs out the user and shows the login view
