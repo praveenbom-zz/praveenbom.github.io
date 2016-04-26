@@ -104,7 +104,6 @@ $(function() {
     
     initialize: function() {
       _.bindAll(this, "logIn", "signUp");
-      this.render();
     },
 
     logIn: function(e) {
