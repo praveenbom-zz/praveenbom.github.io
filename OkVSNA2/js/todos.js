@@ -174,6 +174,17 @@ $(function() {
     render: function() {
       if (Parse.User.current()) {
         new ManageTodosView();
+
+        var rte = ""
+        var url = window.location.href
+        if (url.length > url.split('#')[0].length + 1)·
+          rte = url.split('#')[1]
+        if (rte == "active" || rte == "completed") {
+          state.set({ filter: rte });
+        }
+        else Parse.history.navigate("all");
+
+
       } else {
         new LogInView();
       }
