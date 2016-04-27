@@ -180,6 +180,7 @@ $(function() {
         if (url.length > url.split('#')[0].length + 1)
           rte = url.split('#')[1]
 
+        console.log("got here");
         console.log(rte);
         if (rte == "active" || rte == "completed") {
           state.set({ filter: rte });
