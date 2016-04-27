@@ -172,6 +172,7 @@ $(function() {
     },
 
     render: function() {
+      console.log("got here 0");
       if (Parse.User.current()) {
         new ManageTodosView();
 
