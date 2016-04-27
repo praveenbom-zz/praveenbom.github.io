@@ -10,9 +10,7 @@
   </head>
 
   <body>
-
     <!-- Todo App Interface -->
-
     <div id="todoapp">
       <div class="title">
         <h1>Parse Todos</h1>
@@ -59,6 +57,48 @@
           <a href="javascript:void(0)" id="completed">Completed</a>
         </li>
       </ul>
+
+      <div id="nav"></div>
+      <br/>
+      <div id="profile">
+        <div id="public-profile">
+        <img id="profile_pic" src="<%= Parse.User.current().get("profile_pic_url") %>" alt="Smiley face" height="300">
+        <br/>
+        <input type="file" id="profilePhotoFileUpload"><button type="button" id="submit_new">Submit new photo</button>
+        <br/>
+        <br/>
+        </div>
+        <div id="interested-in">
+        <h4>Interested in</h4>
+        </div>
+        <div id="settings">
+        <h4>Settings</h4>
+        </div>
+      </div>
+      <div id="matches" style="display: none;" class="section">
+        <div id="main">
+          <ul id="todo-list">
+            <img src='images/spinner.gif' class='spinner' />
+          </ul>
+        </div>
+        <div id="todo-stats"></div>
+      </div>
+      <div id="msgs" style="display: none;">
+        <input id="new-todo2" placeholder="What needs to be done?" type="text" />
+        <br/>
+        <br/>
+        <div id="main">
+          <ul id="todo-list2">
+            <img src='images/spinner.gif' class='spinner' />
+          </ul>
+        </div>
+        <hr/>
+        <div id="convo-thread"></div>
+        <div id="todo-stats2"></div>
+      </div>  
+
+
+
 
       <div class="section">
 
