@@ -88,13 +88,6 @@ $(function() {
         this.$("#msgs").hide();
       }
     },
-
-    // Resets the filters to display all todos
-    resetFilters: function() {
-      this.$("ul#filters a").removeClass("selected");
-      this.$("ul#filters a#all").addClass("selected");
-    },
-
     });
 
   var LogInView = Parse.View.extend({
