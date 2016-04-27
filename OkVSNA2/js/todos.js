@@ -1,12 +1,6 @@
-// An example Parse.js Backbone application based on the todo app by
-// [Jérôme Gravel-Niquet](http://jgn.me/). This demo uses Parse to persist
-// the todo items and provide user authentication and sessions.
-
 $(function() {
 
   Parse.$ = jQuery;
-
-  // Initialize Parse with your Parse application javascript keys
   Parse.initialize("i1r8DgIlgGjAydvKkwuhkYPDJiMwfOHH8Cixt1xt",
                    "3xxfSDNK0PKUBlj49lP0UnMzeK1pPZxPLbKoSIau");
 
@@ -22,9 +16,6 @@ $(function() {
 
   // The main view that lets a user manage their todo items
   var ManageTodosView = Parse.View.extend({
-
-    // Our template for the line of statistics at the bottom of the app.
-    statsTemplate: _.template($('#stats-template').html()),
 
     // Delegated events for creating new items, and clearing completed ones.
     events: {
@@ -57,18 +48,7 @@ $(function() {
       delete this;
     },
 
-    // Re-rendering the App just means refreshing the statistics -- the rest
-    // of the app doesn't change.
     render: function() {
-      var done = 3; //this.todos.done().length;
-      var remaining = 3; //this.todos.remaining().length;
-
-      this.$('#todo-stats').html(this.statsTemplate({
-        total:      6, //this.todos.length,
-        done:       done,
-        remaining:  remaining
-      }));
-
       this.delegateEvents();
     },
 
