@@ -410,6 +410,8 @@ $(function() {
       var filterValue = state.get("filter");
       this.$("ul#filters a").removeClass("selected");
       this.$("ul#filters a#" + filterValue).addClass("selected");
+      console.log("running this shit");
+      console.log(filterValue);
       if (filterValue === "me") {
         this.$("#profile").show();
         this.$("#matches").hide();
