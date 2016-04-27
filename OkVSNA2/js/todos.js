@@ -68,12 +68,12 @@ $(function() {
       console.log("running this shit");
       console.log(filterValue);
 
-      if (filterValue === "me") {
+      if (filterValue === "all") {
         this.$("#profile").show();
         this.$("#matches").hide();
         this.$("#msgs").hide();
         //this.addAll();
-      } else if (filterValue === "messages") {
+      } else if (filterValue === "active") {
         this.$("#profile").hide();
         this.$("#matches").hide();
         this.$("#msgs").show();
@@ -87,7 +87,6 @@ $(function() {
         this.$("#matches").show();
         this.$("#msgs").hide();
       }
-
     },
 
     // Resets the filters to display all todos
