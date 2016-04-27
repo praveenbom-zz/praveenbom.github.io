@@ -65,8 +65,29 @@ $(function() {
       this.$("ul#filters a").removeClass("selected");
       this.$("ul#filters a#" + filterValue).addClass("selected");
 
-      console.log("running this shit");                                                                                                                 
+      console.log("running this shit");
       console.log(filterValue);
+
+      if (filterValue === "me") {
+        this.$("#profile").show();
+        this.$("#matches").hide();
+        this.$("#msgs").hide();
+        //this.addAll();
+      } else if (filterValue === "messages") {
+        this.$("#profile").hide();
+        this.$("#matches").hide();
+        this.$("#msgs").show();
+        ///this.addSome(function(item) { return item.get('done') });
+      } else if (filterValue === "conversation") {
+        this.$("#profile").show();
+        this.$("#matches").hide();
+        this.$("#msgs").hide();
+      } else {
+        this.$("#profile").hide();
+        this.$("#matches").show();
+        this.$("#msgs").hide();
+      }
+
     },
 
     // Resets the filters to display all todos
