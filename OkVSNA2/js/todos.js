@@ -172,7 +172,6 @@ $(function() {
     },
 
     render: function() {
-      console.log("got here 0");
       if (Parse.User.current()) {
         new ManageTodosView();
 
@@ -181,12 +180,13 @@ $(function() {
         if (url.length > url.split('#')[0].length + 1)
           rte = url.split('#')[1]
 
-        console.log("got here");
         console.log(rte);
         if (rte == "active" || rte == "completed") {
           state.set({ filter: rte });
         }
-        else Parse.history.navigate("all");
+        else {
+          Parse.history.navigate("all");
+        }
       } else {
         new LogInView();
       }
@@ -219,6 +219,6 @@ $(function() {
   var state = new AppState;
 
   new AppRouter;
-  new AppView;
   Parse.history.start();
+  new AppView;
 });
