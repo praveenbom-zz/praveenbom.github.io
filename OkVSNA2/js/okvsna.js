@@ -17,6 +17,9 @@ $(function() {
   // The main view that lets a user manage their todo items
   var ManageTodosView = Parse.View.extend({
 
+    profileItemTemplate: _.template($('#profile-item-template').html()),
+    profileItemTemplateMC: _.template($('#profile-item-template-mc').html()),
+
     // Delegated events for creating new items, and clearing completed ones.
     events: {
       "click .log-out": "logOut",
