@@ -284,6 +284,7 @@ $(function() {
     // Add all items in the Todos collection at once.
     addAll: function(collection, filter) {
       console.log("running this code");
+      console.log(collection)
       $("#todo-list").html("Stuff goes here");
       this.matches.each(this.addOne);
     }
