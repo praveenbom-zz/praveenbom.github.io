@@ -1,8 +1,8 @@
 $(function() {
 
   Parse.$ = jQuery;
-  Parse.initialize("BeYZxSllTAa0uompCH7V49osUz0MZlpMHTrtqLpG",
-                   "pGpQ1ERlCRDO8rX59aCG2q6rT6uK3RlQbq3uWLX1");
+  Parse.initialize("i1r8DgIlgGjAydvKkwuhkYPDJiMwfOHH8Cixt1xt",
+                   "3xxfSDNK0PKUBlj49lP0UnMzeK1pPZxPLbKoSIau");
 
   // This is the transient application state, not persisted on Parse
   var AppState = Parse.Object.extend("AppState", {
@@ -181,7 +181,6 @@ $(function() {
           Parse.history.navigate("all");
         }
       } else {
-        console.log("making a new login view")
         new LogInView();
       }
     }
