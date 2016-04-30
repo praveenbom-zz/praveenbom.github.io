@@ -278,14 +278,14 @@ $(function() {
     // appending its element to the `<ul>`
     addOne: function(match) {
       var view = new MatchView({model: match});
-      this.$("#todo-list").append(view.render().el);
+      $("#todo-list").append(view.render().el);
     },
 
     // Add all items in the Todos collection at once.
     addAll: function(collection, filter) {
       console.log("running this code");
       $("#todo-list").html("Stuff goes here");
-      //this.matches.each(this.addOne);
+      this.matches.each(this.addOne);
     }
     });
 
