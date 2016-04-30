@@ -1,8 +1,8 @@
 $(function() {
 
   Parse.$ = jQuery;
-  Parse.initialize("i1r8DgIlgGjAydvKkwuhkYPDJiMwfOHH8Cixt1xt",
-                   "3xxfSDNK0PKUBlj49lP0UnMzeK1pPZxPLbKoSIau");
+  Parse.initialize("BeYZxSllTAa0uompCH7V49osUz0MZlpMHTrtqLpG",
+                   "pGpQ1ERlCRDO8rX59aCG2q6rT6uK3RlQbq3uWLX1");
 
   // This is the transient application state, not persisted on Parse
   var AppState = Parse.Object.extend("AppState", {
@@ -149,7 +149,6 @@ $(function() {
     },
 
     render: function() {
-      console.log("trying to render");
       this.$el.html(_.template($("#login-template").html()));
       this.delegateEvents();
     }
@@ -182,7 +181,6 @@ $(function() {
           Parse.history.navigate("all");
         }
       } else {
-        console.log("at least doing this");
         new LogInView().render();
       }
     }
