@@ -181,6 +181,7 @@ $(function() {
           Parse.history.navigate("all");
         }
       } else {
+        console.log("at least doing this");
         new LogInView();
       }
     }
