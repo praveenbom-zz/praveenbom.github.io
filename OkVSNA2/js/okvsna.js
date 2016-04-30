@@ -11,6 +11,81 @@ $(function() {
     }
   });
 
+  // Our basic Match model.
+  var Match = Parse.Object.extend("User", {
+    // Default attributes for the match
+    defaults: {},
+
+    // Ensure that defaults are set if attribute doesn't exist
+    initialize: function() {},
+  });
+
+
+  // Match Collection
+  // ---------------
+  var MatchList = Parse.Collection.extend({
+    // Reference to this collection's model.
+    model: Match,
+
+    // Matches are sorted by birthdate·
+    // TODO: is sorting necessary?
+    comparator: function(match) {
+        return match.get('birthdate');
+    }
+  });
+
+  // Match View
+  // --------------
+
+  // The DOM element for a todo item...
+  var MatchView = Parse.View.extend({
+
+    //... is a list tag.
+    tagName:  "li",
+
+    // Cache the template function for a single item.
+    template: _.template($('#match-template').html()),
+
+    // The DOM events specific to an item.
+    events: {
+      "click .toggle"              : "toggleLike",
+    },
+
+    // The MatchView listens for changes to its model, re-rendering. Since there's
+    // a one-to-one correspondence between a Match and a MatchView in this
+    // app, we set a direct reference on the model for convenience.
+    initialize: function() {
+      _.bindAll(this, 'render');
+      this.model.bind('change', this.render);
+    },
+
+    // Re-render the match.
+    render: function() {
+      var viewModel = this.model.toJSON();
+      var cur = new Date();
+      var birthdate = new Date(viewModel.birthdate.iso)
+      var diff = cur - birthdate; // This is the difference in milliseconds
+      viewModel.age = Math.floor(diff/31536000000); // Divide by 1000*60*60*24*365
+      $(this.el).html(this.template(viewModel));
+      this.input = this.$('.edit');
+      return this;
+    },
+
+    // Toggle the `"like"` state of the model.
+    toggleLike: function() {
+      Parse.User.current().addUnique("likes", this.model.escape("username"));
+      Parse.User.current().save(null, {
+        success: function(user) {
+          Parse.User.current().fetch();
+        },
+        error: function(user) {
+          console.log("failed to save");
+          // TODO: probably uncheck the box in this case
+        }
+      });
+    },
+  });
+
   // The Application
   // ---------------
 
@@ -159,9 +234,36 @@ $(function() {
         //this.addAll();
       } else if (filterValue === "active") {
         this.$("#profile").hide();
-        this.$("#matches").hide();
-        this.$("#msgs").show();
-        ///this.addSome(function(item) { return item.get('done') });
+        this.$("#matches").show();
+        this.$("#msgs").hide();
+
+        this.matches = new MatchList;
+
+        var d1 = new Date();
+        var d2 = new Date();
+        var youngest = 18;
+        if (Parse.User.current().escape("min_age").length > 0) {
+          youngest = Number(Parse.User.current().escape("min_age"));
+        }
+        var oldest = 100;
+        if (Parse.User.current().escape("max_age").length > 0) {
+          oldest = Number(Parse.User.current().escape("max_age"));
+        }
+        d1.setFullYear(d1.getFullYear() - oldest)
+        d2.setFullYear(d2.getFullYear() - youngest)
+
+        // Setup the query for the collection to look for todos from the current user
+        this.matches.query = new Parse.Query(Match);
+        this.matches.query.notEqualTo("objectId",     Parse.User.current().id);
+        this.matches.query.greaterThan("birthdate",   d1)  ;
+        this.matches.query.lessThan("birthdate",      d2);
+        this.matches.bind('add',     this.addOne);
+        this.matches.bind('reset',   this.addAll);
+
+        // Fetch all the todo items for this user
+        this.matches.fetch();
+        this.addAll();
+
       } else if (filterValue === "conversation") {
         this.$("#profile").show();
         this.$("#matches").hide();
@@ -172,6 +274,19 @@ $(function() {
         this.$("#msgs").hide();
       }
     },
+
+    // Add a single todo item to the list by creating a view for it, and
+    // appending its element to the `<ul>`
+    addOne: function(match) {
+      var view = new MatchView({model: match});
+      this.$("#todo-list").append(view.render().el);
+    },
+
+    // Add all items in the Todos collection at once.
+    addAll: function(collection, filter) {
+      this.$("#todo-list").html("");
+      this.matches.each(this.addOne);
+    }
     });
 
   var LogInView = Parse.View.extend({
