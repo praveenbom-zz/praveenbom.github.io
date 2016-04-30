@@ -25,9 +25,6 @@ $(function() {
 
     el: ".content",
 
-    // At initialization we bind to the relevant events on the `Todos`
-    // collection, when items are added or changed. Kick things off by
-    // loading any preexisting todos that might be saved to Parse.
     initialize: function() {
       var self = this;
 
@@ -35,6 +32,95 @@ $(function() {
 
       // Main todo management template
       this.$el.html(_.template($("#manage-todos-template").html()));
+
+      this.$('#public-profile').append(this.profileItemTemplateMC({
+        label: "gender",
+        field_name: "Gender",
+        opts: [
+          "Male",
+          "Female"
+        ]
+      }));
+      this.$('#public-profile').append(this.profileItemTemplateMC({
+        label: "birth_day",
+        field_name: "Birth Day",
+        opts: [
+          "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13",·
+          "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24",
+          "25", "26", "27", "28", "29", "30", "31"
+        ]
+      }));
+      this.$('#public-profile').append(this.profileItemTemplateMC({
+        label: "birth_month",
+        field_name: "Birth Month",
+        opts: [
+          "January", "February", "March", "April", "May", "June",
+          "July", "August", "September", "October", "November", "December"
+        ]
+      }));
+      this.$('#public-profile').append(this.profileItemTemplateMC({
+        label: "birth_year",
+        field_name: "Birth Year",
+        opts: [
+          "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977",
+          "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985",
+          "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993",
+          "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001"
+        ]     }));
+      this.$('#public-profile').append(this.profileItemTemplate({
+        label: "zip_code",
+        field_name: "Zip Code"
+      }));
+      this.$('#public-profile').append(this.profileItemTemplate({
+        label: "about_me",
+        field_name: "About me"
+      }));
+      this.$('#public-profile').append(this.profileItemTemplate({
+        label: "occupation",
+        field_name: "Occupation"
+      }));
+      this.$('#public-profile').append(this.profileItemTemplateMC({
+        label: "diet",
+        field_name: "Diet",
+        opts: [
+          "Vegan",
+          "Vegetarian",
+          "Mostly Vegetarian",
+          "Mostly Anything"
+        ]
+      }));
+      this.$('#interested-in').append(this.profileItemTemplateMC({
+        label: "min_age",
+        field_name: "Min age",
+        opts: [
+          "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28",
+          "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39",
+          "40", "41", "42", "43", "44", "45", "46", "47", "48", "49"
+          ]
+     }));
+      this.$('#interested-in').append(this.profileItemTemplateMC({
+        label: "max_age",
+        field_name: "Max age",
+        opts: [
+          "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28",
+          "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39",                                                                                                                                                                                                                                                                                           
+          "40", "41", "42", "43", "44", "45", "46", "47", "48", "49"
+          ]
+      }));
+      this.$('#interested-in').append(this.profileItemTemplateMC({
+        label: "max_distance",
+        field_name: "Max distance",
+        opts: ["Near", "Far", "Wherever you are"]
+      }));
+      this.$('#settings').append(this.profileItemTemplate({
+        label: "contact_email",
+        field_name: "Contact email"
+      }));
+
+
+
+
+
 
       state.on("change", this.filter, this);
       this.render();
