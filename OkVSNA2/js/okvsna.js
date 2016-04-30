@@ -183,7 +183,7 @@ $(function() {
         }
       } else {
         console.log("at least doing this");
-        new LogInView();
+        new LogInView().render();
       }
     }
   });
