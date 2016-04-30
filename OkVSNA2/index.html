@@ -61,6 +61,20 @@
        </div>
     </script>
 
+    <script type="text/template" id="match-template">
+      <li>
+      <div class="view">
+        <img src="<%= _.escape(profile_pic_url) %>" alt="pic" height="75">
+        <br/>
+        <label class="todo-content"><%= _.escape(username)+", "+_.escape(age) %></label>
+        <br/>
+        <label>Like?</label><input class="toggle" type="checkbox" <%= Parse.User.current().get("likes").indexOf(_.escape(username)) > -1 ? 'checked="checked"' : '' %>>
+      </div>
+        <br/>
+        <br/>
+      </li>
+    </script>
+
     <script type="text/template" id="manage-todos-template">
       <div id="user-info">
         Signed in as <%= Parse.User.current().escape("username") %> (<a href="#" class="log-out">Log out</a>)
