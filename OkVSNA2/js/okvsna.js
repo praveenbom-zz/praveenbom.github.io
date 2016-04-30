@@ -262,7 +262,6 @@ $(function() {
 
         // Fetch all the todo items for this user
         this.matches.fetch();
-        this.addAll();
 
       } else if (filterValue === "conversation") {
         this.$("#profile").show();
