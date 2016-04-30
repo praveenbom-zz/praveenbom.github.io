@@ -48,13 +48,13 @@
       </div>
       <ul id="filters">
         <li>
-          <a href="javascript:void(0)" id="all" class="selected">Me</a>
+          <a href="javascript:void(0)" id="all" class="selected">All</a>
         </li>
         <li>
-          <a href="javascript:void(0)" id="active">Matches</a>
+          <a href="javascript:void(0)" id="active">Active</a>
         </li>
         <li>
-          <a href="javascript:void(0)" id="completed">Messages</a>
+          <a href="javascript:void(0)" id="completed">Completed</a>
         </li>
       </ul>
 
@@ -92,12 +92,31 @@
         </div>
         <hr/>
         <div id="convo-thread"></div>
-      </div>
+        <div id="todo-stats2"></div>
+      </div>  
       <div class="section">
         <div id="main">
         </div>
       </div>
     </script>
+
+    <script type="text/template" id="stats-template">
+      <footer id="footer">
+	<ul id="filters">
+	  <li>
+	    <a href="javascript:void(0)" id="all" class="selected">All</a>
+	  </li>
+	  <li>
+	    <a href="javascript:void(0)" id="active">Active</a>
+	  </li>
+	  <li>
+	    <a href="javascript:void(0)" id="completed">Completed</a>
+	  </li>
+	</ul>
+	<button id="clear-completed">Clear completed (<%= done %>)</button>
+      </footer>
+    </script>
+
   </body>
 
 </html>

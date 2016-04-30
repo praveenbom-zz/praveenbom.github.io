@@ -181,6 +181,7 @@ $(function() {
           Parse.history.navigate("all");
         }
       } else {
+        console.log("making a new login view")
         new LogInView();
       }
     }
