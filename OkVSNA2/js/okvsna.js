@@ -149,6 +149,7 @@ $(function() {
     },
 
     render: function() {
+      console.log("trying to render");
       this.$el.html(_.template($("#login-template").html()));
       this.delegateEvents();
     }
