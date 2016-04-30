@@ -110,6 +110,7 @@ $(function() {
       Parse.User.logIn(username, password, {
         success: function(user) {
           new ManageTodosView();
+          Parse.history.navigate("all");
           self.undelegateEvents();
           delete self;
         },
@@ -133,6 +134,7 @@ $(function() {
       Parse.User.signUp(username, password, { ACL: new Parse.ACL() }, {
         success: function(user) {
           new ManageTodosView();
+          Parse.history.navigate("all");
           self.undelegateEvents();
           delete self;
         },
