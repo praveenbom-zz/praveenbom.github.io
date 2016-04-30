@@ -284,8 +284,8 @@ $(function() {
 
     // Add all items in the Todos collection at once.
     addAll: function(collection, filter) {
-      this.$("#todo-list").html("");
-      this.matches.each(this.addOne);
+      this.$("#todo-list").html("Stuff goes here");
+      //this.matches.each(this.addOne);
     }
     });
 
