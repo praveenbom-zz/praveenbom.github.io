@@ -255,6 +255,8 @@ $(function() {
         this.matches.query.notEqualTo("objectId",     Parse.User.current().id);
         this.matches.query.greaterThan("birthdate",   d1)  ;
         this.matches.query.lessThan("birthdate",      d2);
+        this.matches.bind('add',     this.addOne);
+        this.matches.bind('reset',   this.addAll);
 
         // Fetch all the todo items for this user
         this.matches.fetch();
