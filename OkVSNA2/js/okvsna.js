@@ -277,6 +277,7 @@ $(function() {
     },
 
     filter: function() {
+      console.log("state change happening!");
       var filterValue = state.get("filter");
       this.$("ul#filters a").removeClass("selected");
       this.$("ul#filters a#" + filterValue).addClass("selected");
