@@ -73,6 +73,7 @@ $(function() {
 
     // Toggle the `"like"` state of the model.
     toggleLike: function() {
+      console.log("toggling like now");
       Parse.User.current().addUnique("likes", this.model.escape("username"));
       Parse.User.current().save(null, {
         success: function(user) {
