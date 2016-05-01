@@ -319,6 +319,7 @@ $(function() {
         this.$("#profile").hide();
         this.$("#matches").hide();
         this.$("#msgs").show();
+        this.$("#convo").hide();
 
         // Setup the query for the collection to look for todos from the current user
         this.conversationMatches.query = new Parse.Query(Match);
@@ -335,6 +336,7 @@ $(function() {
         this.$("#matches").hide();
         this.$("#msgs").hide();
         this.$("#convo").show();
+        $("#convo").append("\n");
         $("#convo").append("Showing conversation thread for " + this.lastConversation);
         console.log(this.lastConversation);
       }
