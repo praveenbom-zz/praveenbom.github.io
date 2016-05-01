@@ -86,6 +86,42 @@ $(function() {
     },
   });
 
+  // ConversationMatch View
+  // --------------
+
+  // The DOM element for a todo item...
+  var ConversationMatchView = Parse.View.extend({
+
+    //... is a list tag.
+    tagName:  "li",
+
+    // Cache the template function for a single item.
+    template: _.template($('#conversation-match-template').html()),
+    convoTemplate: _.template($('#conversation-template').html()),
+
+    // The DOM events specific to an item.
+    events: {
+      "click .toggle"              : "toggleConvo",
+    },
+
+    initialize: function() {
+      _.bindAll(this, 'render');
+      this.model.bind('change', this.render);
+    },
+
+    render: function() {
+      $(this.el).html(this.template(this.model.toJSON()));
+      this.input = this.$('.edit');
+      return this;
+    },
+
+    toggleConvo: function() {
+      $("#convo-thread").html(this.convoTemplate(this.model.toJSON()));
+    },
+  });
+
+
+
   // The Application
   // ---------------
 
