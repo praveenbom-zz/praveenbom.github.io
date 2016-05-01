@@ -261,8 +261,7 @@ $(function() {
     },
 
     selectConvo: function(e) {
-      var el = $(e.target);
-      console.log(el[0].innerText);
+      this.lastConversation = $(e.target)[0].innerText);
       var filterValue = "conversation";
       state.set({filter: filterValue});
       Parse.history.navigate(filterValue);
