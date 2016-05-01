@@ -261,7 +261,7 @@ $(function() {
     },
 
     selectConvo: function(e) {
-      this.lastConversation = $(e.target)[0].innerText);
+      this.lastConversation = $(e.target)[0].innerText;
       var filterValue = "conversation";
       state.set({filter: filterValue});
       Parse.history.navigate(filterValue);
