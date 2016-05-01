@@ -232,7 +232,6 @@ $(function() {
         this.$("#profile").show();
         this.$("#matches").hide();
         this.$("#msgs").hide();
-        //this.addAll();
       } else if (filterValue === "active") {
         this.$("#profile").hide();
         this.$("#matches").show();
@@ -256,11 +255,10 @@ $(function() {
         this.matches.query.notEqualTo("objectId",     Parse.User.current().id);
         this.matches.query.greaterThan("birthdate",   d1)  ;
         this.matches.query.lessThan("birthdate",      d2);
-        this.matches.bind('add',     this.addOne);
-        this.matches.bind('reset',   this.addAll);
 
         // Fetch all the todo items for this user
         this.matches.fetch();
+        this.addAll();
 
       } else if (filterValue === "conversation") {
         this.$("#profile").show();
@@ -283,9 +281,9 @@ $(function() {
     // Add all items in the Todos collection at once.
     addAll: function(collection, filter) {
       console.log("running this code");
-      console.log(collection)
+      console.log(this.matches)
       $("#todo-list").html("Stuff goes here");
-      collection.each(this.addOne);
+      this.matches.each(this.addOne);
     }
     });
 
