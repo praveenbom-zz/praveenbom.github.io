@@ -195,6 +195,7 @@ $(function() {
         field_name: "Contact email"
       }));
 
+      this.matches = new MatchList;
       state.on("change", this.filter, this);
       this.render();
     },
@@ -236,8 +237,6 @@ $(function() {
         this.$("#profile").hide();
         this.$("#matches").show();
         this.$("#msgs").hide();
-
-        this.matches = new MatchList;
 
         var d1 = new Date();
         var d2 = new Date();
@@ -286,7 +285,7 @@ $(function() {
       console.log("running this code");
       console.log(collection)
       $("#todo-list").html("Stuff goes here");
-      this.matches.each(this.addOne);
+      collection.each(this.addOne);
     }
     });
 
