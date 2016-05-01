@@ -573,6 +573,10 @@ $(function() {
 
     completed: function() {
       state.set({ filter: "completed" });
+    },
+
+    conversation: function() {
+      state.set({ filter: "conversation" });
     }
   });
 
