@@ -285,7 +285,7 @@ $(function() {
       console.log("running this code");
       console.log(collection)
       $("#todo-list").html("Stuff goes here");
-      this.matches.each(this.addOne);
+      collection.each(this.addOne);
     }
     });
 
