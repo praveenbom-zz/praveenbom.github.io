@@ -75,6 +75,14 @@
       </li>
     </script>
 
+    <script type="text/template" id="conversation-match-template">
+      <li>
+      <div class="view">
+        <a href="javascript:void(0)"><label class="conversation-link"><%= _.escape(username) %></label></a>
+      </div>
+      </li>
+    </script>
+
     <script type="text/template" id="manage-todos-template">
       <div id="user-info">
         Signed in as <%= Parse.User.current().escape("username") %> (<a href="#" class="log-out">Log out</a>)
