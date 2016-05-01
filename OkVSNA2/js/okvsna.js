@@ -556,7 +556,8 @@ $(function() {
     routes: {
       "all": "all",
       "active": "active",
-      "completed": "completed"
+      "completed": "completed",
+      "conversation": "conversation"
     },
 
     initialize: function(options) {
