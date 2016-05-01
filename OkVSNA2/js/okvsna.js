@@ -260,9 +260,9 @@ $(function() {
       this.delegateEvents();
     },
 
-
     selectConvo: function(e) {
       var el = $(e.target);
+      console.log($el.html());
       var filterValue = "conversation";
       state.set({filter: filterValue});
       Parse.history.navigate(filterValue);
