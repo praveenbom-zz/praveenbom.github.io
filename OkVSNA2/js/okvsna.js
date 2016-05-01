@@ -264,7 +264,6 @@ $(function() {
     selectConvo: function(e) {
       var el = $(e.target);
       var filterValue = "conversation";
-      console.log(el.attr("html"));
       state.set({filter: filterValue});
       Parse.history.navigate(filterValue);
     },
@@ -278,7 +277,6 @@ $(function() {
     },
 
     filter: function() {
-      console.log("state change happening!");
       var filterValue = state.get("filter");
       this.$("ul#filters a").removeClass("selected");
       this.$("ul#filters a#" + filterValue).addClass("selected");
