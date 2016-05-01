@@ -284,10 +284,12 @@ $(function() {
         this.$("#profile").show();
         this.$("#matches").hide();
         this.$("#msgs").hide();
+        this.$("#convo").hide();
       } else if (filterValue === "active") {
         this.$("#profile").hide();
         this.$("#matches").show();
         this.$("#msgs").hide();
+        this.$("#convo").hide();
 
         var d1 = new Date();
         var d2 = new Date();
@@ -332,6 +334,8 @@ $(function() {
         this.$("#profile").hide();
         this.$("#matches").hide();
         this.$("#msgs").hide();
+        this.$("#convo").show();
+        $("#convo").append("Showing conversation thread for " + this.lastConversation);
         console.log(this.lastConversation);
       }
     },
