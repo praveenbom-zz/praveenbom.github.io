@@ -97,8 +97,19 @@ $(function() {
 
     // Delegated events for creating new items, and clearing completed ones.
     events: {
+      "keypress #new-todo2":  "createOnEnter2",
+      "dblclick .profile-label" : "editField",
+      "click .profile-field-pencil"   : "editField",
+      "click #submit_new": "submitNewPhoto",
+      "keypress .editProfileField" : "updateField",
+      "change .editProfileFieldMC" : "updateFieldMC",
+      "blur .editProfileField" : "closeField",
+      "blur .editProfileFieldMC" : "closeFieldMC",
+      "click #clear-completed2": "clearCompleted2",
+      "click #toggle-all2": "toggleAllComplete2",
       "click .log-out": "logOut",
-      "click ul#filters a": "selectFilter"
+      "click ul#filters a": "selectFilter",
+      "click .conversation-link": "selectConversation"
     },
 
     el: ".content",
@@ -106,7 +117,7 @@ $(function() {
     initialize: function() {
       var self = this;
 
-      _.bindAll(this, 'render', 'logOut');
+      _.bindAll(this, 'addOne', 'addOne2', 'addAll', 'addAll2', 'render', 'toggleAllComplete2', 'logOut', 'createOnEnter2', 'editField', 'submitNewPhoto');
 
       // Main todo management template
       this.$el.html(_.template($("#manage-todos-template").html()));
@@ -196,8 +207,11 @@ $(function() {
       }));
 
       this.matches = new MatchList;
+      this.conversationMatches = new MatchList;
+
+
+
       state.on("change", this.filter, this);
-      this.render();
     },
 
     // Logs out the user and shows the login view
@@ -284,8 +298,102 @@ $(function() {
     addAll: function(collection, filter) {
       console.log(this.matches)
       this.matches.each(this.addOne);
-    }
-    });
+    },
+
+    updateField: function(e) {
+      if (e.keyCode == 13) {
+        $(e.target).blur();
+      }
+    },
+
+    updateFieldMC: function(e) {
+      $(e.target).blur();
+    },
+
+    closeField: function(e) {
+      var el = $(e.target);
+      var fieldName = el.attr("id").split("-")[0];
+      var oldFieldVal = this.$("#"+fieldName).html();
+      var fieldVal = this.$("#"+fieldName+"-input").val();
+      this.$("#"+fieldName).html(fieldVal)
+      Parse.User.current().set(fieldName, fieldVal);
+      Parse.User.current().save(null, {
+        success: function(user) {
+          Parse.User.current().fetch();
+        },
+        error: function(user) {
+          $("#"+fieldName).html(oldFieldVal)
+          $("#"+fieldName+"-input").val(oldFieldVal)
+          console.log("failed to save");
+        }
+      });
+    },
+
+    closeFieldMC: function(e) {
+      var el = $(e.target);
+      var fieldName = el.attr("id");
+      var label = fieldName.split("-")[0];
+      var oldFieldVal = Parse.User.current().escape(label);
+      var fieldVal = this.$("#"+fieldName).find(":selected").text();
+
+      Parse.User.current().set(label, fieldVal);
+      if (label.indexOf("birth") > -1) {
+        month_map = {"January": 1, "February": 2, "March": 3, "April": 4,·
+                     "May": 5, "June": 6, "July": 7, "August": 8,
+                     "September": 9, "October": 10, "November": 11,·
+                     "December": 12}
+        var y = Number(Parse.User.current().escape("birth_year"));
+        var m = month_map[Parse.User.current().escape("birth_month")];
+        var d = Number(Parse.User.current().escape("birth_day"));
+        var date = new Date(y, m, d, 0, 0, 0, 0);
+        Parse.User.current().set("birthdate", date);
+      }
+      Parse.User.current().save(null, {
+        success: function(user) {
+          Parse.User.current().fetch();
+        },
+        error: function(user) {
+          $('option:selected', 'select[name=fieldName]').removeAttr('selected');
+          $('select[name=fieldName]').find('option:contains(oldFieldVal)').attr("selected",true);
+          console.log("fail");
+        }
+      });
+    },
+
+    editField: function(e) {
+      var el = $(e.target);
+      var fieldName = el.attr("id");
+      if (fieldName.indexOf("pencil") > -1) fieldName = fieldName.substring(0,fieldName.length-7);
+      this.$("#"+fieldName+"-input").focus();
+    },
+
+    submitNewPhoto: function(e) {
+      console.log("changing photo code executes now...")
+      var fileUploadControl = $("#profilePhotoFileUpload")[0];
+      if (fileUploadControl.files.length > 0) {
+        var file = fileUploadControl.files[0];
+        var name = "photo.jpg";
+        var parseFile = new Parse.File(name, file);
+      }
+
+      parseFile.save().then(function() {
+      // The file has been saved to Parse.
+        Parse.User.current().set("profile_pic", parseFile);
+        Parse.User.current().set("profile_pic_url", parseFile.url());
+        Parse.User.current().save(null, {
+          success: function(user) {
+            Parse.User.current().fetch();
+            $("#profile_pic")[0].src = Parse.User.current().get("profile_pic_url");
+          },
+          error: function(user) {
+            console.log("fail");
+          }
+        });
+      }, function(error) {
+      // The file either could not be read, or could not be saved to Parse.
+      });
+    },
+  });
 
   var LogInView = Parse.View.extend({
     events: {
