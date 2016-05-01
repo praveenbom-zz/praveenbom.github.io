@@ -540,7 +540,7 @@ $(function() {
           rte = url.split('#')[1]
 
         console.log(rte);
-        if (rte == "active" || rte == "completed" || rte == "completed") {
+        if (rte == "active" || rte == "completed" || rte == "conversation") {
           state.set({ filter: rte });
         }
         else {
