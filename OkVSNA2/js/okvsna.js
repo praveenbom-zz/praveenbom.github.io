@@ -265,7 +265,7 @@ $(function() {
       console.log(el);
       var filterValue = "conversation";
       state.set({filter: filterValue});
-      Parse.history.navigate(;filterValue);
+      Parse.history.navigate(filterValue);
     },
 
     // Filters the list based on which type of filter is selected
