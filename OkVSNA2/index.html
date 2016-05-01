@@ -132,8 +132,7 @@
         <div id="todo-stats"></div>
       </div>
       <div id="msgs" style="display: none;">
-        <input id="new-todo2" placeholder="What needs to be done?" type="text" />
-        <br/>
+        <hr/>
         <br/>
         <div>
           <ul id="convos-list">
@@ -151,18 +150,18 @@
 
     <script type="text/template" id="stats-template">
       <footer id="footer">
-	<ul id="filters">
-	  <li>
-	    <a href="javascript:void(0)" id="all" class="selected">All</a>
-	  </li>
-	  <li>
-	    <a href="javascript:void(0)" id="active">Active</a>
-	  </li>
-	  <li>
-	    <a href="javascript:void(0)" id="completed">Completed</a>
-	  </li>
-	</ul>
-	<button id="clear-completed">Clear completed (<%= done %>)</button>
+      <ul id="filters">
+        <li>
+          <a href="javascript:void(0)" id="all" class="selected">All</a>
+        </li>
+        <li>
+          <a href="javascript:void(0)" id="active">Active</a>
+        </li>
+        <li>
+          <a href="javascript:void(0)" id="completed">Completed</a>
+        </li>
+      </ul>
+      <button id="clear-completed">Clear completed (<%= done %>)</button>
       </footer>
     </script>
 
