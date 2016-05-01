@@ -113,7 +113,7 @@ $(function() {
     initialize: function() {
       var self = this;
 
-      _.bindAll(this, 'addOne', 'addAll', 'render', 'logOut', 'editField', 'submitNewPhoto');
+      _.bindAll(this, 'addOne', 'addAll', 'addOne2', 'addAll2', 'render', 'logOut', 'editField', 'submitNewPhoto');
 
       // Main todo management template
       this.$el.html(_.template($("#manage-todos-template").html()));
@@ -205,8 +205,6 @@ $(function() {
       this.matches = new MatchList;
       this.conversationMatches = new MatchList;
 
-
-
       state.on("change", this.filter, this);
     },
 
@@ -275,6 +273,17 @@ $(function() {
         this.$("#profile").hide();
         this.$("#matches").hide();
         this.$("#msgs").show();
+
+        // Setup the query for the collection to look for todos from the current user
+        this.conversationMatches.query = new Parse.Query(Match);
+        this.conversationMatches.query.containedIn("username", Parse.User.current().get("likes"));
+        this.conversationMatches.query.equalTo("likes", Parse.User.current().escape("username"));
+        this.conversationMatches.bind('add',     this.addOne2);
+        this.conversationMatches.bind('reset',   this.addAll2);
+        this.conversationMatches.bind('all',     this.render);
+
+        // Fetch all the todo items for this user
+        this.conversationMatches.fetch();
       } else if (filterValue === "conversation"){
         this.$("#profile").hide();
         this.$("#matches").hide();
@@ -282,17 +291,25 @@ $(function() {
       }
     },
 
-    // Add a single todo item to the list by creating a view for it, and
-    // appending its element to the `<ul>`
     addOne: function(match) {
       var view = new MatchView({model: match});
-      $("#todo-list").append(view.render().el);
+      $("#matches-list").append(view.render().el);
+    },
+
+    addAll: function(collection, filter) {
+      this.$("#matches-list").html("");
+      this.matches.each(this.addOne);
+    },
+
+    addOne2: function(conversationMatch) {
+      var view = new ConversationMatchView({model: conversationMatch});
+      this.$("#convos-list").append(view.render().el);
     },
 
     // Add all items in the Todos collection at once.
-    addAll: function(collection, filter) {
-      this.$("#todo-list").html("");
-      this.matches.each(this.addOne);
+    addAll2: function(collection, filter) {
+      this.$("#convos-list").html("");
+      this.conversationMatches.each(this.addOne2);
     },
 
     updateField: function(e) {
@@ -377,6 +394,7 @@ $(function() {
         Parse.User.current().set("profile_pic_url", parseFile.url());
         Parse.User.current().save(null, {
           success: function(user) {
+            console.log("success");
             Parse.User.current().fetch();
             $("#profile_pic")[0].src = Parse.User.current().get("profile_pic_url");
           },
