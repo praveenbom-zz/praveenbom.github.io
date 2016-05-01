@@ -101,7 +101,7 @@ $(function() {
 
     // The DOM events specific to an item.
     events: {
-      "click .toggle"              : "toggleConvo",
+      //"click .toggle"              : "toggleConvo",
     },
 
     initialize: function() {
@@ -115,9 +115,9 @@ $(function() {
       return this;
     },
 
-    toggleConvo: function() {
-      $("#convo-thread").html(this.convoTemplate(this.model.toJSON()));
-    },
+    //toggleConvo: function() {
+    //  $("#convo-thread").html(this.convoTemplate(this.model.toJSON()));
+    //},
   });
 
 
@@ -141,7 +141,8 @@ $(function() {
       "blur .editProfileField" : "closeField",
       "blur .editProfileFieldMC" : "closeFieldMC",
       "click .log-out": "logOut",
-      "click ul#filters a": "selectFilter"
+      "click ul#filters a": "selectFilter",
+      "click .conversation-link": "selectConvo"
     },
 
     el: ".content",
@@ -254,6 +255,11 @@ $(function() {
 
     render: function() {
       this.delegateEvents();
+    },
+
+
+    selectConvo: function(e) {
+      console.log("fuck this to hell");
     },
 
     // Filters the list based on which type of filter is selected
