@@ -97,7 +97,6 @@ $(function() {
 
     // Delegated events for creating new items, and clearing completed ones.
     events: {
-      "keypress #new-todo2":  "createOnEnter2",
       "dblclick .profile-label" : "editField",
       "click .profile-field-pencil"   : "editField",
       "click #submit_new": "submitNewPhoto",
@@ -106,7 +105,6 @@ $(function() {
       "blur .editProfileField" : "closeField",
       "blur .editProfileFieldMC" : "closeFieldMC",
       "click #clear-completed2": "clearCompleted2",
-      "click #toggle-all2": "toggleAllComplete2",
       "click .log-out": "logOut",
       "click ul#filters a": "selectFilter",
       "click .conversation-link": "selectConversation"
@@ -117,7 +115,7 @@ $(function() {
     initialize: function() {
       var self = this;
 
-      _.bindAll(this, 'addOne', 'addOne2', 'addAll', 'addAll2', 'render', 'toggleAllComplete2', 'logOut', 'createOnEnter2', 'editField', 'submitNewPhoto');
+      _.bindAll(this, 'addOne', 'addAll', 'render', 'logOut', 'editField', 'submitNewPhoto');
 
       // Main todo management template
       this.$el.html(_.template($("#manage-todos-template").html()));
