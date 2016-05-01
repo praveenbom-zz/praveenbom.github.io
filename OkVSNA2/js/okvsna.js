@@ -74,6 +74,7 @@ $(function() {
     // Toggle the `"like"` state of the model.
     toggleLike: function() {
       console.log("toggling like now");
+      //TODO: GET UNLIKE TO WORK
       Parse.User.current().addUnique("likes", this.model.escape("username"));
       Parse.User.current().save(null, {
         success: function(user) {
@@ -98,7 +99,7 @@ $(function() {
 
     // Cache the template function for a single item.
     template: _.template($('#conversation-match-template').html()),
-    convoTemplate: _.template($('#conversation-template').html()),
+    //convoTemplate: _.template($('#conversation-template').html()),
 
     // The DOM events specific to an item.
     events: {
@@ -261,6 +262,8 @@ $(function() {
 
     selectConvo: function(e) {
       console.log("fuck this to hell");
+
+
     },
 
     // Filters the list based on which type of filter is selected
@@ -275,9 +278,6 @@ $(function() {
       var filterValue = state.get("filter");
       this.$("ul#filters a").removeClass("selected");
       this.$("ul#filters a#" + filterValue).addClass("selected");
-
-      console.log("running this shit");
-      console.log(filterValue);
 
       if (filterValue === "all") {
         this.$("#profile").show();
