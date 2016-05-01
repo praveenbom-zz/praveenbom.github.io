@@ -243,6 +243,7 @@ $(function() {
 
       this.matches = new MatchList;
       this.conversationMatches = new MatchList;
+      this.lastConversation = "helloString";
 
       state.on("change", this.filter, this);
     },
@@ -334,6 +335,7 @@ $(function() {
         this.$("#profile").hide();
         this.$("#matches").hide();
         this.$("#msgs").hide();
+        console.log(this.lastConversation);
       }
     },
 
