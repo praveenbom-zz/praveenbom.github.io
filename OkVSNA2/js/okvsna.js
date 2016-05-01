@@ -104,10 +104,8 @@ $(function() {
       "change .editProfileFieldMC" : "updateFieldMC",
       "blur .editProfileField" : "closeField",
       "blur .editProfileFieldMC" : "closeFieldMC",
-      "click #clear-completed2": "clearCompleted2",
       "click .log-out": "logOut",
-      "click ul#filters a": "selectFilter",
-      "click .conversation-link": "selectConversation"
+      "click ul#filters a": "selectFilter"
     },
 
     el: ".content",
