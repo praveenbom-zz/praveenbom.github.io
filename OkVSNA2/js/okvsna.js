@@ -144,7 +144,7 @@ $(function() {
       "blur .editProfileFieldMC" : "closeFieldMC",
       "click .log-out": "logOut",
       "click ul#filters a": "selectFilter",
-      "click .conversation-link": "selectConvo"
+      "click .conversation-match-link": "selectConvo"
     },
 
     el: ".content",
@@ -261,9 +261,11 @@ $(function() {
 
 
     selectConvo: function(e) {
-      console.log("fuck this to hell");
-
-
+      var el = $(e.target);
+      var filterValue = "conversation";
+      console.log(el.attr("html"));
+      state.set({filter: filterValue});
+      Parse.history.navigate(filterValue);
     },
 
     // Filters the list based on which type of filter is selected
