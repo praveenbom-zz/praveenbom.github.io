@@ -271,14 +271,13 @@ $(function() {
         // Fetch all the todo items for this user
         this.matches.fetch();
         this.addAll();
-
-      } else if (filterValue === "conversation") {
-        this.$("#profile").show();
-        this.$("#matches").hide();
-        this.$("#msgs").hide();
-      } else {
+      } else if (filterValue === "completed") {
         this.$("#profile").hide();
-        this.$("#matches").show();
+        this.$("#matches").hide();
+        this.$("#msgs").show();
+      } else if (filterValue === "conversation"){
+        this.$("#profile").hide();
+        this.$("#matches").hide();
         this.$("#msgs").hide();
       }
     },
