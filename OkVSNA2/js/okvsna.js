@@ -337,7 +337,6 @@ $(function() {
         this.$("#msgs").hide();
         this.$("#convo").show();
         $("#convo").html("Showing conversation thread for " + this.lastConversation);
-        console.log(this.lastConversation);
       }
     },
 
