@@ -86,7 +86,7 @@
     <script type="text/template" id="conversation-template">
       <li>
       <div class="view">
-        <label class="todo-content"><%= _.escape(username) %></label>
+        <%= _.escape(content) %>
       </div>
       </li>
     </script>
@@ -127,6 +127,7 @@
       <div id="matches" style="display: none;" class="section">
         <div>
           <ul id="matches-list">
+            <img src='images/spinner.gif' class='spinner' />
           </ul>
         </div>
         <div id="todo-stats"></div>
@@ -134,16 +135,23 @@
       <div id="msgs" style="display: none;">
         <div>
           <ul id="convos-list">
+            <img src='images/spinner.gif' class='spinner' />
           </ul>
         </div>
       </div>
       <div id="convo" style="display: none;">
+        <ul id="convo-messages-list">
+          <img src='images/spinner.gif' class='spinner' />
+        </ul>
+        <input id="new-todo" placeholder="Type your reply here" type="text" />
       </div>
       <div class="section">
         <div id="main">
         </div>
       </div>
     </script>
+
+    
 
     <script type="text/template" id="stats-template">
       <footer id="footer">

@@ -90,7 +90,6 @@ $(function() {
 
   // ConversationMatch View
   // --------------
-
   // The DOM element for a todo item...
   var ConversationMatchView = Parse.View.extend({
 
@@ -121,8 +120,6 @@ $(function() {
     //  $("#convo-thread").html(this.convoTemplate(this.model.toJSON()));
     //},
   });
-
-
 
   // The Application
   // ---------------
@@ -336,7 +333,7 @@ $(function() {
         this.$("#matches").hide();
         this.$("#msgs").hide();
         this.$("#convo").show();
-        $("#convo").html("Showing conversation thread for " + this.lastConversation);
+        //$("#convo").html("Showing conversation thread for " + this.lastConversation);
       }
     },
 
