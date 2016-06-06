@@ -238,7 +238,7 @@ $(function() {
     initialize: function() {
       var self = this;
 
-      _.bindAll(this, 'addOne', 'addAll', 'addOne2', 'addAll2', 'render', 'logOut', 'editField', 'submitNewPhoto', 'convoReply');
+      _.bindAll(this, 'addOne', 'addAll', 'addOne2', 'addAll2', 'addOne3', 'addAll3', 'render', 'logOut', 'editField', 'submitNewPhoto', 'convoReply');
 
       // Main todo management template
       this.$el.html(_.template($("#manage-todos-template").html()));
@@ -446,6 +446,17 @@ $(function() {
     addAll2: function(collection, filter) {
       this.$("#convos-list").html("");
       this.conversationMatches.each(this.addOne2);
+    },
+
+    addOne3: function(conversationReply) {
+      var view = new ConvoMessageView({model: conversationMatch});
+      this.$("#convo-messages-list").append(view.render().el);
+    },
+
+    // Add all items in the Todos collection at once.
+    addAll3: function(collection, filter) {
+      this.$("#convo-messages-list").html("");
+      this.convoMessages.each(this.addOne3);
     },
 
     updateField: function(e) {
