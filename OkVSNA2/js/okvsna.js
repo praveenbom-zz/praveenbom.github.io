@@ -50,12 +50,74 @@ $(function() {
     events: {
       "click .toggle"              : "toggleLike",
     },
+    // The MatchView listens for changes to its model, re-rendering. Since there's
+    // a one-to-one correspondence between a Match and a MatchView in this
+    // app, we set a direct reference on the model for convenience.
+    initialize: function() {
+      _.bindAll(this, 'render');
+      this.model.bind('change', this.render);
+    },
+
+    // Re-render the match.
+    render: function() {
+      var viewModel = this.model.toJSON();
+      var cur = new Date();
+      var birthdate = new Date(viewModel.birthdate.iso)
+      var diff = cur - birthdate; // This is the difference in milliseconds
+      viewModel.age = Math.floor(diff/31536000000); // Divide by 1000*60*60*24*365
+      $(this.el).html(this.template(viewModel));
+      this.input = this.$('.edit');
+      return this;
+    },
+
+    // Toggle the `"like"` state of the model.
+    toggleLike: function() {
+      console.log("toggling like now");
+      //TODO: GET UNLIKE TO WORK
+      Parse.User.current().addUnique("likes", this.model.escape("username"));
+      Parse.User.current().save(null, {
+        success: function(user) {
+          Parse.User.current().fetch();
+        },
+        error: function(user) {
+          console.log("failed to save");
+          // TODO: probably uncheck the box in this case
+        }
+      });
+    },
+  });
+
+  // ConversationMatch View
+  // --------------
+  // The DOM element for a todo item...
+  var ConversationMatchView = Parse.View.extend({
+
+    //... is a list tag.
+    tagName:  "li",
+
+    // Cache the template function for a single item.
+    template: _.template($('#conversation-match-template').html()),
+    //convoTemplate: _.template($('#conversation-template').html()),
+
+    // The DOM events specific to an item.
+    events: {
+      //"click .toggle"              : "toggleConvo",
+    },
+
+    initialize: function() {
+      _.bindAll(this, 'render');
+      this.model.bind('change', this.render);
+    },
 
     render: function() {
       $(this.el).html(this.template(this.model.toJSON()));
       this.input = this.$('.edit');
       return this;
-    }
+    },
+
+    //toggleConvo: function() {···················································································································································································································································································      ····················································
+    //  $("#convo-thread").html(this.convoTemplate(this.model.toJSON()));
+    //},
   });
 
   // Our basic Match model.
