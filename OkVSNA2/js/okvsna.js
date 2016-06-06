@@ -423,7 +423,12 @@ $(function() {
         this.$("#matches").hide();
         this.$("#msgs").hide();
         this.$("#convo").show();
-        //$("#convo").html("Showing conversation thread for " + this.lastConversation);
+
+        this.conversationMatches.query = new Parse.Query(Match);
+        this.conversationMatches.query.equalTo("fromUser", Parse.User.current().escape("username"));
+        this.conversationMatches.bind('add',     this.addOne3);
+        this.conversationMatches.bind('reset',   this.addAll3);
+        this.conversationMatches.bind('all',     this.render);
       }
     },
 
