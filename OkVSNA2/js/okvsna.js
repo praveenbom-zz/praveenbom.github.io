@@ -520,6 +520,7 @@ $(function() {
       if (e.keyCode != 13) return;
 
       this.convoMessages.create({
+        fromUser: Parse.User.current().escape("username"),
         content: this.input.val(),
         ACL:     new Parse.ACL(Parse.User.current())
       });
