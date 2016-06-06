@@ -327,6 +327,7 @@ $(function() {
         field_name: "Contact email"
       }));
 
+      this.input = this.$("#convo-reply")
       this.matches = new MatchList;
       this.conversationMatches = new MatchList;
       this.convoMessageList = new ConvoMessageList;
@@ -515,6 +516,7 @@ $(function() {
     },
 
     convoReply: function(e) {
+      this.input.val('');
       console.log("replying");
     },
     submitNewPhoto: function(e) {
