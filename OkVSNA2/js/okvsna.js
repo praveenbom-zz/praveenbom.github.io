@@ -51,6 +51,13 @@ $(function() {
       "click .toggle"              : "toggleLike",
     },
 
+    render: function() {
+      $(this.el).html(this.template(this.model.toJSON()));
+      this.input = this.$('.edit');
+      return this;
+    }
+  });
+
   // Our basic Match model.
   var ConvoMessage = Parse.Object.extend("Message", {
     // Default attributes for the match
@@ -160,7 +167,8 @@ $(function() {
       "blur .editProfileFieldMC" : "closeFieldMC",
       "click .log-out": "logOut",
       "click ul#filters a": "selectFilter",
-      "click .conversation-match-link": "selectConvo"
+      "click .conversation-match-link": "selectConvo",
+      "keypress #convo-reply": "convoReply"
     },
 
     el: ".content",
@@ -168,7 +176,7 @@ $(function() {
     initialize: function() {
       var self = this;
 
-      _.bindAll(this, 'addOne', 'addAll', 'addOne2', 'addAll2', 'render', 'logOut', 'editField', 'submitNewPhoto');
+      _.bindAll(this, 'addOne', 'addAll', 'addOne2', 'addAll2', 'render', 'logOut', 'editField', 'submitNewPhoto', 'convoReply');
 
       // Main todo management template
       this.$el.html(_.template($("#manage-todos-template").html()));
@@ -444,6 +452,9 @@ $(function() {
       this.$("#"+fieldName+"-input").focus();
     },
 
+    convoReply: function(e) {
+      console.log("replying");
+    },
     submitNewPhoto: function(e) {
       console.log("changing photo code executes now...")
       var fileUploadControl = $("#profilePhotoFileUpload")[0];
