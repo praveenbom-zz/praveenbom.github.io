@@ -425,6 +425,7 @@ $(function() {
         this.$("#msgs").hide();
         this.$("#convo").show();
 
+        this.convoMessages = new ConvoMessageList;
         this.convoMessages.query = new Parse.Query(ConvoMessage);
         this.convoMessages.query.equalTo("fromUser", Parse.User.current().escape("username"));
         this.convoMessages.query.equalTo("toUser", this.toUser);
@@ -448,6 +449,7 @@ $(function() {
 
     addOne2: function(conversationMatch) {
       var view = new ConversationMatchView({model: conversationMatch});
+      console.log("attempting to addOne2");
       this.$("#convos-list").append(view.render().el);
     },
 
