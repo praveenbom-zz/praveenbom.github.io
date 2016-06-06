@@ -331,6 +331,7 @@ $(function() {
       this.matches = new MatchList;
       this.conversationMatches = new MatchList;
       this.convoMessages = new ConvoMessageList;
+      this.toUser = "";
 
       state.on("change", this.filter, this);
     },
@@ -348,7 +349,7 @@ $(function() {
     },
 
     selectConvo: function(e) {
-      this.lastConversation = $(e.target)[0].innerText;
+      this.toUser = $(e.target)[0].innerText;
       var filterValue = "conversation";
       state.set({filter: filterValue});
       Parse.history.navigate(filterValue);
@@ -426,6 +427,7 @@ $(function() {
 
         this.convoMessages.query = new Parse.Query(ConvoMessage);
         this.convoMessages.query.equalTo("fromUser", Parse.User.current().escape("username"));
+        this.convoMessages.query.equalTo("toUser", this.toUser);
         this.convoMessages.bind('add',     this.addOne3);
         this.convoMessages.bind('reset',   this.addAll3);
         this.convoMessages.bind('all',     this.render);
@@ -540,6 +542,7 @@ $(function() {
 
       this.convoMessages.create({
         fromUser: Parse.User.current().escape("username"),
+        toUser: this.toUser,
         content: this.input.val(),
         ACL:     new Parse.ACL(Parse.User.current())
       });
