@@ -51,6 +51,45 @@ $(function() {
       "click .toggle"              : "toggleLike",
     },
 
+  // Our basic Match model.
+  var ConvoMessage = Parse.Object.extend("Message", {
+    // Default attributes for the match
+    defaults: {},
+
+    // Ensure that defaults are set if attribute doesn't exist
+    initialize: function() {},
+  });
+
+
+  // ConvoMessage Collection
+  // ---------------
+  var ConvoMessageList = Parse.Collection.extend({
+    // Reference to this collection's model.
+    model: ConvoMessage,
+
+    // Matches are sorted by birthdate·
+    // TODO: is sorting necessary?
+    comparator: function(match) {
+        return match.get('createdAt');
+    }
+  });
+
+  // ConvoMessage View
+  // --------------
+
+  // The DOM element for a todo item...
+  var ConvoMessageView = Parse.View.extend({
+
+    //... is a list tag.
+    tagName:  "li",
+
+    // Cache the template function for a single item.
+    template: _.template($('#conversation-template').html()),
+
+    // The DOM events specific to an item.
+    events: {
+    },
+
     // The MatchView listens for changes to its model, re-rendering. Since there's
     // a one-to-one correspondence between a Match and a MatchView in this
     // app, we set a direct reference on the model for convenience.
@@ -62,29 +101,9 @@ $(function() {
     // Re-render the match.
     render: function() {
       var viewModel = this.model.toJSON();
-      var cur = new Date();
-      var birthdate = new Date(viewModel.birthdate.iso)
-      var diff = cur - birthdate; // This is the difference in milliseconds
-      viewModel.age = Math.floor(diff/31536000000); // Divide by 1000*60*60*24*365
       $(this.el).html(this.template(viewModel));
       this.input = this.$('.edit');
       return this;
-    },
-
-    // Toggle the `"like"` state of the model.
-    toggleLike: function() {
-      console.log("toggling like now");
-      //TODO: GET UNLIKE TO WORK
-      Parse.User.current().addUnique("likes", this.model.escape("username"));
-      Parse.User.current().save(null, {
-        success: function(user) {
-          Parse.User.current().fetch();
-        },
-        error: function(user) {
-          console.log("failed to save");
-          // TODO: probably uncheck the box in this case
-        }
-      });
     },
   });
 
@@ -240,7 +259,7 @@ $(function() {
 
       this.matches = new MatchList;
       this.conversationMatches = new MatchList;
-      this.lastConversation = "helloString";
+      this.convoMessageList = new ConvoMessageList;
 
       state.on("change", this.filter, this);
     },
