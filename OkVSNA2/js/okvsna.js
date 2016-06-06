@@ -466,6 +466,7 @@ $(function() {
     // Add all items in the Todos collection at once.
     addAll3: function(collection, filter) {
       this.$("#convo-messages-list").html("");
+      console.log("calling addAll3");
       this.convoMessages.each(this.addOne3);
     },
 
@@ -543,12 +544,11 @@ $(function() {
       this.convoMessages.create({
         fromUser: Parse.User.current().escape("username"),
         toUser: this.toUser,
-        content: this.input.val(),
-        ACL:     new Parse.ACL(Parse.User.current())
+        content: this.input.val()//,
+        //ACL:     new Parse.ACL(Parse.User.current())
       });
 
       this.input.val('');
-      console.log("replying");
     },
     submitNewPhoto: function(e) {
       console.log("changing photo code executes now...")
