@@ -330,7 +330,7 @@ $(function() {
       this.input = this.$("#convo-reply")
       this.matches = new MatchList;
       this.conversationMatches = new MatchList;
-      this.convoMessageList = new ConvoMessageList;
+      this.convoMessages = new ConvoMessageList;
 
       state.on("change", this.filter, this);
     },
@@ -516,6 +516,14 @@ $(function() {
     },
 
     convoReply: function(e) {
+      var self = this;
+      if (e.keyCode != 13) return;
+
+      this.convoMessages.create({
+        content: this.input.val(),
+        ACL:     new Parse.ACL(Parse.User.current())
+      });
+
       this.input.val('');
       console.log("replying");
     },
