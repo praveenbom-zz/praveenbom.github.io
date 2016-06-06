@@ -424,13 +424,13 @@ $(function() {
         this.$("#msgs").hide();
         this.$("#convo").show();
 
-        this.conversationMessages.query = new Parse.Query(ConvoMessage);
-        this.conversationMessages.query.equalTo("fromUser", Parse.User.current().escape("username"));
-        this.conversationMessages.bind('add',     this.addOne3);
-        this.conversationMessages.bind('reset',   this.addAll3);
-        this.conversationMessages.bind('all',     this.render);
+        this.convoMessages.query = new Parse.Query(ConvoMessage);
+        this.convoMessages.query.equalTo("fromUser", Parse.User.current().escape("username"));
+        this.convoMessages.bind('add',     this.addOne3);
+        this.convoMessages.bind('reset',   this.addAll3);
+        this.convoMessages.bind('all',     this.render);
 
-        this.conversationMessages.fetch();
+        this.convoMessages.fetch();
       }
     },
 
