@@ -456,7 +456,7 @@ $(function() {
     },
 
     addOne3: function(conversationReply) {
-      var view = new ConvoMessageView({model: conversationMatch});
+      var view = new ConvoMessageView({model: conversationReply});
       console.log("attempting to addOne3");
       this.$("#convo-messages-list").append(view.render().el);
     },
