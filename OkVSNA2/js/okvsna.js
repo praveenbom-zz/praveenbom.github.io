@@ -424,11 +424,13 @@ $(function() {
         this.$("#msgs").hide();
         this.$("#convo").show();
 
-        this.conversationMatches.query = new Parse.Query(ConvoMessage);
-        this.conversationMatches.query.equalTo("fromUser", Parse.User.current().escape("username"));
-        this.conversationMatches.bind('add',     this.addOne3);
-        this.conversationMatches.bind('reset',   this.addAll3);
-        this.conversationMatches.bind('all',     this.render);
+        this.conversationMessages.query = new Parse.Query(ConvoMessage);
+        this.conversationMessages.query.equalTo("fromUser", Parse.User.current().escape("username"));
+        this.conversationMessages.bind('add',     this.addOne3);
+        this.conversationMessages.bind('reset',   this.addAll3);
+        this.conversationMessages.bind('all',     this.render);
+
+        this.conversationMessages.fetch();
       }
     },
 
@@ -455,6 +457,7 @@ $(function() {
 
     addOne3: function(conversationReply) {
       var view = new ConvoMessageView({model: conversationMatch});
+      console.log("attempting to addOne3");
       this.$("#convo-messages-list").append(view.render().el);
     },
 
