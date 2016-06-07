@@ -392,11 +392,14 @@ $(function() {
         d1.setFullYear(d1.getFullYear() - oldest)
         d2.setFullYear(d2.getFullYear() - youngest)
 
+        console.log(d1);
+        console.log(d2);
+        this.matches = new MatchList;
         // Setup the query for the collection to look for todos from the current user
         this.matches.query = new Parse.Query(Match);
-        this.matches.query.notEqualTo("objectId",     Parse.User.current().id);
-        this.matches.query.greaterThan("birthdate",   d1)  ;
-        this.matches.query.lessThan("birthdate",      d2);
+        //this.matches.query.notEqualTo("objectId",     Parse.User.current().id);
+        //this.matches.query.greaterThan("birthdate",   d1)  ;
+        //this.matches.query.lessThan("birthdate",      d2);
         this.matches.bind('add',     this.addOne);
         this.matches.bind('reset',   this.addAll);
 
