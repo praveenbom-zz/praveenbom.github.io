@@ -396,7 +396,7 @@ $(function() {
         console.log(d2);
         this.matches = new MatchList;
         // Setup the query for the collection to look for todos from the current user
-        this.matches.query = new Parse.Query(User);
+        this.matches.query = new Parse.Query(Match);
         //this.matches.query.notEqualTo("objectId",     Parse.User.current().id);
         //this.matches.query.greaterThan("birthdate",   d1)  ;
         //this.matches.query.lessThan("birthdate",      d2);
