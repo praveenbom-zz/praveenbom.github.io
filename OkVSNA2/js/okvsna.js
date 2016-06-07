@@ -404,7 +404,7 @@ $(function() {
         this.matches.bind('reset',   this.addAll);
 
         // Fetch all the todo items for this user
-        this.matches.fetch();
+        this.matches.find();
         //this.addAll();
       } else if (filterValue === "completed") {
         this.$("#profile").hide();
