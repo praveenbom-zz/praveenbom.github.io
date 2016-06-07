@@ -600,7 +600,9 @@ $(function() {
       var password = this.$("#login-password").val();
       Parse.User.logIn(username, password, {
         success: function(user) {
-          Parse.User.current().set("profile_pic_url", "images/default_person.jpg");
+          if (Parse.User.current().escape("profile_pic_url").length < 1) {
+            Parse.User.current().set("profile_pic_url", "images/default_person.jpg");
+          }
           Parse.User.current().addUnique("likes", "");
 
           new ManageTodosView();
