@@ -65,6 +65,7 @@ $(function() {
       var birthdate = new Date(viewModel.birthdate.iso)
       var diff = cur - birthdate; // This is the difference in milliseconds
       viewModel.age = Math.floor(diff/31536000000); // Divide by 1000*60*60*24*365
+      console.log(viewModel);
       $(this.el).html(this.template(viewModel));
       this.input = this.$('.edit');
       return this;
@@ -597,9 +598,11 @@ $(function() {
       var self = this;
       var username = this.$("#login-username").val();
       var password = this.$("#login-password").val();
-      
       Parse.User.logIn(username, password, {
         success: function(user) {
+          Parse.User.current().set("profile_pic_url", "images/default_person.jpg");
+          Parse.User.current().addUnique("likes", "");
+
           new ManageTodosView();
           Parse.history.navigate("all");
           self.undelegateEvents();
@@ -621,9 +624,11 @@ $(function() {
       var self = this;
       var username = this.$("#signup-username").val();
       var password = this.$("#signup-password").val();
-      
       Parse.User.signUp(username, password, { ACL: new Parse.ACL() }, {
         success: function(user) {
+          Parse.User.current().set("profile_pic_url", "images/default_person.jpg");
+          Parse.User.current().addUnique("likes", "");
+
           new ManageTodosView();
           Parse.history.navigate("all");
           self.undelegateEvents();
