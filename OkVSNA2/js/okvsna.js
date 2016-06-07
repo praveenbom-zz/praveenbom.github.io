@@ -548,6 +548,7 @@ $(function() {
       var self = this;
       if (e.keyCode != 13) return;
 
+      console.log("why");
       this.convoMessages.create({
         fromUser: Parse.User.current().escape("username"),
         toUser: this.toUser,
