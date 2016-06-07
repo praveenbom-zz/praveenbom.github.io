@@ -65,7 +65,6 @@ $(function() {
       var birthdate = new Date(viewModel.birthdate.iso)
       var diff = cur - birthdate; // This is the difference in milliseconds
       viewModel.age = Math.floor(diff/31536000000); // Divide by 1000*60*60*24*365
-      console.log(viewModel);
       $(this.el).html(this.template(viewModel));
       this.input = this.$('.edit');
       return this;
