@@ -548,8 +548,7 @@ $(function() {
     convoReply: function(e) {
       var self = this;
       if (e.keyCode != 13) return;
-      console.log(this.input.val().length);
-
+      if (this.input.val().length <= 0) return;
       this.convoMessages.create({
         fromUser: Parse.User.current().escape("username"),
         toUser: this.toUser,
