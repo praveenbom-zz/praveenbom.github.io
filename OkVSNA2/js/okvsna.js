@@ -402,7 +402,7 @@ $(function() {
 
         // Fetch all the todo items for this user
         this.matches.fetch();
-        this.addAll();
+        //this.addAll();
       } else if (filterValue === "completed") {
         this.$("#profile").hide();
         this.$("#matches").hide();
