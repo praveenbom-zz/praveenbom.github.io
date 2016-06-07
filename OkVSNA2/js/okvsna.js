@@ -397,14 +397,15 @@ $(function() {
         this.matches = new MatchList;
         // Setup the query for the collection to look for todos from the current user
         this.matches.query = new Parse.Query(Match);
-        //this.matches.query.notEqualTo("objectId",     Parse.User.current().id);
-        //this.matches.query.greaterThan("birthdate",   d1)  ;
-        //this.matches.query.lessThan("birthdate",      d2);
+        this.matches.query.notEqualTo("objectId",     Parse.User.current().id);
+        this.matches.query.greaterThan("birthdate",   d1)  ;
+        this.matches.query.lessThan("birthdate",      d2);
         this.matches.bind('add',     this.addOne);
         this.matches.bind('reset',   this.addAll);
+        this.matches.bind('all',     this.render);
 
         // Fetch all the todo items for this user
-        this.matches.find();
+        this.matches.fetch();
         //this.addAll();
       } else if (filterValue === "completed") {
         this.$("#profile").hide();
@@ -630,7 +631,10 @@ $(function() {
       var self = this;
       var username = this.$("#signup-username").val();
       var password = this.$("#signup-password").val();
-      Parse.User.signUp(username, password, { ACL: new Parse.ACL() }, {
+      var userACL = new Parse.ACL();
+      userACL.setPublicReadAccess(true);
+
+      Parse.User.signUp(username, password, { ACL: userACL }, {
         success: function(user) {
           Parse.User.current().set("profile_pic_url", "images/default_person.jpg");
           Parse.User.current().addUnique("likes", "");
