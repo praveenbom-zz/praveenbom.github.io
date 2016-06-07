@@ -394,7 +394,6 @@ $(function() {
 
         console.log(d1);
         console.log(d2);
-        this.matches = new MatchList;
         // Setup the query for the collection to look for todos from the current user
         this.matches.query = new Parse.Query(Match);
         this.matches.query.notEqualTo("objectId",     Parse.User.current().id);
@@ -431,8 +430,8 @@ $(function() {
 
         this.convoMessages = new ConvoMessageList;
         this.convoMessages.query = new Parse.Query(ConvoMessage);
-        this.convoMessages.query.equalTo("fromUser", Parse.User.current().escape("username"));
-        this.convoMessages.query.equalTo("toUser", this.toUser);
+        this.convoMessages.query.containedIn("fromUser", [Parse.User.current().escape("username"), this.toUser]);
+        this.convoMessages.query.containedIn("toUser", [this.toUser, Parse.User.current().escape("username")]);
         this.convoMessages.bind('add',     this.addOne3);
         this.convoMessages.bind('reset',   this.addAll3);
         this.convoMessages.bind('all',     this.render);
