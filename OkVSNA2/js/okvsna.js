@@ -432,6 +432,7 @@ $(function() {
         this.convoMessages.query = new Parse.Query(ConvoMessage);
         this.convoMessages.query.containedIn("fromUser", [Parse.User.current().escape("username"), this.toUser]);
         this.convoMessages.query.containedIn("toUser", [this.toUser, Parse.User.current().escape("username")]);
+        this.convoMessages.query.ascending("createdAt");
         this.convoMessages.bind('add',     this.addOne3);
         this.convoMessages.bind('reset',   this.addAll3);
         this.convoMessages.bind('all',     this.render);
