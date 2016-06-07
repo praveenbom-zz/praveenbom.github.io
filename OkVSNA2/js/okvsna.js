@@ -443,6 +443,8 @@ $(function() {
     },
 
     addAll: function(collection, filter) {
+      console.log("got here");
+      console.log(collection);
       this.$("#matches-list").html("");
       this.matches.each(this.addOne);
     },
